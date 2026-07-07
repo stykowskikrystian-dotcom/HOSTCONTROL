@@ -77,31 +77,105 @@
     </header>
 
     <main>
-      <section class="hero section" id="start">
-        <div class="hero-glow"></div>
+      <section class="hero section" id="start" data-hero>
         <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-aurora hero-aurora--green" aria-hidden="true"></div>
+        <div class="hero-aurora hero-aurora--blue" aria-hidden="true"></div>
+        <div class="hero-pointer" aria-hidden="true"></div>
+
         <div class="hero-content">
-          <div class="eyebrow"><span></span> Projektujemy cyfrową przewagę</div>
-          <h1>Tworzymy strony,<br />które <em>pracują.</em></h1>
-          <p>Od pomysłu po gotowy produkt. Nowoczesny design, czysty kod i rozwiązania dopasowane do Twojego biznesu.</p>
-          <div class="hero-buttons">
-            <a class="primary-cta" href="kontakt.html">Porozmawiajmy o projekcie <span>↗</span></a>
-            <a class="text-cta" href="portfolio.html">Zobacz realizacje <span>→</span></a>
+          <div class="eyebrow">
+            <span class="eyebrow-pulse"></span>
+            <strong>Przyjmujemy nowe projekty</strong>
+            <i>•</i>
+            <span>Start w 7 dni</span>
           </div>
-          <div class="tech-row" aria-label="Nasze technologie">
-            <span>DESIGN</span><i></i><span>DEVELOPMENT</span><i></i><span>SEO</span><i></i><span>SUPPORT</span>
+
+          <h1>Zrób u nas stronę,<br />która <em class="rotating-word" aria-live="polite">sprzedaje.</em></h1>
+          <p>Projektujemy cyfrowe doświadczenia, które wyglądają świetnie, działają błyskawicznie i zamieniają odwiedzających w klientów.</p>
+
+          <div class="hero-buttons">
+            <a class="primary-cta" href="kontakt.html">
+              <span class="cta-label">Zacznijmy Twój projekt</span>
+              <span class="cta-icon" aria-hidden="true">↗</span>
+            </a>
+            <a class="text-cta" href="portfolio.html">
+              <span class="play-icon" aria-hidden="true">▶</span>
+              Zobacz, co tworzymy
+            </a>
+          </div>
+
+          <div class="hero-proof" aria-label="Najważniejsze korzyści">
+            <div><strong>100%</strong><span>indywidualny projekt</span></div>
+            <i></i>
+            <div><strong>90+</strong><span>wynik wydajności</span></div>
+            <i></i>
+            <div><strong>24/7</strong><span>strona pracuje dla Ciebie</span></div>
           </div>
         </div>
-        <div class="code-card" aria-hidden="true">
-          <div class="code-card-bar"><span></span><span></span><span></span><small>hostcontrol.dev</small></div>
-          <pre><code><b>&lt;section</b> class=<q>"future"</q><b>&gt;</b>
-  <span>const</span> idea = <q>"Twój biznes"</q>;
-  <span>const</span> result = build({
-    design: <i>true</i>,
-    performance: <i>true</i>,
-    impact: <q>"realny"</q>
-  });
-<b>&lt;/section&gt;</b><span class="cursor"></span></code></pre>
+
+        <div class="hero-showcase" data-tilt>
+          <div class="showcase-orbit" aria-hidden="true"></div>
+          <div class="showcase-window">
+            <div class="showcase-toolbar">
+              <div class="browser-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+              <div class="address-bar"><span class="secure-dot"></span>twojamarka.pl</div>
+              <div class="toolbar-action" aria-hidden="true">•••</div>
+            </div>
+
+            <div class="showcase-screen" data-preview-mode="design">
+              <div class="preview-nav">
+                <div class="preview-logo"><span></span>studio</div>
+                <div class="preview-links"><i></i><i></i><i></i></div>
+                <b>Kontakt</b>
+              </div>
+
+              <div class="preview-scene preview-scene--design">
+                <span class="preview-kicker">NOWA GENERACJA MARKI</span>
+                <h2>Pomysły, które<br /><em>nabierają kształtu.</em></h2>
+                <p>Strategia. Design. Technologia.</p>
+                <div class="preview-button">Poznaj nas <span>↗</span></div>
+                <div class="preview-art" aria-hidden="true"><i></i><i></i><i></i></div>
+              </div>
+
+              <div class="preview-scene preview-scene--code" aria-hidden="true">
+                <div class="code-line"><b>01</b><span>&lt;<i>main</i> class=<em>"impact"</em>&gt;</span></div>
+                <div class="code-line"><b>02</b><span>&nbsp;&nbsp;&lt;<i>h1</i>&gt;Twój pomysł&lt;/<i>h1</i>&gt;</span></div>
+                <div class="code-line"><b>03</b><span>&nbsp;&nbsp;const result = <strong>launch</strong>();</span></div>
+                <div class="code-line"><b>04</b><span>&lt;/<i>main</i>&gt;</span></div>
+                <div class="code-status"><span></span> Wszystkie systemy gotowe</div>
+              </div>
+
+              <div class="preview-scene preview-scene--result" aria-hidden="true">
+                <div class="result-ring"><strong>98</strong><span>Performance</span></div>
+                <div class="result-list">
+                  <div><span>Konwersja</span><strong>+42%</strong></div>
+                  <div><span>Czas ładowania</span><strong>0.8 s</strong></div>
+                  <div><span>Mobile ready</span><strong>✓</strong></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="showcase-modes" role="group" aria-label="Zmień widok prezentacji">
+              <button class="is-active" type="button" data-mode="design"><span></span>Design</button>
+              <button type="button" data-mode="code"><span></span>Kod</button>
+              <button type="button" data-mode="result"><span></span>Wynik</button>
+            </div>
+          </div>
+
+          <div class="floating-card floating-card--speed">
+            <span class="speed-gauge"><i></i></span>
+            <div><small>Wydajność</small><strong>98/100</strong></div>
+          </div>
+          <div class="floating-card floating-card--live">
+            <span class="live-dot"></span>
+            <div><small>Status projektu</small><strong>Gotowy do wzrostu</strong></div>
+          </div>
+        </div>
+
+        <div class="hero-footer" aria-label="Etapy realizacji">
+          <span>Od pierwszej rozmowy do premiery</span>
+          <div><b>01</b> Pomysł <i></i> <b>02</b> Projekt <i></i> <b>03</b> Kod <i></i> <b>04</b> Start</div>
         </div>
       </section>
 
