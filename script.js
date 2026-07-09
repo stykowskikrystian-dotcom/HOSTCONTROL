@@ -39,6 +39,77 @@ navLinks.forEach((link) => {
   if (isCurrent) link.setAttribute("aria-current", "page");
 });
 
+const pageTransitionMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const pageTransitionStorageKey = "hostcontrol-page-transition";
+let cameFromInternalTransition = false;
+
+try {
+  cameFromInternalTransition = sessionStorage.getItem(pageTransitionStorageKey) === "active";
+  sessionStorage.removeItem(pageTransitionStorageKey);
+} catch {
+  cameFromInternalTransition = false;
+}
+
+const pageTransition = document.createElement("div");
+pageTransition.className = "page-transition";
+pageTransition.setAttribute("aria-hidden", "true");
+pageTransition.innerHTML = `
+  <div class="transition-ambient" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="transition-mark">
+    <span class="transition-ring transition-ring--outer"></span>
+    <span class="transition-ring transition-ring--inner"></span>
+    <span class="transition-glint"></span>
+    <img src="assets/logo.svg" alt="" />
+  </div>
+  <div class="transition-label">HostControl</div>
+`;
+document.body.appendChild(pageTransition);
+
+if (!pageTransitionMotion.matches && !cameFromInternalTransition) {
+  window.requestAnimationFrame(() => {
+    pageTransition.classList.add("is-entering");
+    window.setTimeout(() => pageTransition.classList.remove("is-entering"), 1180);
+  });
+}
+
+window.addEventListener("pageshow", () => {
+  pageTransition.classList.remove("is-leaving");
+  pageTransition.classList.remove("is-entering");
+});
+
+document.addEventListener("click", (event) => {
+  const link = event.target.closest("a[href]");
+  if (!link || event.defaultPrevented || pageTransitionMotion.matches) return;
+  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+  if (link.target === "_blank" || link.hasAttribute("download")) return;
+
+  let url;
+  try {
+    url = new URL(link.href, window.location.href);
+  } catch {
+    return;
+  }
+
+  const isPageLink = ["http:", "https:", "file:"].includes(url.protocol) && url.origin === window.location.origin;
+  const isSamePageAnchor = url.pathname === window.location.pathname && url.search === window.location.search && url.hash;
+  if (!isPageLink || isSamePageAnchor || url.href === window.location.href) return;
+
+  event.preventDefault();
+  if (pageTransition.classList.contains("is-leaving")) return;
+
+  try {
+    sessionStorage.setItem(pageTransitionStorageKey, "active");
+  } catch {
+    // Jeżeli przeglądarka blokuje sessionStorage, przejście nadal działa standardowo.
+  }
+
+  pageTransition.classList.remove("is-entering");
+  pageTransition.classList.add("is-leaving");
+  window.setTimeout(() => {
+    window.location.href = url.href;
+  }, 820);
+});
+
 const hero = document.querySelector("[data-hero]");
 
 if (hero) {
