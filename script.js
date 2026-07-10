@@ -34,7 +34,7 @@ updateHeader();
 
 const currentPage = document.body.dataset.page;
 navLinks.forEach((link) => {
-  const isCurrent = link.dataset.page === currentPage;
+  const isCurrent = link.dataset.page === currentPage || (currentPage === "usluga" && link.dataset.page === "uslugi");
   link.classList.toggle("is-active", isCurrent);
   if (isCurrent) link.setAttribute("aria-current", "page");
 });
@@ -157,5 +157,99 @@ if (hero) {
         scene.setAttribute("aria-hidden", String(!scene.classList.contains(`preview-scene--${mode}`)));
       });
     });
+  });
+}
+
+const contactForm = document.querySelector("[data-contact-form]");
+
+if (contactForm) {
+  const status = contactForm.querySelector("[data-contact-status]");
+  const consentInput = contactForm.querySelector('input[name="consent"]');
+  const consentModal = document.querySelector("[data-consent-modal]");
+  const consentModalClose = consentModal?.querySelectorAll("[data-consent-close]");
+  const consentModalReturn = consentModal?.querySelector(".consent-modal-close");
+
+  function openConsentModal() {
+    if (!consentModal) return;
+    consentModal.classList.add("is-open");
+    consentModal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+    window.setTimeout(() => consentModalReturn?.focus(), 60);
+  }
+
+  function closeConsentModal() {
+    if (!consentModal) return;
+    consentModal.classList.remove("is-open");
+    consentModal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+    consentInput?.focus();
+  }
+
+  consentModalClose?.forEach((item) => item.addEventListener("click", closeConsentModal));
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && consentModal?.classList.contains("is-open")) {
+      closeConsentModal();
+    }
+  });
+
+  contactForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    if (!consentInput?.checked) {
+      if (status) {
+        status.textContent = "Najpierw zaakceptuj zgodę — bez niej nie otworzymy wiadomości e-mail.";
+      }
+      openConsentModal();
+      return;
+    }
+
+    if (!contactForm.checkValidity()) {
+      contactForm.reportValidity();
+      return;
+    }
+
+    const formData = new FormData(contactForm);
+    const targetEmail = contactForm.dataset.email || "host_control@icloud.com";
+    const selectedProjects = formData.getAll("project");
+    const selectedStyles = formData.getAll("style");
+    const valueOrDash = (value) => String(value || "").trim() || "—";
+    const listOrDash = (items) => items.length ? items.map((item) => `- ${item}`).join("\n") : "—";
+    const clientName = valueOrDash(formData.get("name"));
+    const company = valueOrDash(formData.get("company"));
+    const subject = `Zapytanie o stronę — ${clientName}${company !== "—" ? ` / ${company}` : ""}`;
+    const body = [
+      "Cześć HostControl,",
+      "",
+      "chcę porozmawiać o projekcie strony internetowej. Poniżej przesyłam informacje z formularza:",
+      "",
+      "DANE KONTAKTOWE",
+      `Imię i nazwisko: ${clientName}`,
+      `Telefon: ${valueOrDash(formData.get("phone"))}`,
+      `E-mail: ${valueOrDash(formData.get("email"))}`,
+      `Firma / marka: ${company}`,
+      "",
+      "ZAKRES PROJEKTU",
+      listOrDash(selectedProjects),
+      "",
+      `Orientacyjny budżet: ${valueOrDash(formData.get("budget"))}`,
+      `Najlepszy termin startu: ${valueOrDash(formData.get("deadline"))}`,
+      "",
+      "PREFEROWANY STYL",
+      listOrDash(selectedStyles),
+      "",
+      "OPIS POMYSŁU",
+      valueOrDash(formData.get("message")),
+      "",
+      "Zgoda na kontakt zwrotny: tak",
+      "",
+      "Pozdrawiam"
+    ].join("\n");
+
+    if (status) {
+      status.textContent = "Otwieram aplikację pocztową z gotową wiadomością do HostControl...";
+    }
+
+    window.location.href = `mailto:${targetEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   });
 }
