@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#080808">
-  <meta name="description" content="Host Control — agencja digital. Strony i aplikacje, branding, produkcja foto-video, ujęcia z drona i realizacja wydarzeń.">
-  <title>Host Control — agencja digital</title>
+  <meta name="description" content="HostControl — agencja digital. Strony i aplikacje, branding, produkcja foto-video, ujęcia z drona i realizacja wydarzeń.">
+  <title>HostControl — agencja digital</title>
   <style>
     :root {
       color-scheme: dark;
@@ -200,12 +200,34 @@
       color: rgba(255,255,255,.88);
     }
 
-    .hero-copy.is-entering .eyebrow .index { animation: leftIn .74s var(--ease) .04s backwards; }
-    .hero-copy.is-entering .eyebrow .divider { animation: leftIn .74s var(--ease) .12s backwards; }
-    .hero-copy.is-entering .eyebrow .service { animation: leftIn .76s var(--ease) .2s backwards; }
-    .hero-copy.is-entering .tagline { animation: leftIn .8s var(--ease) .32s backwards; }
-    .hero-copy.is-entering .cta { animation: leftIn .82s var(--ease) .46s backwards; }
-    @keyframes leftIn { from { opacity: 0; transform: translateX(-92px); filter: blur(7px); } to { opacity: 1; transform: none; filter: blur(0); } }
+    .hero-copy > * { will-change: transform, opacity, filter; }
+    .hero-copy.is-initial .eyebrow { animation: contentFromLeft .76s var(--ease) .04s both; }
+    .hero-copy.is-initial h1 { animation: contentFromLeft .82s var(--ease) .14s both; }
+    .hero-copy.is-initial .tagline { animation: contentFromLeft .78s var(--ease) .27s both; }
+    .hero-copy.is-initial .cta { animation: contentFromLeft .82s var(--ease) .4s both; }
+
+    .hero-copy.is-exiting-left .eyebrow { animation: contentToLeft .4s cubic-bezier(.55,.05,.86,.48) 0s both; }
+    .hero-copy.is-exiting-left h1 { animation: contentToLeft .42s cubic-bezier(.55,.05,.86,.48) .045s both; }
+    .hero-copy.is-exiting-left .tagline { animation: contentToLeft .4s cubic-bezier(.55,.05,.86,.48) .09s both; }
+    .hero-copy.is-exiting-left .cta { animation: contentToLeft .4s cubic-bezier(.55,.05,.86,.48) .135s both; }
+    .hero-copy.is-entering-right .eyebrow { animation: contentFromRight .72s var(--ease) .03s both; }
+    .hero-copy.is-entering-right h1 { animation: contentFromRight .8s var(--ease) .12s both; }
+    .hero-copy.is-entering-right .tagline { animation: contentFromRight .74s var(--ease) .23s both; }
+    .hero-copy.is-entering-right .cta { animation: contentFromRight .78s var(--ease) .34s both; }
+
+    .hero-copy.is-exiting-right .eyebrow { animation: contentToRight .4s cubic-bezier(.55,.05,.86,.48) 0s both; }
+    .hero-copy.is-exiting-right h1 { animation: contentToRight .42s cubic-bezier(.55,.05,.86,.48) .045s both; }
+    .hero-copy.is-exiting-right .tagline { animation: contentToRight .4s cubic-bezier(.55,.05,.86,.48) .09s both; }
+    .hero-copy.is-exiting-right .cta { animation: contentToRight .4s cubic-bezier(.55,.05,.86,.48) .135s both; }
+    .hero-copy.is-entering-left .eyebrow { animation: contentFromLeft .72s var(--ease) .03s both; }
+    .hero-copy.is-entering-left h1 { animation: contentFromLeft .8s var(--ease) .12s both; }
+    .hero-copy.is-entering-left .tagline { animation: contentFromLeft .74s var(--ease) .23s both; }
+    .hero-copy.is-entering-left .cta { animation: contentFromLeft .78s var(--ease) .34s both; }
+
+    @keyframes contentFromLeft { from { opacity: 0; transform: translateX(-60vw); filter: blur(7px); } to { opacity: 1; transform: translateX(0); filter: blur(0); } }
+    @keyframes contentFromRight { from { opacity: 0; transform: translateX(60vw); filter: blur(7px); } to { opacity: 1; transform: translateX(0); filter: blur(0); } }
+    @keyframes contentToLeft { from { opacity: 1; transform: translateX(0); filter: blur(0); } to { opacity: 0; transform: translateX(-60vw); filter: blur(6px); } }
+    @keyframes contentToRight { from { opacity: 1; transform: translateX(0); filter: blur(0); } to { opacity: 0; transform: translateX(60vw); filter: blur(6px); } }
 
     .cta {
       position: relative;
@@ -466,8 +488,8 @@
     <div class="grain"></div>
 
     <header class="topbar">
-      <a class="brand" href="#" aria-label="Host Control — strona główna">
-        <img src="assets/logo-host-control.png" alt="Host Control — Krystian Stykowski, agencja digital">
+      <a class="brand" href="#" aria-label="HostControl — strona główna">
+        <img src="assets/logo-host-control.png" alt="HostControl — Krystian Stykowski, agencja digital">
       </a>
       <nav class="nav" aria-label="Nawigacja główna">
         <a href="#oferta">Oferta</a>
@@ -486,10 +508,10 @@
     <div class="socials" aria-label="Media społecznościowe"><a href="https://www.instagram.com/much4ty/" target="_blank" rel="noreferrer" aria-label="Instagram">IG</a><a href="tel:+48692746031" aria-label="Telefon">TEL</a></div>
 
     <section class="hero-main" aria-labelledby="hero-title">
-      <div class="hero-copy is-entering">
+      <div class="hero-copy is-initial">
         <div class="eyebrow"><span class="index">01 / 04</span><span class="divider"></span><span class="service">Kreacja i branding</span></div>
-        <h1 id="hero-title">Host <span>Control</span></h1>
-        <p class="tagline">Tworzymy marki, które zostają.</p>
+        <h1 id="hero-title">Host<span>Control</span></h1>
+        <p class="tagline">Tworzymy marki, które zostają</p>
         <a class="cta" href="tel:+48692746031">Porozmawiajmy o projekcie <b aria-hidden="true">↗</b></a>
       </div>
     </section>
@@ -547,28 +569,24 @@
       const indexEl = document.querySelector('.eyebrow .index');
       const serviceEl = document.querySelector('.eyebrow .service');
       const taglineEl = document.querySelector('.tagline');
+      const heroCopy = document.querySelector('.hero-copy');
       const menuButton = document.querySelector('.menu-button');
       const menuPanel = document.querySelector('.menu-panel');
       const bottomNav = document.querySelector('.bottom-nav');
       const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
       const copy = [
-        ['Kreacja i branding', 'Tworzymy marki, które zostają.'],
-        ['Strony i aplikacje', 'Digital, który pracuje na Twój wynik.'],
-        ['Foto i ujęcia z drona', 'Nowa perspektywa dla Twojej marki.'],
-        ['Eventy w całej Polsce', 'Od pomysłu do ostatniego światła.']
+        ['Kreacja i branding', 'Tworzymy marki, które zostają'],
+        ['Strony i aplikacje', 'Digital, który pracuje na Twój wynik'],
+        ['Foto i ujęcia z drona', 'Nowa perspektywa dla Twojej marki'],
+        ['Eventy w całej Polsce', 'Od pomysłu do ostatniego światła']
       ];
       let active = 0;
       let timer;
+      let transitioning = false;
+      let queuedChange = null;
 
-      function animateSequence() {
-        const heroCopy = document.querySelector('.hero-copy');
-        heroCopy.classList.remove('is-entering');
-        void heroCopy.offsetWidth;
-        heroCopy.classList.add('is-entering');
-      }
-
-      function show(next, userInitiated = false) {
-        active = (next + slides.length) % slides.length;
+      function applySlide(next, userInitiated = false) {
+        active = next;
         slides.forEach((slide, i) => {
           const isActive = i === active;
           slide.classList.toggle('active', isActive);
@@ -588,19 +606,66 @@
         indexEl.textContent = `${String(active + 1).padStart(2, '0')} / 04`;
         serviceEl.textContent = copy[active][0];
         taglineEl.textContent = copy[active][1];
-        animateSequence();
-        if (!reduceMotion) restartTimer();
+      }
+
+      function show(next, userInitiated = false, forcedDirection = null) {
+        const target = (next + slides.length) % slides.length;
+        if (target === active) {
+          if (userInitiated) {
+            const video = slides[active].querySelector('video');
+            video.currentTime = 0;
+            video.play().catch(() => {});
+          }
+          if (!reduceMotion) restartTimer();
+          return;
+        }
+
+        const circularDistance = (target - active + slides.length) % slides.length;
+        const direction = forcedDirection || (circularDistance <= slides.length / 2 ? 'forward' : 'backward');
+
+        if (reduceMotion) {
+          applySlide(target, userInitiated);
+          return;
+        }
+
+        if (transitioning) {
+          queuedChange = { target, userInitiated, direction };
+          return;
+        }
+
+        transitioning = true;
+        clearTimeout(timer);
+        heroCopy.classList.remove('is-initial', 'is-entering-left', 'is-entering-right', 'is-exiting-left', 'is-exiting-right');
+        void heroCopy.offsetWidth;
+        heroCopy.classList.add(direction === 'forward' ? 'is-exiting-left' : 'is-exiting-right');
+
+        setTimeout(() => {
+          applySlide(target, userInitiated);
+          heroCopy.classList.remove('is-exiting-left', 'is-exiting-right');
+          void heroCopy.offsetWidth;
+          heroCopy.classList.add(direction === 'forward' ? 'is-entering-right' : 'is-entering-left');
+
+          setTimeout(() => {
+            heroCopy.classList.remove('is-entering-left', 'is-entering-right');
+            transitioning = false;
+            if (queuedChange) {
+              const queued = queuedChange;
+              queuedChange = null;
+              show(queued.target, queued.userInitiated, queued.direction);
+            } else restartTimer();
+          }, 1160);
+        }, 570);
       }
 
       function restartTimer() {
         clearTimeout(timer);
-        timer = setTimeout(() => show(active + 1), 8000);
+        timer = setTimeout(() => show(active + 1, false, 'forward'), 8000);
       }
 
       buttons.forEach((button, i) => button.addEventListener('click', () => show(i, true)));
       document.addEventListener('keydown', event => {
-        if (event.key === 'ArrowRight') show(active + 1, true);
-        if (event.key === 'ArrowLeft') show(active - 1, true);
+        if (event.key === 'ArrowRight') show(active + 1, true, 'forward');
+        if (event.key === 'ArrowLeft') show(active - 1, true, 'backward');
         if (event.key === 'Escape' && menuPanel.classList.contains('open')) toggleMenu(false);
       });
 
