@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="Host Control — agencja digital. Strony i aplikacje, branding, produkcja foto-video, ujęcia z drona i realizacja wydarzeń.">
+  <title>Host Control — agencja digital</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --red: #e31b23;
+      --red-deep: #8f0711;
+      --white: #f7f5f2;
+      --muted: rgba(247, 245, 242, .62);
+      --line: rgba(255, 255, 255, .18);
+      --ease: cubic-bezier(.22, 1, .36, 1);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body { margin: 0; min-height: 100%; background: #080808; }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--white);
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, a { font: inherit; }
+    button { color: inherit; }
+    a { color: inherit; text-decoration: none; }
+
+    .hero {
+      position: relative;
+      width: 100%;
+      min-height: 100svh;
+      height: 100dvh;
+      isolation: isolate;
+      overflow: hidden;
+      background: #0a0808;
+    }
+
+    .media, .video-slide, .video-slide video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .video-slide {
+      z-index: -5;
+      opacity: 0;
+      transform: scale(1.045);
+      transition: opacity 1s ease, transform 2.2s var(--ease);
+      background: #0a0808 center / cover no-repeat;
+    }
+
+    .video-slide.active { opacity: 1; transform: scale(1); }
+
+    .video-slide video {
+      object-fit: cover;
+      object-position: center;
+      filter: saturate(.76) contrast(1.08) brightness(.82);
+    }
+
+    .video-slide[data-slide="0"] video { object-position: 50% 43%; }
+    .video-slide[data-slide="1"] video { object-position: 56% 50%; }
+    .video-slide[data-slide="2"] video { object-position: 50% 54%; filter: saturate(.3) contrast(1.14) brightness(.66); }
+    .video-slide[data-slide="3"] video { object-position: 51% 42%; }
+
+    .wash {
+      position: absolute;
+      inset: 0;
+      z-index: -4;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(227, 27, 35, .22), transparent 34%),
+        linear-gradient(90deg, rgba(0,0,0,.63) 0%, rgba(0,0,0,.05) 48%, rgba(0,0,0,.42) 100%),
+        linear-gradient(180deg, rgba(0,0,0,.38) 0%, transparent 32%, rgba(0,0,0,.62) 100%),
+        rgba(128, 0, 10, .18);
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
+
+    .wash::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(118deg, transparent 0 57%, rgba(227,27,35,.2) 68%, transparent 84%);
+      mix-blend-mode: screen;
+      opacity: .75;
+    }
+
+    .grain {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      opacity: .055;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");
+    }
+
+    .topbar {
+      position: relative;
+      z-index: 20;
+      height: 98px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: env(safe-area-inset-top, 0) clamp(22px, 4vw, 68px) 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand { width: clamp(190px, 19vw, 288px); display: block; }
+    .brand img { display: block; width: 100%; height: auto; }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(24px, 3vw, 50px);
+      font-size: .75rem;
+      font-weight: 650;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .nav a { position: relative; padding: 12px 0; color: rgba(255,255,255,.74); transition: color .25s ease; }
+    .nav a:hover, .nav a:focus-visible { color: #fff; }
+    .nav a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: 4px; height: 1px; background: var(--red); transition: right .35s var(--ease); }
+    .nav a:hover::after, .nav a:focus-visible::after { right: 0; }
+
+    .header-actions { justify-self: end; display: flex; align-items: center; gap: 22px; }
+    .phone { font-size: .78rem; letter-spacing: .12em; font-weight: 650; }
+
+    .menu-button {
+      width: 50px;
+      height: 50px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: rgba(0,0,0,.12);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: background .25s ease, border-color .25s ease, transform .25s ease;
+    }
+
+    .menu-button:hover, .menu-button:focus-visible { background: var(--red); border-color: var(--red); transform: rotate(4deg); }
+    .menu-icon { width: 20px; display: grid; gap: 5px; }
+    .menu-icon i { display: block; height: 1.5px; background: #fff; border-radius: 2px; transition: transform .35s var(--ease), opacity .25s ease; }
+
+    .hero-main {
+      position: absolute;
+      z-index: 15;
+      inset: 99px 0 98px;
+      display: grid;
+      place-items: center;
+      padding: 44px clamp(22px, 6vw, 96px);
+      text-align: center;
+    }
+
+    .hero-copy { width: min(1180px, 100%); transform: translateY(2vh); }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: clamp(18px, 3vh, 34px);
+      font-size: clamp(.7rem, 1vw, .82rem);
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow .index { color: var(--red); }
+    .eyebrow .divider { width: 42px; height: 1px; background: rgba(255,255,255,.55); }
+    .eyebrow .service { min-width: 180px; text-align: left; }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(3.4rem, 10.7vw, 10.3rem);
+      line-height: .81;
+      letter-spacing: -.082em;
+      font-weight: 880;
+      text-transform: uppercase;
+      white-space: nowrap;
+      text-shadow: 0 10px 40px rgba(0,0,0,.22);
+    }
+
+    h1 span { color: transparent; -webkit-text-stroke: 1.6px rgba(255,255,255,.9); }
+
+    .tagline {
+      min-height: 1.6em;
+      margin: clamp(25px, 3.5vh, 40px) auto 0;
+      font-size: clamp(.92rem, 1.7vw, 1.36rem);
+      font-weight: 390;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.88);
+    }
+
+    .tagline.swap { animation: copyIn .72s var(--ease); }
+    @keyframes copyIn { from { opacity: 0; transform: translateY(14px); filter: blur(7px); } to { opacity: 1; transform: none; filter: blur(0); } }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: clamp(26px, 4vh, 42px);
+      padding: 13px 15px 13px 22px;
+      border: 1px solid rgba(255,255,255,.38);
+      border-radius: 999px;
+      background: rgba(8,8,8,.22);
+      backdrop-filter: blur(8px);
+      font-size: .74rem;
+      font-weight: 720;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      transition: background .3s ease, border-color .3s ease, transform .3s var(--ease);
+    }
+
+    .cta b { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 50%; background: var(--red); font-size: 1rem; font-weight: 400; transition: transform .3s var(--ease); }
+    .cta:hover, .cta:focus-visible { background: rgba(227,27,35,.88); border-color: var(--red); transform: translateY(-2px); }
+    .cta:hover b, .cta:focus-visible b { transform: translateX(3px); background: #fff; color: #111; }
+
+    .side-note {
+      position: absolute;
+      left: clamp(22px, 4vw, 68px);
+      top: 50%;
+      z-index: 16;
+      writing-mode: vertical-rl;
+      transform: translateY(-50%) rotate(180deg);
+      color: rgba(255,255,255,.48);
+      font-size: .65rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+
+    .socials {
+      position: absolute;
+      right: clamp(22px, 4vw, 68px);
+      top: 50%;
+      z-index: 16;
+      transform: translateY(-50%);
+      display: grid;
+      gap: 16px;
+    }
+
+    .socials a { width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 50%; display: grid; place-items: center; font-size: .68rem; font-weight: 700; transition: background .25s ease, border-color .25s ease; }
+    .socials a:hover, .socials a:focus-visible { background: var(--red); border-color: var(--red); }
+
+    .bottom-nav {
+      position: absolute;
+      z-index: 20;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      min-height: 98px;
+      padding-bottom: env(safe-area-inset-bottom, 0);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: rgba(8,8,8,.5);
+      backdrop-filter: blur(14px);
+      border-top: 1px solid var(--line);
+    }
+
+    .slide-button {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 0 clamp(15px, 2.5vw, 40px);
+      border: 0;
+      border-right: 1px solid var(--line);
+      background: transparent;
+      cursor: pointer;
+      text-align: left;
+      overflow: hidden;
+    }
+
+    .slide-button:last-child { border-right: 0; }
+    .slide-button::before { content: ""; position: absolute; left: 0; right: 100%; bottom: 0; height: 3px; background: var(--red); }
+    .slide-button.active::before { animation: progress 8s linear forwards; }
+    @keyframes progress { from { right: 100%; } to { right: 0; } }
+
+    .slide-button .num { color: rgba(255,255,255,.42); font-size: .7rem; letter-spacing: .12em; }
+    .slide-button .label { font-size: clamp(.68rem, .9vw, .8rem); letter-spacing: .16em; font-weight: 720; text-transform: uppercase; color: rgba(255,255,255,.52); transition: color .3s ease; }
+    .slide-button.active .label { color: #fff; }
+    .slide-button.active .num { color: var(--red); }
+
+    .menu-panel {
+      position: absolute;
+      z-index: 18;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background: rgba(8,8,8,.96);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-18px);
+      transition: opacity .45s ease, visibility .45s ease, transform .55s var(--ease);
+    }
+
+    .menu-panel.open { opacity: 1; visibility: visible; transform: none; }
+    .menu-panel nav { display: grid; text-align: center; gap: 12px; }
+    .menu-panel a { font-size: clamp(2.2rem, 6vw, 5.5rem); line-height: 1; font-weight: 840; letter-spacing: -.055em; text-transform: uppercase; transition: color .2s ease; }
+    .menu-panel a:hover, .menu-panel a:focus-visible { color: var(--red); }
+    .menu-open .menu-icon i:first-child { transform: translateY(3.25px) rotate(45deg); }
+    .menu-open .menu-icon i:last-child { transform: translateY(-3.25px) rotate(-45deg); }
+
+    @media (max-width: 900px) {
+      .topbar { height: calc(79px + env(safe-area-inset-top, 0)); grid-template-columns: 1fr auto; padding-left: 20px; padding-right: 18px; }
+      .brand { width: clamp(166px, 47vw, 220px); }
+      .nav, .phone, .side-note, .socials { display: none; }
+      .hero-main { inset: calc(80px + env(safe-area-inset-top, 0)) 0 calc(82px + env(safe-area-inset-bottom, 0)); padding: 24px 16px; }
+      .hero-copy { transform: translateY(-1vh); }
+      h1 { font-size: clamp(2.75rem, 12.6vw, 5.2rem); letter-spacing: -.07em; line-height: .88; }
+      h1 span { -webkit-text-stroke-width: 1px; }
+      .eyebrow { margin-bottom: 24px; gap: 9px; letter-spacing: .16em; }
+      .eyebrow .divider { width: 24px; }
+      .eyebrow .service { min-width: 128px; }
+      .tagline { width: min(86vw, 430px); font-size: clamp(.78rem, 3.4vw, 1rem); letter-spacing: .12em; line-height: 1.55; margin-top: 24px; }
+      .cta { margin-top: 28px; }
+      .bottom-nav { min-height: calc(82px + env(safe-area-inset-bottom, 0)); }
+      .slide-button { justify-content: center; gap: 0; padding: 0 4px; text-align: center; }
+      .slide-button .num { display: none; }
+      .slide-button .label { font-size: clamp(.56rem, 2.65vw, .72rem); letter-spacing: .08em; }
+      .video-slide[data-slide="0"] video { object-position: 52% 50%; }
+      .video-slide[data-slide="1"] video { object-position: 60% 50%; }
+      .video-slide[data-slide="2"] video { object-position: 50% 50%; }
+      .video-slide[data-slide="3"] video { object-position: 45% 50%; }
+      .wash { background: linear-gradient(180deg, rgba(0,0,0,.5), rgba(0,0,0,.03) 35%, rgba(0,0,0,.58)), rgba(128,0,10,.22); }
+    }
+
+    @media (max-height: 620px) {
+      .topbar { height: 68px; }
+      .hero-main { inset: 68px 0 72px; }
+      .eyebrow { margin-bottom: 14px; }
+      .tagline { margin-top: 16px; }
+      .cta { margin-top: 17px; padding-top: 8px; padding-bottom: 8px; }
+      .bottom-nav { min-height: 72px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+      .video-slide video { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="hero">
+    <div class="media" aria-hidden="true">
+      <div class="video-slide active" data-slide="0" style="background-image:url('assets/branding.jpg')">
+        <video muted playsinline loop autoplay preload="auto" poster="assets/branding.jpg"><source src="assets/branding.mp4" type="video/mp4"></video>
+      </div>
+      <div class="video-slide" data-slide="1" style="background-image:url('assets/digital.jpg')">
+        <video muted playsinline loop preload="metadata" poster="assets/digital.jpg"><source src="assets/digital.mp4" type="video/mp4"></video>
+      </div>
+      <div class="video-slide" data-slide="2" style="background-image:url('assets/drone.jpg')">
+        <video muted playsinline loop preload="metadata" poster="assets/drone.jpg"><source src="assets/drone.mp4" type="video/mp4"></video>
+      </div>
+      <div class="video-slide" data-slide="3" style="background-image:url('assets/events.jpg')">
+        <video muted playsinline loop preload="metadata" poster="assets/events.jpg"><source src="assets/events.mp4" type="video/mp4"></video>
+      </div>
+    </div>
+
+    <div class="wash"></div>
+    <div class="grain"></div>
+
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Host Control — strona główna">
+        <img src="assets/logo-host-control.png" alt="Host Control — Krystian Stykowski, agencja digital">
+      </a>
+      <nav class="nav" aria-label="Nawigacja główna">
+        <a href="#oferta">Oferta</a>
+        <a href="#realizacje">Realizacje</a>
+        <a href="#o-nas">O nas</a>
+      </nav>
+      <div class="header-actions">
+        <a class="phone" href="tel:+48692746031">+48 692 746 031</a>
+        <button class="menu-button" type="button" aria-expanded="false" aria-controls="menu-panel" aria-label="Otwórz menu">
+          <span class="menu-icon" aria-hidden="true"><i></i><i></i></span>
+        </button>
+      </div>
+    </header>
+
+    <div class="side-note">Mazury · Polska · pracujemy wszędzie</div>
+    <div class="socials" aria-label="Media społecznościowe"><a href="https://www.instagram.com/much4ty/" target="_blank" rel="noreferrer" aria-label="Instagram">IG</a><a href="tel:+48692746031" aria-label="Telefon">TEL</a></div>
+
+    <section class="hero-main" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="index">01 / 04</span><span class="divider"></span><span class="service">Kreacja i branding</span></div>
+        <h1 id="hero-title">Host <span>Control</span></h1>
+        <p class="tagline">Tworzymy marki, które zostają.</p>
+        <a class="cta" href="tel:+48692746031">Porozmawiajmy o projekcie <b aria-hidden="true">↗</b></a>
+      </div>
+    </section>
+
+    <nav class="bottom-nav" aria-label="Zakres usług">
+      <button class="slide-button active" type="button" data-target="0"><span class="num">01</span><span class="label">Branding</span></button>
+      <button class="slide-button" type="button" data-target="1"><span class="num">02</span><span class="label">Digital</span></button>
+      <button class="slide-button" type="button" data-target="2"><span class="num">03</span><span class="label">Dron</span></button>
+      <button class="slide-button" type="button" data-target="3"><span class="num">04</span><span class="label">Eventy</span></button>
+    </nav>
+
+    <div class="menu-panel" id="menu-panel" aria-hidden="true">
+      <nav aria-label="Menu pełnoekranowe"><a href="#oferta">Oferta</a><a href="#realizacje">Realizacje</a><a href="#o-nas">O nas</a><a href="tel:+48692746031">Kontakt</a></nav>
+    </div>
+  </main>
+
+  <!-- Filmy: Pexels 8746844, 5240935, 4553737, 3402881. Licencja: https://www.pexels.com/license/ -->
+  <script>
+    (() => {
+      const slides = [...document.querySelectorAll('.video-slide')];
+      const buttons = [...document.querySelectorAll('.slide-button')];
+      const indexEl = document.querySelector('.eyebrow .index');
+      const serviceEl = document.querySelector('.eyebrow .service');
+      const taglineEl = document.querySelector('.tagline');
+      const menuButton = document.querySelector('.menu-button');
+      const menuPanel = document.querySelector('.menu-panel');
+      const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const copy = [
+        ['Kreacja i branding', 'Tworzymy marki, które zostają.'],
+        ['Strony i aplikacje', 'Digital, który pracuje na Twój wynik.'],
+        ['Foto i ujęcia z drona', 'Nowa perspektywa dla Twojej marki.'],
+        ['Eventy w całej Polsce', 'Od pomysłu do ostatniego światła.']
+      ];
+      let active = 0;
+      let timer;
+
+      function animateCopy() {
+        taglineEl.classList.remove('swap');
+        void taglineEl.offsetWidth;
+        taglineEl.classList.add('swap');
+      }
+
+      function show(next, userInitiated = false) {
+        active = (next + slides.length) % slides.length;
+        slides.forEach((slide, i) => {
+          const isActive = i === active;
+          slide.classList.toggle('active', isActive);
+          const video = slide.querySelector('video');
+          if (isActive && !reduceMotion) {
+            if (userInitiated) video.currentTime = 0;
+            video.play().catch(() => {});
+          } else video.pause();
+        });
+        buttons.forEach((button, i) => {
+          button.classList.remove('active');
+          button.setAttribute('aria-pressed', i === active ? 'true' : 'false');
+        });
+        void buttons[active].offsetWidth;
+        buttons[active].classList.add('active');
+        indexEl.textContent = `${String(active + 1).padStart(2, '0')} / 04`;
+        serviceEl.textContent = copy[active][0];
+        taglineEl.textContent = copy[active][1];
+        animateCopy();
+        if (!reduceMotion) restartTimer();
+      }
+
+      function restartTimer() {
+        clearTimeout(timer);
+        timer = setTimeout(() => show(active + 1), 8000);
+      }
+
+      buttons.forEach((button, i) => button.addEventListener('click', () => show(i, true)));
+      document.addEventListener('keydown', event => {
+        if (event.key === 'ArrowRight') show(active + 1, true);
+        if (event.key === 'ArrowLeft') show(active - 1, true);
+        if (event.key === 'Escape' && menuPanel.classList.contains('open')) toggleMenu(false);
+      });
+
+      function toggleMenu(force) {
+        const open = typeof force === 'boolean' ? force : !menuPanel.classList.contains('open');
+        menuPanel.classList.toggle('open', open);
+        document.body.classList.toggle('menu-open', open);
+        menuButton.setAttribute('aria-expanded', String(open));
+        menuButton.setAttribute('aria-label', open ? 'Zamknij menu' : 'Otwórz menu');
+        menuPanel.setAttribute('aria-hidden', String(!open));
+        open ? clearTimeout(timer) : restartTimer();
+      }
+
+      menuButton.addEventListener('click', () => toggleMenu());
+      menuPanel.querySelectorAll('a').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+      if (!reduceMotion) restartTimer();
+    })();
+  </script>
+</body>
+</html>
