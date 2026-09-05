@@ -257,43 +257,156 @@
     .socials a:hover, .socials a:focus-visible { background: var(--red); border-color: var(--red); }
 
     .bottom-nav {
+      --active-x: 0%;
       position: absolute;
       z-index: 20;
       left: 0;
       right: 0;
       bottom: 0;
-      min-height: 98px;
+      min-height: 112px;
       padding-bottom: env(safe-area-inset-bottom, 0);
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      background: rgba(8,8,8,.5);
-      backdrop-filter: blur(14px);
-      border-top: 1px solid var(--line);
+      isolation: isolate;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(12,8,8,.58), rgba(5,5,5,.88));
+      backdrop-filter: blur(18px) saturate(1.25);
+      border-top: 1px solid rgba(255,255,255,.2);
+      box-shadow: 0 -18px 50px rgba(0,0,0,.18);
+    }
+
+    .bottom-nav::before {
+      content: "";
+      position: absolute;
+      z-index: 4;
+      top: -1px;
+      left: var(--active-x);
+      width: 25%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ff3c43 18%, #fff 50%, #ff3c43 82%, transparent);
+      filter: drop-shadow(0 0 8px rgba(227,27,35,.9));
+      transition: left .72s var(--ease);
+    }
+
+    .active-track {
+      position: absolute;
+      z-index: 0;
+      top: 8px;
+      bottom: calc(8px + env(safe-area-inset-bottom, 0));
+      left: calc(var(--active-x) + 7px);
+      width: calc(25% - 14px);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 18px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(227,27,35,.24), transparent 45%),
+        linear-gradient(110deg, rgba(255,255,255,.07), rgba(255,255,255,.015));
+      box-shadow: inset 0 1px rgba(255,255,255,.09), 0 12px 34px rgba(0,0,0,.25);
+      transition: left .72s var(--ease), box-shadow .45s ease;
+      pointer-events: none;
+    }
+
+    .active-track::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg, transparent 25%, rgba(255,255,255,.16) 45%, transparent 66%);
+      transform: translateX(-130%);
+    }
+
+    .bottom-nav.is-switching .active-track::before { animation: trackSweep .9s var(--ease); }
+    @keyframes trackSweep { to { transform: translateX(130%); } }
+
+    .active-track::after {
+      content: "";
+      position: absolute;
+      width: 54px;
+      height: 54px;
+      right: -24px;
+      bottom: -28px;
+      border-radius: 50%;
+      background: var(--red);
+      filter: blur(26px);
+      opacity: .3;
     }
 
     .slide-button {
       position: relative;
+      z-index: 2;
       display: flex;
       align-items: center;
-      gap: 16px;
-      padding: 0 clamp(15px, 2.5vw, 40px);
+      gap: clamp(11px, 1.35vw, 19px);
+      padding: 12px clamp(14px, 2.3vw, 36px);
       border: 0;
       border-right: 1px solid var(--line);
       background: transparent;
       cursor: pointer;
       text-align: left;
       overflow: hidden;
+      transition: color .35s ease;
     }
 
     .slide-button:last-child { border-right: 0; }
-    .slide-button::before { content: ""; position: absolute; left: 0; right: 100%; bottom: 0; height: 3px; background: var(--red); }
+    .slide-button::before { content: ""; position: absolute; left: 8%; right: 92%; bottom: 0; height: 2px; border-radius: 3px; background: var(--red); box-shadow: 0 0 12px rgba(227,27,35,.85); }
     .slide-button.active::before { animation: progress 8s linear forwards; }
-    @keyframes progress { from { right: 100%; } to { right: 0; } }
+    @keyframes progress { from { right: 92%; } to { right: 8%; } }
 
-    .slide-button .num { color: rgba(255,255,255,.42); font-size: .7rem; letter-spacing: .12em; }
-    .slide-button .label { font-size: clamp(.68rem, .9vw, .8rem); letter-spacing: .16em; font-weight: 720; text-transform: uppercase; color: rgba(255,255,255,.52); transition: color .3s ease; }
-    .slide-button.active .label { color: #fff; }
-    .slide-button.active .num { color: var(--red); }
+    .slide-button::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 14px;
+      height: 14px;
+      border: 1px solid rgba(255,255,255,.52);
+      border-radius: 50%;
+      opacity: 0;
+      transform: translate(-50%,-50%) scale(.3);
+      pointer-events: none;
+    }
+
+    .slide-button.pulse::after { animation: buttonPulse .62s ease-out; }
+    @keyframes buttonPulse { 0% { opacity: .7; transform: translate(-50%,-50%) scale(.3); } 100% { opacity: 0; transform: translate(-50%,-50%) scale(16); } }
+
+    .icon-wrap {
+      position: relative;
+      flex: 0 0 auto;
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 14px;
+      color: rgba(255,255,255,.57);
+      background: rgba(255,255,255,.025);
+      transition: color .38s ease, background .38s ease, border-color .38s ease, transform .45s var(--ease), box-shadow .38s ease;
+    }
+
+    .service-icon { width: 25px; height: 25px; overflow: visible; }
+    .service-icon * { vector-effect: non-scaling-stroke; }
+    .button-copy { min-width: 0; display: grid; gap: 5px; }
+    .slide-button .num { position: absolute; top: 17px; right: 18px; color: rgba(255,255,255,.28); font-size: .62rem; letter-spacing: .13em; transition: color .35s ease, transform .45s var(--ease); }
+    .slide-button .label { font-size: clamp(.7rem, .9vw, .82rem); letter-spacing: .15em; font-weight: 740; text-transform: uppercase; color: rgba(255,255,255,.58); transition: color .35s ease, transform .45s var(--ease); }
+    .slide-button .caption { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: rgba(255,255,255,.34); font-size: .65rem; letter-spacing: .055em; transition: color .35s ease; }
+
+    .slide-button:hover .icon-wrap, .slide-button:focus-visible .icon-wrap { color: #fff; transform: translateY(-3px) rotate(-2deg); border-color: rgba(255,255,255,.34); }
+    .slide-button.active .icon-wrap { color: #fff; background: var(--red); border-color: rgba(255,255,255,.28); box-shadow: 0 9px 24px rgba(176,0,10,.34), inset 0 1px rgba(255,255,255,.28); }
+    .slide-button.active .label { color: #fff; transform: translateX(3px); }
+    .slide-button.active .caption { color: rgba(255,255,255,.66); }
+    .slide-button.active .num { color: #fff; transform: translateY(-2px); }
+
+    .slide-button.active .branding-orbit { transform-origin: 12px 12px; animation: iconOrbit 5s linear infinite; }
+    .slide-button.active .digital-scan { animation: scanLine 1.7s ease-in-out infinite; }
+    .slide-button.active .drone-body { animation: droneFloat 1.9s ease-in-out infinite; }
+    .slide-button.active .drone-rotor { transform-origin: center; animation: rotorBlink .44s linear infinite alternate; }
+    .slide-button.active .event-wave { transform-origin: center; animation: eventWave 1.25s ease-in-out infinite alternate; }
+    .slide-button.active .event-star { transform-origin: 18px 6px; animation: starPulse 1.45s ease-in-out infinite; }
+    @keyframes iconOrbit { to { transform: rotate(360deg); } }
+    @keyframes scanLine { 0%,100% { transform: translateY(-2px); opacity: .35; } 50% { transform: translateY(3px); opacity: 1; } }
+    @keyframes droneFloat { 0%,100% { transform: translateY(1px); } 50% { transform: translateY(-2px); } }
+    @keyframes rotorBlink { to { opacity: .42; transform: scaleX(.78); } }
+    @keyframes eventWave { to { transform: scaleY(.65); opacity: .62; } }
+    @keyframes starPulse { 0%,100% { transform: scale(.76) rotate(0); opacity: .55; } 50% { transform: scale(1.15) rotate(22deg); opacity: 1; } }
 
     .menu-panel {
       position: absolute;
@@ -329,10 +442,16 @@
       .eyebrow .service { min-width: 128px; }
       .tagline { width: min(86vw, 430px); font-size: clamp(.78rem, 3.4vw, 1rem); letter-spacing: .12em; line-height: 1.55; margin-top: 24px; }
       .cta { top: 34px; margin-top: 28px; }
-      .bottom-nav { min-height: calc(82px + env(safe-area-inset-bottom, 0)); }
-      .slide-button { justify-content: center; gap: 0; padding: 0 4px; text-align: center; }
-      .slide-button .num { display: none; }
-      .slide-button .label { font-size: clamp(.56rem, 2.65vw, .72rem); letter-spacing: .08em; }
+      .bottom-nav { min-height: calc(92px + env(safe-area-inset-bottom, 0)); }
+      .active-track { top: 6px; bottom: calc(6px + env(safe-area-inset-bottom, 0)); left: calc(var(--active-x) + 4px); width: calc(25% - 8px); border-radius: 14px; }
+      .slide-button { justify-content: center; flex-direction: column; gap: 5px; padding: 8px 2px 10px; text-align: center; }
+      .icon-wrap { width: 32px; height: 32px; border-radius: 10px; }
+      .service-icon { width: 19px; height: 19px; }
+      .button-copy { gap: 0; }
+      .slide-button .num { top: 10px; right: 8px; font-size: .5rem; }
+      .slide-button .label { font-size: clamp(.56rem, 2.45vw, .69rem); letter-spacing: .075em; }
+      .slide-button .caption { display: none; }
+      .slide-button.active .label { transform: none; }
       .video-slide[data-slide="0"] video { object-position: 52% 50%; }
       .video-slide[data-slide="1"] video { object-position: 60% 50%; }
       .video-slide[data-slide="2"] video { object-position: 50% 50%; }
@@ -346,7 +465,9 @@
       .eyebrow { top: -30px; margin-bottom: 14px; }
       .tagline { margin-top: 16px; }
       .cta { top: 22px; margin-top: 17px; padding-top: 8px; padding-bottom: 8px; }
-      .bottom-nav { min-height: 72px; }
+      .bottom-nav { min-height: 78px; }
+      .icon-wrap { width: 28px; height: 28px; }
+      .service-icon { width: 17px; height: 17px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -405,10 +526,43 @@
     </section>
 
     <nav class="bottom-nav" aria-label="Zakres usług">
-      <button class="slide-button active" type="button" data-target="0"><span class="num">01</span><span class="label">Branding</span></button>
-      <button class="slide-button" type="button" data-target="1"><span class="num">02</span><span class="label">Digital</span></button>
-      <button class="slide-button" type="button" data-target="2"><span class="num">03</span><span class="label">Dron</span></button>
-      <button class="slide-button" type="button" data-target="3"><span class="num">04</span><span class="label">Eventy</span></button>
+      <span class="active-track" aria-hidden="true"></span>
+      <button class="slide-button active" type="button" data-target="0" aria-pressed="true">
+        <span class="icon-wrap" aria-hidden="true">
+          <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+            <g class="branding-orbit"><path d="M12 2.8 15.2 6 12 9.2 8.8 6 12 2.8Z"/><path d="m18 8.8 3.2 3.2-3.2 3.2-3.2-3.2L18 8.8Z"/><path d="m12 14.8 3.2 3.2-3.2 3.2L8.8 18l3.2-3.2Z"/><path d="M6 8.8 9.2 12 6 15.2 2.8 12 6 8.8Z"/></g><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/>
+          </svg>
+        </span>
+        <span class="button-copy"><span class="label">Branding</span><span class="caption">Identyfikacja marki</span></span>
+        <span class="num">01</span>
+      </button>
+      <button class="slide-button" type="button" data-target="1" aria-pressed="false">
+        <span class="icon-wrap" aria-hidden="true">
+          <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2.8" y="4" width="18.4" height="16" rx="2.2"/><path d="M2.8 8.2h18.4M6 6.1h.01M8.5 6.1h.01"/><g class="digital-scan"><path d="m8.2 13 2.2 2.1-2.2 2.1M12.3 17.2h3.7"/></g>
+          </svg>
+        </span>
+        <span class="button-copy"><span class="label">Digital</span><span class="caption">WWW i aplikacje</span></span>
+        <span class="num">02</span>
+      </button>
+      <button class="slide-button" type="button" data-target="2" aria-pressed="false">
+        <span class="icon-wrap" aria-hidden="true">
+          <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+            <g class="drone-body"><path d="M8.5 10.5h7l1.8 3.2H6.7l1.8-3.2Z"/><path d="M8.3 11 5.2 8.1M15.7 11l3.1-2.9M12 13.7v2.1"/><circle cx="12" cy="17.8" r="1.8"/></g><g class="drone-rotor"><path d="M1.8 7.6h6.6M15.6 7.6h6.6"/><circle cx="5.1" cy="7.6" r="1.25"/><circle cx="18.9" cy="7.6" r="1.25"/></g>
+          </svg>
+        </span>
+        <span class="button-copy"><span class="label">Dron</span><span class="caption">Foto z powietrza</span></span>
+        <span class="num">03</span>
+      </button>
+      <button class="slide-button" type="button" data-target="3" aria-pressed="false">
+        <span class="icon-wrap" aria-hidden="true">
+          <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+            <g class="event-wave"><path d="M4 13v3M8 10v8M12 7v14M16 10v8M20 13v3"/></g><g class="event-star"><path d="m18 2.8.65 1.55 1.55.65-1.55.65L18 7.2l-.65-1.55L15.8 5l1.55-.65L18 2.8Z"/></g>
+          </svg>
+        </span>
+        <span class="button-copy"><span class="label">Eventy</span><span class="caption">Produkcja wydarzeń</span></span>
+        <span class="num">04</span>
+      </button>
     </nav>
 
     <div class="menu-panel" id="menu-panel" aria-hidden="true">
@@ -426,6 +580,7 @@
       const taglineEl = document.querySelector('.tagline');
       const menuButton = document.querySelector('.menu-button');
       const menuPanel = document.querySelector('.menu-panel');
+      const bottomNav = document.querySelector('.bottom-nav');
       const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
       const copy = [
         ['Kreacja i branding', 'Tworzymy marki, które zostają.'],
@@ -460,6 +615,10 @@
         });
         void buttons[active].offsetWidth;
         buttons[active].classList.add('active');
+        bottomNav.style.setProperty('--active-x', `${active * 25}%`);
+        bottomNav.classList.remove('is-switching');
+        void bottomNav.offsetWidth;
+        bottomNav.classList.add('is-switching');
         indexEl.textContent = `${String(active + 1).padStart(2, '0')} / 04`;
         serviceEl.textContent = copy[active][0];
         taglineEl.textContent = copy[active][1];
@@ -472,7 +631,13 @@
         timer = setTimeout(() => show(active + 1), 8000);
       }
 
-      buttons.forEach((button, i) => button.addEventListener('click', () => show(i, true)));
+      buttons.forEach((button, i) => button.addEventListener('click', () => {
+        button.classList.remove('pulse');
+        void button.offsetWidth;
+        button.classList.add('pulse');
+        setTimeout(() => button.classList.remove('pulse'), 650);
+        show(i, true);
+      }));
       document.addEventListener('keydown', event => {
         if (event.key === 'ArrowRight') show(active + 1, true);
         if (event.key === 'ArrowLeft') show(active - 1, true);
