@@ -729,8 +729,8 @@
     @keyframes trustMarquee { to { transform: translateX(-50%); } }
 
     .client-logo {
-      width: clamp(132px, 10vw, 174px);
-      height: 58px;
+      width: clamp(178px, 13.5vw, 235px);
+      height: 78px;
       flex: 0 0 auto;
       display: grid;
       place-items: center;
@@ -741,17 +741,17 @@
     .client-logo img {
       display: block;
       max-width: 100%;
-      max-height: 44px;
+      max-height: 59px;
       width: auto;
       height: auto;
       object-fit: contain;
       filter: brightness(0) invert(1) drop-shadow(0 0 7px rgba(255,255,255,.1));
     }
 
-    .client-logo--wide img { max-width: 154px; max-height: 34px; }
-    .client-logo--kurka img { max-width: 92px; max-height: 48px; }
+    .client-logo--wide img { max-width: 208px; max-height: 46px; }
+    .client-logo--kurka img { max-width: 124px; max-height: 65px; }
     .client-logo--krzywe { opacity: .82; }
-    .client-logo--krzywe img { max-width: 108px; max-height: 64px; filter: drop-shadow(0 0 7px rgba(255,255,255,.1)); }
+    .client-logo--krzywe img { max-width: 146px; max-height: 86px; filter: drop-shadow(0 0 7px rgba(255,255,255,.1)); }
     .client-logo:hover { opacity: 1; transform: translateY(-1px); }
     .client-logo:focus-visible { opacity: 1; outline: 1px solid rgba(255,255,255,.48); outline-offset: 4px; }
 
@@ -1067,6 +1067,70 @@
     .agency-flow span::before { content: ""; position: absolute; top: -3px; left: 0; width: 5px; height: 5px; border-radius: 50%; background: #e31b23; box-shadow: 0 0 10px rgba(227,27,35,.65); }
     .agency-flow span:not(:last-child)::after { content: "→"; position: absolute; top: 12px; right: 18px; color: rgba(255,255,255,.2); }
 
+    .agency-section {
+      min-height: 160svh;
+      padding: 0 clamp(22px, 5vw, 78px);
+    }
+
+    .agency-shell {
+      position: sticky;
+      top: 0;
+      min-height: 100svh;
+      width: min(1540px, 100%);
+      display: grid;
+      grid-template-columns: 1fr;
+      place-items: center;
+      gap: 0;
+    }
+
+    .agency-intro {
+      width: 100%;
+      max-width: 1480px;
+      padding: 96px 0 72px;
+      text-align: center;
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .agency-kicker { justify-content: center; margin-bottom: clamp(30px, 4vw, 56px); }
+
+    .agency-intro h2 {
+      max-width: none;
+      font-size: clamp(4rem, 8.4vw, 9.8rem);
+      line-height: .85;
+      letter-spacing: -.075em;
+    }
+
+    .agency-intro h2 .reveal-word {
+      display: inline-block;
+      color: rgba(255,255,255,.14);
+      -webkit-text-stroke: 0;
+      opacity: var(--word-reveal, .14);
+      transform: translateY(calc((1 - var(--word-shift, 0)) * 22px));
+      filter: blur(calc((1 - var(--word-shift, 0)) * 5px));
+      transition: opacity .12s linear, transform .16s linear, filter .16s linear;
+      will-change: opacity, transform, filter;
+    }
+
+    .agency-statement {
+      max-width: 1080px;
+      margin: clamp(54px, 7vw, 92px) auto 0;
+      color: rgba(255,255,255,.75);
+      font-size: clamp(1.15rem, 1.7vw, 1.72rem);
+      line-height: 1.62;
+      text-wrap: balance;
+    }
+
+    .agency-statement .reveal-copy {
+      opacity: var(--copy-reveal, .08);
+      filter: blur(calc((1 - var(--copy-shift, 0)) * 4px));
+      transition: opacity .12s linear, filter .16s linear;
+      will-change: opacity, filter;
+    }
+
+    .agency-statement .accent { color: #f23841; }
+
     @media (max-width: 900px) {
       .topbar { --header-gutter: 17px; --brand-width: clamp(124px, 36vw, 154px); height: calc(42px + env(safe-area-inset-top, 0)); grid-template-columns: 1fr auto; padding-left: 17px; padding-right: 15px; }
       .brand { width: clamp(176px, 48vw, 224px); height: 38px; }
@@ -1096,41 +1160,27 @@
       .video-slide[data-slide="2"] video { object-position: 50% 50%; }
       .video-slide[data-slide="3"] video { object-position: 50% 48%; }
       .wash { background: linear-gradient(180deg, rgba(3,3,4,.48), rgba(3,3,4,.05) 34%, rgba(3,3,4,.58)); }
-      .trust-strip { min-height: 148px; grid-template-rows: 34px minmax(72px, 1fr); padding: 22px 0 20px; }
+      .trust-strip { min-height: 174px; grid-template-rows: 34px minmax(92px, 1fr); padding: 22px 0 20px; }
       .trust-heading { gap: 14px; padding: 0 16px; }
       .trust-heading strong { font-size: .75rem; letter-spacing: .36em; padding-left: .36em; white-space: nowrap; }
       .trust-run { gap: 28px; padding: 0 28px 0 0; }
-      .client-logo { width: 118px; height: 50px; }
-      .client-logo--wide img { max-width: 112px; max-height: 27px; }
-      .client-logo--kurka img { max-width: 72px; max-height: 39px; }
-      .client-logo--krzywe img { max-width: 84px; max-height: 48px; }
-      .agency-section { padding: 102px 18px 92px; }
-      .agency-shell { grid-template-columns: 1fr; gap: 52px; }
-      .agency-intro h2 { max-width: 720px; font-size: clamp(3rem, 11.5vw, 5.6rem); }
-      .agency-lead { max-width: 680px; }
-      .agency-control { transform: translateY(34px); }
-      .agency-section.is-visible .agency-control { transform: translateY(0); }
-      .agency-stage { min-height: clamp(440px, 83vw, 610px); }
-      .agency-options { grid-template-columns: repeat(2, 1fr); }
-      .agency-option { min-height: 96px; }
-      .agency-option:nth-child(2) { border-right: 0; }
-      .agency-option:nth-child(-n+2) { border-bottom: 1px solid rgba(255,255,255,.12); }
-      .agency-option:nth-child(3) { border-right: 1px solid rgba(255,255,255,.12); }
-      .agency-flow { margin-top: 58px; grid-template-columns: repeat(2, 1fr); row-gap: 28px; }
-      .agency-flow span:nth-child(2)::after { display: none; }
+      .client-logo { width: 159px; height: 68px; }
+      .client-logo--wide img { max-width: 151px; max-height: 36px; }
+      .client-logo--kurka img { max-width: 97px; max-height: 53px; }
+      .client-logo--krzywe img { max-width: 113px; max-height: 65px; }
+      .agency-section { min-height: 150svh; padding: 0 18px; }
+      .agency-shell { min-height: 100svh; }
+      .agency-intro { padding: 88px 0 64px; }
+      .agency-intro h2 { font-size: clamp(3.3rem, 13.5vw, 6.4rem); }
+      .agency-statement { max-width: 760px; font-size: clamp(1.05rem, 3.4vw, 1.4rem); }
     }
 
     @media (max-width: 560px) {
       .agency-section { padding-left: 14px; padding-right: 14px; }
       .agency-kicker { margin-left: 4px; }
-      .agency-intro h2, .agency-lead, .agency-signature { margin-left: 4px; margin-right: 4px; }
-      .agency-stage { min-height: 510px; }
-      .agency-stage-copy { bottom: 62px; }
-      .agency-stage-copy h3 { font-size: clamp(2rem, 10vw, 3.1rem); }
-      .agency-active-description { margin-top: 18px; font-size: .96rem; line-height: 1.55; }
-      .agency-option { min-height: 92px; padding: 17px 14px 15px; }
-      .agency-option-label { font-size: .68rem; }
-      .agency-flow { padding: 0 4px; font-size: .6rem; letter-spacing: .12em; }
+      .agency-intro h2, .agency-statement { margin-left: 4px; margin-right: 4px; }
+      .agency-intro h2 { font-size: clamp(3rem, 15.2vw, 5.2rem); line-height: .88; }
+      .agency-statement { margin-top: 52px; font-size: 1.05rem; line-height: 1.65; }
     }
 
     @media (max-height: 620px) {
@@ -1147,8 +1197,10 @@
       *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
       .video-slide video { display: none; }
       .trust-track { transform: translateX(0); }
-      .agency-intro, .agency-control { opacity: 1; transform: none; }
-      .agency-media img { transition: none; }
+      .agency-section { min-height: 100svh; }
+      .agency-shell { position: relative; }
+      .agency-intro { opacity: 1; transform: none; }
+      .reveal-word, .reveal-copy { opacity: 1 !important; transform: none !important; filter: none !important; }
     }
 
   </style>
@@ -1284,40 +1336,9 @@
     <div class="agency-shell">
       <header class="agency-intro">
         <div class="agency-kicker"><span>01</span> O agencji</div>
-        <h2 id="agency-title">Pomysł zamieniamy <span>w markę, którą widać.</span></h2>
-        <p class="agency-lead">Budujemy marki od podstaw i pomagamy im rosnąć. Łączymy strategię, design, technologię i produkcję, żeby wszystkie elementy komunikacji pracowały na jeden, konkretny efekt.</p>
-        <div class="agency-signature"><span class="agency-signature-mark" aria-hidden="true">HC</span><span>Jeden zespół · jedna odpowiedzialność</span></div>
+        <h2 id="agency-title" aria-label="Pomysł zamieniamy w markę, którą widać."><span class="reveal-word" aria-hidden="true">Pomysł</span> <span class="reveal-word" aria-hidden="true">zamieniamy</span> <span class="reveal-word" aria-hidden="true">w markę,</span> <span class="reveal-word" aria-hidden="true">którą</span> <span class="reveal-word" aria-hidden="true">widać.</span></h2>
+        <p class="agency-statement" aria-label="Skupiamy się na tym, co naprawdę buduje markę. Tworzymy strony internetowe, organizujemy eventy dla firm, projektujemy branding i realizujemy fotografię. Wszystko prowadzimy w jednym zespole — od pierwszego pomysłu po gotowy efekt."><span class="reveal-copy" aria-hidden="true">Skupiamy się na tym, co naprawdę buduje markę. </span><span class="reveal-copy accent" aria-hidden="true">Tworzymy strony internetowe, </span><span class="reveal-copy accent" aria-hidden="true">organizujemy eventy dla firm, </span><span class="reveal-copy accent" aria-hidden="true">projektujemy branding i realizujemy fotografię. </span><span class="reveal-copy" aria-hidden="true">Wszystko prowadzimy w jednym zespole — od pierwszego pomysłu po gotowy efekt.</span></p>
       </header>
-
-      <div class="agency-control">
-        <div class="agency-stage" id="agency-panel" role="tabpanel" aria-labelledby="agency-tab-0" aria-live="polite">
-          <div class="agency-media" aria-hidden="true">
-            <img class="active" src="assets/branding.jpg" alt="">
-            <img src="assets/digital.jpg" alt="">
-            <img src="assets/drone.jpg" alt="">
-            <img src="assets/events.jpg" alt="">
-          </div>
-          <div class="agency-spotlight" aria-hidden="true"></div>
-          <div class="agency-stage-top"><span class="agency-active-index">Zakres 01 / 04</span><span>HostControl</span></div>
-          <div class="agency-stage-copy">
-            <p class="agency-active-label">Strategia &amp; branding</p>
-            <h3>Marka gotowa do działania.</h3>
-            <p class="agency-active-description">Tworzymy nazwę, pozycjonowanie, identyfikację i system komunikacji, dzięki którym marka jest rozpoznawalna i spójna w każdym punkcie styku.</p>
-          </div>
-          <div class="agency-stage-footer"><span>Mazury</span><span>Pracujemy w całej Polsce</span></div>
-        </div>
-
-        <div class="agency-options" role="tablist" aria-label="Kompetencje agencji">
-          <button class="agency-option active" id="agency-tab-0" type="button" role="tab" aria-selected="true" aria-controls="agency-panel" data-agency="0"><span class="agency-option-index">01</span><span class="agency-option-label">Strategia &amp; branding</span></button>
-          <button class="agency-option" id="agency-tab-1" type="button" role="tab" tabindex="-1" aria-selected="false" aria-controls="agency-panel" data-agency="1"><span class="agency-option-index">02</span><span class="agency-option-label">Strony &amp; aplikacje</span></button>
-          <button class="agency-option" id="agency-tab-2" type="button" role="tab" tabindex="-1" aria-selected="false" aria-controls="agency-panel" data-agency="2"><span class="agency-option-index">03</span><span class="agency-option-label">Foto, film &amp; dron</span></button>
-          <button class="agency-option" id="agency-tab-3" type="button" role="tab" tabindex="-1" aria-selected="false" aria-controls="agency-panel" data-agency="3"><span class="agency-option-index">04</span><span class="agency-option-label">Produkcja eventów</span></button>
-        </div>
-      </div>
-
-      <div class="agency-flow" aria-label="Sposób pracy HostControl">
-        <span>Poznajemy cel</span><span>Projektujemy</span><span>Produkujemy</span><span>Dostarczamy efekt</span>
-      </div>
     </div>
   </section>
 
@@ -1494,82 +1515,59 @@
       buttons.forEach((button, i) => button.addEventListener('click', () => show(i, true)));
 
       const agencySection = document.querySelector('.agency-section');
-      const agencyStage = document.querySelector('.agency-stage');
-      const agencyButtons = [...document.querySelectorAll('.agency-option')];
-      const agencyImages = [...document.querySelectorAll('.agency-media img')];
-      const agencyIndex = document.querySelector('.agency-active-index');
-      const agencyLabel = document.querySelector('.agency-active-label');
-      const agencyTitle = document.querySelector('.agency-stage-copy h3');
-      const agencyDescription = document.querySelector('.agency-active-description');
-      const agencyCopy = document.querySelector('.agency-stage-copy');
-      const agencyData = [
-        ['Strategia & branding', 'Marka gotowa do działania.', 'Tworzymy nazwę, pozycjonowanie, identyfikację i system komunikacji, dzięki którym marka jest rozpoznawalna i spójna w każdym punkcie styku.'],
-        ['Strony & aplikacje', 'Doświadczenie, które prowadzi do decyzji.', 'Projektujemy i wdrażamy strony oraz aplikacje, które dobrze wyglądają, szybko działają i zamieniają uwagę odbiorcy w konkretną reakcję.'],
-        ['Foto, film & dron', 'Obraz, który zatrzymuje uwagę.', 'Produkujemy zdjęcia, filmy i ujęcia z drona, które pokazują produkt, miejsce lub wydarzenie z właściwej perspektywy i budują emocje.'],
-        ['Produkcja eventów', 'Realizacja dopięta od początku do końca.', 'Od pomysłu i oprawy po produkcję na miejscu. Dbamy, żeby marka była widoczna, a całe wydarzenie przebiegało sprawnie i bez chaosu.']
-      ];
+      const revealWords = [...document.querySelectorAll('.reveal-word')];
+      const revealCopy = [...document.querySelectorAll('.reveal-copy')];
+      let agencyScrollFrame = null;
 
-      function setAgency(next) {
-        agencyButtons.forEach((button, i) => {
-          button.classList.toggle('active', i === next);
-          button.setAttribute('aria-selected', i === next ? 'true' : 'false');
-          button.tabIndex = i === next ? 0 : -1;
+      function clamp(value) { return Math.max(0, Math.min(1, value)); }
+
+      function updateAgencyReveal() {
+        const rect = agencySection.getBoundingClientRect();
+        const viewport = window.innerHeight;
+        const travel = Math.max(1, rect.height - viewport);
+        const entryOffset = viewport * .72;
+        const progress = clamp((entryOffset - rect.top) / (travel + entryOffset));
+
+        revealWords.forEach((word, i) => {
+          const offset = revealWords.length > 1 ? (i / (revealWords.length - 1)) * .72 : 0;
+          const local = clamp(progress * 1.7 - offset);
+          word.style.setProperty('--word-reveal', String(.14 + local * .86));
+          word.style.setProperty('--word-shift', String(local));
         });
-        agencyImages.forEach((image, i) => image.classList.toggle('active', i === next));
-        agencyIndex.textContent = `Zakres ${String(next + 1).padStart(2, '0')} / 04`;
-        agencyStage.setAttribute('aria-labelledby', `agency-tab-${next}`);
-        agencyLabel.textContent = agencyData[next][0];
-        agencyTitle.textContent = agencyData[next][1];
-        agencyDescription.textContent = agencyData[next][2];
-        agencyCopy.classList.remove('is-changing');
-        void agencyCopy.offsetWidth;
-        agencyCopy.classList.add('is-changing');
+
+        revealCopy.forEach((part, i) => {
+          const local = clamp(progress * 2.5 - 1.05 - i * .11);
+          part.style.setProperty('--copy-reveal', String(.08 + local * .92));
+          part.style.setProperty('--copy-shift', String(local));
+        });
+        agencyScrollFrame = null;
       }
 
-      agencyButtons.forEach((button, i) => {
-        button.addEventListener('click', () => setAgency(i));
-        button.addEventListener('mouseenter', () => setAgency(i));
-        button.addEventListener('focus', () => setAgency(i));
-        button.addEventListener('keydown', event => {
-          if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
-          event.preventDefault();
-          event.stopPropagation();
-          let next = i;
-          if (event.key === 'ArrowLeft') next = (i - 1 + agencyButtons.length) % agencyButtons.length;
-          if (event.key === 'ArrowRight') next = (i + 1) % agencyButtons.length;
-          if (event.key === 'Home') next = 0;
-          if (event.key === 'End') next = agencyButtons.length - 1;
-          agencyButtons[next].focus();
-        });
-      });
+      function requestAgencyReveal() {
+        if (agencyScrollFrame === null) agencyScrollFrame = requestAnimationFrame(updateAgencyReveal);
+      }
 
-      agencyStage.addEventListener('pointermove', event => {
-        const rect = agencyStage.getBoundingClientRect();
-        agencyStage.style.setProperty('--stage-x', `${((event.clientX - rect.left) / rect.width) * 100}%`);
-        agencyStage.style.setProperty('--stage-y', `${((event.clientY - rect.top) / rect.height) * 100}%`);
-      }, { passive: true });
-      agencyStage.addEventListener('pointerleave', () => {
-        agencyStage.style.setProperty('--stage-x', '78%');
-        agencyStage.style.setProperty('--stage-y', '26%');
-      });
+      if (reduceMotion) {
+        revealWords.forEach(word => {
+          word.style.setProperty('--word-reveal', '1');
+          word.style.setProperty('--word-shift', '1');
+        });
+        revealCopy.forEach(part => {
+          part.style.setProperty('--copy-reveal', '1');
+          part.style.setProperty('--copy-shift', '1');
+        });
+      } else {
+        window.addEventListener('scroll', requestAgencyReveal, { passive: true });
+        window.addEventListener('resize', requestAgencyReveal, { passive: true });
+        window.addEventListener('pageshow', requestAgencyReveal);
+        updateAgencyReveal();
+      }
 
       agencySection.addEventListener('pointermove', event => {
         const rect = agencySection.getBoundingClientRect();
         agencySection.style.setProperty('--agency-x', `${((event.clientX - rect.left) / rect.width) * 100}%`);
         agencySection.style.setProperty('--agency-y', `${((event.clientY - rect.top) / rect.height) * 100}%`);
       }, { passive: true });
-
-      if ('IntersectionObserver' in window && !reduceMotion) {
-        const agencyObserver = new IntersectionObserver(entries => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              agencySection.classList.add('is-visible');
-              agencyObserver.disconnect();
-            }
-          });
-        }, { threshold: .16 });
-        agencyObserver.observe(agencySection);
-      } else agencySection.classList.add('is-visible');
 
       document.addEventListener('keydown', event => {
         if (menuOpen && event.key === 'Escape') {
