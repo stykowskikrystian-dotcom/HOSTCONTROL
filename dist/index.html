@@ -72,7 +72,6 @@
     a { color: inherit; text-decoration: none; }
 
     .hero {
-      --trust-height: 84px;
       position: relative;
       width: 100%;
       min-height: 100svh;
@@ -160,8 +159,14 @@
     }
     .topbar.is-scrolled::before { opacity: 1; }
 
-    .brand { width: var(--brand-width); display: block; }
-    .brand img { display: block; width: 100%; height: auto; }
+    .brand {
+      width: clamp(228px, 20vw, 292px);
+      height: 50px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .brand img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: left center; }
 
     .nav {
       display: flex;
@@ -384,7 +389,7 @@
     .hero-main {
       position: absolute;
       z-index: 15;
-      inset: 99px 0 calc(98px + var(--trust-height));
+      inset: 99px 0 108px;
       display: grid;
       place-items: center;
       padding: 44px clamp(22px, 6vw, 96px);
@@ -478,7 +483,7 @@
       z-index: 20;
       left: clamp(18px, 3.5vw, 58px);
       right: clamp(18px, 3.5vw, 58px);
-      bottom: calc(var(--trust-height) + 5px);
+      bottom: 24px;
       min-height: 54px;
       padding-bottom: env(safe-area-inset-bottom, 0);
       display: grid;
@@ -640,21 +645,22 @@
     @keyframes serviceGlowBreath { 0%,100% { opacity: .72; transform: scale(.92); } 50% { opacity: 1; transform: scale(1.06); } }
 
     .trust-strip {
-      position: absolute;
+      position: relative;
       z-index: 20;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: var(--trust-height);
+      min-height: 164px;
       display: grid;
       grid-template-columns: minmax(0, 1fr);
-      grid-template-rows: 26px minmax(0, 1fr);
-      overflow: visible;
-      background: transparent;
+      grid-template-rows: 38px minmax(78px, 1fr);
+      padding: 26px 0 22px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(227,27,35,.075), transparent 34%),
+        #050506;
       backdrop-filter: none;
       -webkit-backdrop-filter: none;
-      border: 0;
-      box-shadow: none;
+      border-top: 1px solid rgba(255,255,255,.085);
+      border-bottom: 1px solid rgba(255,255,255,.055);
+      box-shadow: inset 0 22px 70px rgba(0,0,0,.26);
     }
 
     .trust-strip::before { content: none; }
@@ -685,7 +691,7 @@
       padding-left: .48em;
       line-height: 1;
       text-transform: uppercase;
-      color: rgba(255,255,255,.82);
+      color: rgba(255,255,255,.76);
       text-shadow: 0 2px 12px rgba(0,0,0,.82);
     }
 
@@ -728,7 +734,7 @@
       flex: 0 0 auto;
       display: grid;
       place-items: center;
-      opacity: .88;
+      opacity: .72;
       transition: opacity .35s ease, transform .45s var(--ease);
     }
 
@@ -739,13 +745,13 @@
       width: auto;
       height: auto;
       object-fit: contain;
-      filter: saturate(1.08) drop-shadow(0 0 6px rgba(255,255,255,.1));
+      filter: brightness(0) invert(1) drop-shadow(0 0 7px rgba(255,255,255,.1));
     }
 
     .client-logo--wide img { max-width: 154px; max-height: 34px; }
     .client-logo--kurka img { max-width: 92px; max-height: 48px; }
-    .client-logo--krzywe { opacity: .95; }
-    .client-logo--krzywe img { max-width: 108px; max-height: 56px; filter: saturate(1.08) drop-shadow(0 0 7px rgba(255,255,255,.1)); }
+    .client-logo--krzywe { opacity: .82; }
+    .client-logo--krzywe img { max-width: 108px; max-height: 64px; filter: drop-shadow(0 0 7px rgba(255,255,255,.1)); }
     .client-logo:hover { opacity: 1; transform: translateY(-1px); }
     .client-logo:focus-visible { opacity: 1; outline: 1px solid rgba(255,255,255,.48); outline-offset: 4px; }
 
@@ -1062,14 +1068,13 @@
     .agency-flow span:not(:last-child)::after { content: "→"; position: absolute; top: 12px; right: 18px; color: rgba(255,255,255,.2); }
 
     @media (max-width: 900px) {
-      .hero { --trust-height: 74px; }
       .topbar { --header-gutter: 17px; --brand-width: clamp(124px, 36vw, 154px); height: calc(42px + env(safe-area-inset-top, 0)); grid-template-columns: 1fr auto; padding-left: 17px; padding-right: 15px; }
-      .brand { width: clamp(124px, 36vw, 154px); }
+      .brand { width: clamp(176px, 48vw, 224px); height: 38px; }
       .nav, .contact-stack, .side-note { display: none; }
       .header-actions { align-self: center; padding-top: 0; }
       .menu-toggle { display: grid; }
       .mobile-menu { display: block; }
-      .hero-main { inset: calc(80px + env(safe-area-inset-top, 0)) 0 calc(82px + env(safe-area-inset-bottom, 0) + var(--trust-height)); padding: 24px 16px; }
+      .hero-main { inset: calc(80px + env(safe-area-inset-top, 0)) 0 calc(82px + env(safe-area-inset-bottom, 0)); padding: 24px 16px; }
       .hero-copy { transform: translateY(-1vh); }
       h1 { font-size: clamp(2.75rem, 12.6vw, 5.2rem); letter-spacing: -.07em; line-height: .88; }
       h1 span { -webkit-text-stroke-width: 1px; }
@@ -1077,7 +1082,7 @@
       .eyebrow .divider { width: 24px; }
       .eyebrow .service { min-width: 128px; }
       .tagline { width: min(86vw, 430px); font-size: clamp(.78rem, 3.4vw, 1rem); letter-spacing: .12em; line-height: 1.55; margin-top: 24px; }
-      .bottom-nav { left: 7px; right: 7px; bottom: calc(var(--trust-height) + 3px); min-height: calc(44px + env(safe-area-inset-bottom, 0)); }
+      .bottom-nav { left: 7px; right: 7px; bottom: calc(9px + env(safe-area-inset-bottom, 0)); min-height: 44px; }
       .slide-button { justify-content: center; flex-direction: row; gap: 5px; padding: 3px 1px; text-align: center; }
       .icon-wrap { width: 16px; height: 16px; border-radius: 0; }
       .service-icon { width: 14px; height: 14px; }
@@ -1091,7 +1096,7 @@
       .video-slide[data-slide="2"] video { object-position: 50% 50%; }
       .video-slide[data-slide="3"] video { object-position: 50% 48%; }
       .wash { background: linear-gradient(180deg, rgba(3,3,4,.48), rgba(3,3,4,.05) 34%, rgba(3,3,4,.58)); }
-      .trust-strip { grid-template-rows: 24px minmax(0, 1fr); }
+      .trust-strip { min-height: 148px; grid-template-rows: 34px minmax(72px, 1fr); padding: 22px 0 20px; }
       .trust-heading { gap: 14px; padding: 0 16px; }
       .trust-heading strong { font-size: .75rem; letter-spacing: .36em; padding-left: .36em; white-space: nowrap; }
       .trust-run { gap: 28px; padding: 0 28px 0 0; }
@@ -1130,7 +1135,7 @@
 
     @media (max-height: 620px) {
       .topbar { height: calc(40px + env(safe-area-inset-top, 0)); }
-      .hero-main { inset: 68px 0 calc(72px + var(--trust-height)); }
+      .hero-main { inset: 68px 0 72px; }
       .eyebrow { top: -30px; margin-bottom: 14px; }
       .tagline { margin-top: 16px; }
       .bottom-nav { min-height: 42px; }
@@ -1170,7 +1175,7 @@
 
     <header class="topbar">
       <a class="brand" href="#" aria-label="HostControl — strona główna">
-        <img src="assets/logo-host-control.png" alt="HostControl — Krystian Stykowski, agencja digital">
+        <img src="assets/logo-host-control-nav.png" alt="HostControl — Krystian Stykowski, Digital Agency">
       </a>
       <nav class="nav" aria-label="Nawigacja główna">
         <a href="#oferta">Oferta</a>
@@ -1272,35 +1277,6 @@
       </button>
     </nav>
 
-  <section class="trust-strip" aria-label="Zaufali nam">
-    <div class="trust-heading"><strong>Zaufali nam</strong></div>
-    <div class="trust-window">
-      <div class="trust-track">
-        <div class="trust-run">
-          <a class="client-logo client-logo--wide" href="https://dlawas.fun/" target="_blank" rel="noreferrer"><img src="assets/client-dlawas.png" alt="DLAWAS.FUN"></a>
-          <a class="client-logo client-logo--kurka" href="https://www.kurka-wodna.com.pl/" target="_blank" rel="noreferrer"><img src="assets/client-kurka.png" alt="Kurka Wodna"></a>
-          <a class="client-logo client-logo--krzywe" href="https://krzywelakehouses.pl/" target="_blank" rel="noreferrer"><img src="assets/client-krzywe.png" alt="Krzywe Lake Houses Mazury"></a>
-          <a class="client-logo client-logo--wide" href="https://dlawas.fun/" target="_blank" rel="noreferrer" aria-hidden="true" tabindex="-1"><img src="assets/client-dlawas.png" alt=""></a>
-          <a class="client-logo client-logo--kurka" href="https://www.kurka-wodna.com.pl/" target="_blank" rel="noreferrer" aria-hidden="true" tabindex="-1"><img src="assets/client-kurka.png" alt=""></a>
-          <a class="client-logo client-logo--krzywe" href="https://krzywelakehouses.pl/" target="_blank" rel="noreferrer" aria-hidden="true" tabindex="-1"><img src="assets/client-krzywe.png" alt=""></a>
-          <a class="client-logo client-logo--wide" href="https://dlawas.fun/" target="_blank" rel="noreferrer" aria-hidden="true" tabindex="-1"><img src="assets/client-dlawas.png" alt=""></a>
-          <a class="client-logo client-logo--kurka" href="https://www.kurka-wodna.com.pl/" target="_blank" rel="noreferrer" aria-hidden="true" tabindex="-1"><img src="assets/client-kurka.png" alt=""></a>
-          <a class="client-logo client-logo--krzywe" href="https://krzywelakehouses.pl/" target="_blank" rel="noreferrer" aria-hidden="true" tabindex="-1"><img src="assets/client-krzywe.png" alt=""></a>
-        </div>
-        <div class="trust-run" aria-hidden="true">
-          <a class="client-logo client-logo--wide" href="https://dlawas.fun/" target="_blank" rel="noreferrer" tabindex="-1"><img src="assets/client-dlawas.png" alt=""></a>
-          <a class="client-logo client-logo--kurka" href="https://www.kurka-wodna.com.pl/" target="_blank" rel="noreferrer" tabindex="-1"><img src="assets/client-kurka.png" alt=""></a>
-          <a class="client-logo client-logo--krzywe" href="https://krzywelakehouses.pl/" target="_blank" rel="noreferrer" tabindex="-1"><img src="assets/client-krzywe.png" alt=""></a>
-          <a class="client-logo client-logo--wide" href="https://dlawas.fun/" target="_blank" rel="noreferrer" tabindex="-1"><img src="assets/client-dlawas.png" alt=""></a>
-          <a class="client-logo client-logo--kurka" href="https://www.kurka-wodna.com.pl/" target="_blank" rel="noreferrer" tabindex="-1"><img src="assets/client-kurka.png" alt=""></a>
-          <a class="client-logo client-logo--krzywe" href="https://krzywelakehouses.pl/" target="_blank" rel="noreferrer" tabindex="-1"><img src="assets/client-krzywe.png" alt=""></a>
-          <a class="client-logo client-logo--wide" href="https://dlawas.fun/" target="_blank" rel="noreferrer" tabindex="-1"><img src="assets/client-dlawas.png" alt=""></a>
-          <a class="client-logo client-logo--kurka" href="https://www.kurka-wodna.com.pl/" target="_blank" rel="noreferrer" tabindex="-1"><img src="assets/client-kurka.png" alt=""></a>
-          <a class="client-logo client-logo--krzywe" href="https://krzywelakehouses.pl/" target="_blank" rel="noreferrer" tabindex="-1"><img src="assets/client-krzywe.png" alt=""></a>
-        </div>
-      </div>
-    </div>
-  </section>
   </section>
 
   <section class="agency-section" id="o-nas" aria-labelledby="agency-title">
@@ -1341,6 +1317,36 @@
 
       <div class="agency-flow" aria-label="Sposób pracy HostControl">
         <span>Poznajemy cel</span><span>Projektujemy</span><span>Produkujemy</span><span>Dostarczamy efekt</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-strip" aria-label="Zaufali nam">
+    <div class="trust-heading"><strong>Zaufali nam</strong></div>
+    <div class="trust-window">
+      <div class="trust-track">
+        <div class="trust-run">
+          <a class="client-logo client-logo--wide" href="https://dlawas.fun/" target="_blank" rel="noreferrer"><img src="assets/client-dlawas.png" loading="lazy" alt="DLAWAS.FUN"></a>
+          <a class="client-logo client-logo--kurka" href="https://www.kurka-wodna.com.pl/" target="_blank" rel="noreferrer"><img src="assets/client-kurka.png" loading="lazy" alt="Kurka Wodna"></a>
+          <a class="client-logo client-logo--krzywe" href="https://krzywelakehouses.pl/" target="_blank" rel="noreferrer"><img src="assets/client-krzywe-white.png" loading="lazy" alt="Krzywe Lake Houses Mazury"></a>
+          <a class="client-logo client-logo--wide" href="https://dlawas.fun/" target="_blank" rel="noreferrer" aria-hidden="true" tabindex="-1"><img src="assets/client-dlawas.png" loading="lazy" alt=""></a>
+          <a class="client-logo client-logo--kurka" href="https://www.kurka-wodna.com.pl/" target="_blank" rel="noreferrer" aria-hidden="true" tabindex="-1"><img src="assets/client-kurka.png" loading="lazy" alt=""></a>
+          <a class="client-logo client-logo--krzywe" href="https://krzywelakehouses.pl/" target="_blank" rel="noreferrer" aria-hidden="true" tabindex="-1"><img src="assets/client-krzywe-white.png" loading="lazy" alt=""></a>
+          <a class="client-logo client-logo--wide" href="https://dlawas.fun/" target="_blank" rel="noreferrer" aria-hidden="true" tabindex="-1"><img src="assets/client-dlawas.png" loading="lazy" alt=""></a>
+          <a class="client-logo client-logo--kurka" href="https://www.kurka-wodna.com.pl/" target="_blank" rel="noreferrer" aria-hidden="true" tabindex="-1"><img src="assets/client-kurka.png" loading="lazy" alt=""></a>
+          <a class="client-logo client-logo--krzywe" href="https://krzywelakehouses.pl/" target="_blank" rel="noreferrer" aria-hidden="true" tabindex="-1"><img src="assets/client-krzywe-white.png" loading="lazy" alt=""></a>
+        </div>
+        <div class="trust-run" aria-hidden="true">
+          <a class="client-logo client-logo--wide" href="https://dlawas.fun/" target="_blank" rel="noreferrer" tabindex="-1"><img src="assets/client-dlawas.png" loading="lazy" alt=""></a>
+          <a class="client-logo client-logo--kurka" href="https://www.kurka-wodna.com.pl/" target="_blank" rel="noreferrer" tabindex="-1"><img src="assets/client-kurka.png" loading="lazy" alt=""></a>
+          <a class="client-logo client-logo--krzywe" href="https://krzywelakehouses.pl/" target="_blank" rel="noreferrer" tabindex="-1"><img src="assets/client-krzywe-white.png" loading="lazy" alt=""></a>
+          <a class="client-logo client-logo--wide" href="https://dlawas.fun/" target="_blank" rel="noreferrer" tabindex="-1"><img src="assets/client-dlawas.png" loading="lazy" alt=""></a>
+          <a class="client-logo client-logo--kurka" href="https://www.kurka-wodna.com.pl/" target="_blank" rel="noreferrer" tabindex="-1"><img src="assets/client-kurka.png" loading="lazy" alt=""></a>
+          <a class="client-logo client-logo--krzywe" href="https://krzywelakehouses.pl/" target="_blank" rel="noreferrer" tabindex="-1"><img src="assets/client-krzywe-white.png" loading="lazy" alt=""></a>
+          <a class="client-logo client-logo--wide" href="https://dlawas.fun/" target="_blank" rel="noreferrer" tabindex="-1"><img src="assets/client-dlawas.png" loading="lazy" alt=""></a>
+          <a class="client-logo client-logo--kurka" href="https://www.kurka-wodna.com.pl/" target="_blank" rel="noreferrer" tabindex="-1"><img src="assets/client-kurka.png" loading="lazy" alt=""></a>
+          <a class="client-logo client-logo--krzywe" href="https://krzywelakehouses.pl/" target="_blank" rel="noreferrer" tabindex="-1"><img src="assets/client-krzywe-white.png" loading="lazy" alt=""></a>
+        </div>
       </div>
     </div>
   </section>
