@@ -139,14 +139,14 @@
       content: "";
       position: absolute;
       z-index: -1;
-      inset: 0 0 -58px;
+      inset: 0 0 -48px;
       background:
-        radial-gradient(circle at 88% 26%, rgba(227,27,35,.1), transparent 24%),
-        linear-gradient(180deg, rgba(8,8,10,.72) 0%, rgba(8,8,10,.38) 54%, rgba(8,8,10,0) 100%);
-      -webkit-backdrop-filter: blur(9px) saturate(1.08);
-      backdrop-filter: blur(9px) saturate(1.08);
-      -webkit-mask-image: linear-gradient(#000 0 58%, transparent 100%);
-      mask-image: linear-gradient(#000 0 58%, transparent 100%);
+        radial-gradient(circle at 88% 22%, rgba(227,27,35,.065), transparent 25%),
+        linear-gradient(180deg, rgba(8,8,10,.44) 0%, rgba(8,8,10,.18) 56%, rgba(8,8,10,0) 100%);
+      -webkit-backdrop-filter: blur(6px) saturate(1.04);
+      backdrop-filter: blur(6px) saturate(1.04);
+      -webkit-mask-image: linear-gradient(#000 0 50%, transparent 100%);
+      mask-image: linear-gradient(#000 0 50%, transparent 100%);
       opacity: 0;
       pointer-events: none;
       transition: opacity .4s ease;
@@ -183,24 +183,27 @@
       place-items: center;
       border: 1px solid rgba(255,255,255,.22);
       border-radius: 50%;
-      background: rgba(7,7,9,.28);
-      color: rgba(255,255,255,.82);
+      padding: 0;
+      line-height: 0;
+      background: rgba(7,7,9,.16);
+      color: var(--social-color, rgba(255,255,255,.86));
       box-shadow: 0 7px 20px rgba(0,0,0,.16), inset 0 0 0 1px rgba(255,255,255,.025);
       -webkit-backdrop-filter: blur(8px);
       backdrop-filter: blur(8px);
       animation: socialFloat 4.6s ease-in-out infinite;
       transition: transform .35s var(--ease), color .25s ease, background .25s ease, border-color .25s ease, box-shadow .35s ease;
     }
-    .social-link:nth-child(2) { animation-delay: -.8s; }
-    .social-link:nth-child(3) { animation-delay: -1.6s; }
-    .social-link svg { width: 14px; height: 14px; display: block; fill: currentColor; }
+    .social-link--instagram { --social-color: #f04b78; border-color: rgba(240,75,120,.36); }
+    .social-link--facebook { --social-color: #4798ff; border-color: rgba(71,152,255,.36); animation-delay: -.8s; }
+    .social-link--linkedin { --social-color: #4ca9dc; border-color: rgba(76,169,220,.36); animation-delay: -1.6s; }
+    .social-link svg { width: 15px; height: 15px; display: block; fill: currentColor; overflow: visible; }
     .social-link:hover, .social-link:focus-visible {
       color: #fff;
-      background: rgba(227,27,35,.9);
+      background: var(--social-color, rgba(227,27,35,.9));
       border-color: rgba(255,255,255,.6);
       box-shadow: 0 8px 24px rgba(227,27,35,.28), 0 0 16px rgba(227,27,35,.16);
       transform: translateY(-3px) scale(1.08);
-      animation-play-state: paused;
+      animation: none;
     }
     .social-link:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
     @keyframes socialFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
@@ -532,7 +535,7 @@
       flex: 0 0 auto;
       display: grid;
       place-items: center;
-      opacity: .58;
+      opacity: .88;
       transition: opacity .35s ease, transform .45s var(--ease);
     }
 
@@ -543,18 +546,47 @@
       width: auto;
       height: auto;
       object-fit: contain;
-      filter: grayscale(1) brightness(0) invert(1);
+      filter: saturate(1.08) drop-shadow(0 0 6px rgba(255,255,255,.1));
     }
 
     .client-logo--wide img { max-width: 154px; max-height: 34px; }
     .client-logo--kurka img { max-width: 92px; max-height: 48px; }
-    .client-logo--krzywe { opacity: .88; }
-    .client-logo--krzywe img { max-width: 108px; max-height: 56px; filter: drop-shadow(0 0 7px rgba(255,255,255,.08)); }
-    .client-logo:hover { opacity: .9; transform: translateY(-1px); }
+    .client-logo--krzywe { opacity: .95; }
+    .client-logo--krzywe img { max-width: 108px; max-height: 56px; filter: saturate(1.08) drop-shadow(0 0 7px rgba(255,255,255,.1)); }
+    .client-logo:hover { opacity: 1; transform: translateY(-1px); }
     .trust-window:hover .trust-track { animation-play-state: paused; }
 
     @keyframes trustMarquee { to { transform: translateX(-50%); } }
     @keyframes filmLight { 0%, 66% { left: -18%; opacity: 0; } 72% { opacity: 1; } 88% { left: 110%; opacity: .75; } 100% { left: 110%; opacity: 0; } }
+
+    .test-section {
+      position: relative;
+      min-height: 68vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      padding: 120px clamp(24px, 8vw, 140px);
+      background:
+        radial-gradient(circle at 78% 28%, rgba(227,27,35,.13), transparent 34%),
+        linear-gradient(145deg, #0d0d10 0%, #070708 68%);
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .test-section::before {
+      content: "";
+      position: absolute;
+      width: min(62vw, 760px);
+      aspect-ratio: 1;
+      right: -24%;
+      top: -78%;
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 50%;
+      box-shadow: 0 0 0 72px rgba(255,255,255,.012), 0 0 0 144px rgba(255,255,255,.008);
+    }
+    .test-content { position: relative; z-index: 1; width: min(900px, 100%); }
+    .test-kicker { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; color: #ef343b; font-size: .72rem; font-weight: 750; letter-spacing: .24em; text-transform: uppercase; }
+    .test-kicker::before { content: ""; width: 42px; height: 1px; background: currentColor; }
+    .test-section h2 { max-width: 820px; margin: 0; font-size: clamp(2.3rem, 6vw, 6.1rem); line-height: .95; letter-spacing: -.055em; text-transform: uppercase; }
+    .test-section p { max-width: 610px; margin: 30px 0 0; color: rgba(255,255,255,.64); font-size: clamp(1rem, 1.5vw, 1.22rem); line-height: 1.65; }
 
     @media (max-width: 900px) {
       .hero { --trust-height: 74px; }
@@ -592,6 +624,7 @@
       .client-logo--wide img { max-width: 112px; max-height: 27px; }
       .client-logo--kurka img { max-width: 72px; max-height: 39px; }
       .client-logo--krzywe img { max-width: 84px; max-height: 48px; }
+      .test-section { min-height: 62vh; padding: 96px 20px 80px; }
     }
 
     @media (max-height: 620px) {
@@ -643,13 +676,13 @@
         <div class="contact-stack">
           <a class="phone" href="tel:+48692746031">+48 692 746 031</a>
           <nav class="header-socials" aria-label="Media społecznościowe">
-            <a class="social-link" href="https://www.instagram.com/much4ty/" target="_blank" rel="noreferrer" aria-label="Instagram">
+            <a class="social-link social-link--instagram" href="https://www.instagram.com/much4ty/" target="_blank" rel="noreferrer" aria-label="Instagram">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2Zm0 2A3.8 3.8 0 0 0 4 7.8v8.4A3.8 3.8 0 0 0 7.8 20h8.4a3.8 3.8 0 0 0 3.8-3.8V7.8A3.8 3.8 0 0 0 16.2 4H7.8Zm4.2 3.1A4.9 4.9 0 1 1 7.1 12 4.9 4.9 0 0 1 12 7.1Zm0 2A2.9 2.9 0 1 0 14.9 12 2.9 2.9 0 0 0 12 9.1Zm5.15-2.55a1.18 1.18 0 1 1-1.18 1.18 1.18 1.18 0 0 1 1.18-1.18Z"/></svg>
             </a>
-            <a class="social-link" href="https://www.facebook.com/much4ty/" target="_blank" rel="noreferrer" aria-label="Facebook">
+            <a class="social-link social-link--facebook" href="https://www.facebook.com/much4ty/" target="_blank" rel="noreferrer" aria-label="Facebook">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.2 22v-8h2.8l.42-3.25H14.2V8.68c0-.94.26-1.58 1.61-1.58h1.72V4.2c-.3-.04-1.32-.13-2.51-.13-2.48 0-4.18 1.51-4.18 4.3v2.38H8.03V14h2.81v8h3.36Z"/></svg>
             </a>
-            <a class="social-link" href="https://pl.linkedin.com/in/krystian-stykowski-10380429a" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+            <a class="social-link social-link--linkedin" href="https://pl.linkedin.com/in/krystian-stykowski-10380429a" target="_blank" rel="noreferrer" aria-label="LinkedIn">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.34 7.69H2.28V22h3.06V7.69ZM3.81 2A1.79 1.79 0 1 0 3.8 5.58 1.79 1.79 0 0 0 3.81 2Zm18.19 11.8c0-4.31-2.3-6.31-5.37-6.31a4.63 4.63 0 0 0-4.2 2.31V7.69H9.37V22h3.06v-7.09c0-1.87.36-3.68 2.68-3.68 2.29 0 2.32 2.15 2.32 3.8V22H22v-8.2Z"/></svg>
             </a>
           </nav>
@@ -737,6 +770,14 @@
     </div>
   </section>
   </main>
+
+  <section class="test-section" id="dalej" aria-labelledby="test-title">
+    <div class="test-content">
+      <div class="test-kicker">Sekcja testowa</div>
+      <h2 id="test-title">Tu zaczyna się dalsza część witryny</h2>
+      <p>Przewiń stronę, aby sprawdzić stałą nawigację i delikatne, półprzezroczyste tło nagłówka na kolejnej sekcji.</p>
+    </div>
+  </section>
 
   <!-- Filmy: Pexels 20765858, 5240935, 4169462, 13641377. Licencja: https://www.pexels.com/license/ -->
   <script>
