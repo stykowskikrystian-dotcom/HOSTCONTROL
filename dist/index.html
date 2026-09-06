@@ -39,6 +39,12 @@
     }
   </script>
   <style>
+    @property --rail-progress {
+      syntax: "<percentage>";
+      inherits: true;
+      initial-value: 12.5%;
+    }
+
     :root {
       color-scheme: dark;
       --red: #e31b23;
@@ -320,6 +326,7 @@
     }
 
     .bottom-nav {
+      --rail-progress: 12.5%;
       position: absolute;
       z-index: 20;
       left: clamp(18px, 3.5vw, 58px);
@@ -335,9 +342,36 @@
       backdrop-filter: none;
       border: 0;
       box-shadow: none;
+      transition: --rail-progress .75s var(--ease);
     }
 
-    .bottom-nav::before { display: none; }
+    .bottom-nav::before {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      left: 12.5%;
+      right: 12.5%;
+      bottom: 0;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255,255,255,.08), rgba(255,255,255,.22) 50%, rgba(255,255,255,.08));
+      box-shadow: 0 1px 7px rgba(0,0,0,.48);
+      pointer-events: none;
+    }
+
+    .bottom-nav::after {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      left: 12.5%;
+      bottom: 0;
+      width: max(0px, calc(var(--rail-progress) - 12.5%));
+      height: 1px;
+      background: linear-gradient(90deg, rgba(227,27,35,.42), #ff3039 50%, rgba(227,27,35,.78));
+      background-size: 180% 100%;
+      box-shadow: 0 0 8px rgba(227,27,35,.65), 0 0 18px rgba(227,27,35,.22);
+      animation: railFlow 2.2s linear infinite;
+      pointer-events: none;
+    }
 
     .slide-button {
       position: relative;
@@ -351,18 +385,60 @@
       background: transparent;
       cursor: pointer;
       text-align: left;
-      overflow: hidden;
+      overflow: visible;
       transition: color .35s ease;
       text-shadow: 0 2px 10px rgba(0,0,0,.72);
     }
 
-    .slide-button::before { display: none; }
-
-    .slide-button::after {
-      display: none;
+    .slide-button::before {
+      content: "";
+      position: absolute;
+      z-index: 5;
+      left: 50%;
+      bottom: -3px;
+      width: 7px;
+      height: 7px;
+      transform: translateX(-50%);
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 50%;
+      background: rgba(8,8,10,.94);
+      box-shadow: 0 0 0 3px rgba(3,3,4,.4);
+      transition: background .45s ease, border-color .45s ease, box-shadow .45s ease, transform .45s var(--ease);
+      pointer-events: none;
     }
 
-    .slide-button.pulse::after { animation: none; }
+    .slide-button::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      left: 9%;
+      right: 9%;
+      bottom: -30px;
+      height: 84px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at 50% 62%, rgba(227,27,35,.3) 0%, rgba(227,27,35,.13) 34%, rgba(227,27,35,.045) 53%, transparent 73%);
+      filter: blur(9px);
+      opacity: 0;
+      transform: scale(.72);
+      transition: opacity .65s ease, transform .75s var(--ease);
+      pointer-events: none;
+    }
+
+    .slide-button.active::before {
+      border-color: rgba(255,122,127,.92);
+      background: #ed2029;
+      box-shadow: 0 0 0 3px rgba(227,27,35,.14), 0 0 12px rgba(227,27,35,.9);
+      transform: translateX(-50%) scale(1.08);
+      animation: railNodePulse 1.9s ease-in-out infinite;
+    }
+
+    .slide-button.active::after {
+      opacity: 1;
+      transform: scale(1);
+      animation: serviceGlowBreath 3.4s ease-in-out infinite;
+    }
+
+    .slide-button.pulse::after { animation: serviceGlowBreath 3.4s ease-in-out infinite; }
 
     .icon-wrap {
       position: relative;
@@ -400,6 +476,9 @@
     @keyframes rotorBlink { to { opacity: .62; transform: scaleX(.92); } }
     @keyframes eventWave { to { transform: scaleY(.82); opacity: .72; } }
     @keyframes starPulse { 0%,100% { transform: scale(.88); opacity: .62; } 50% { transform: scale(1.04); opacity: .95; } }
+    @keyframes railFlow { to { background-position: -180% 0; } }
+    @keyframes railNodePulse { 0%,100% { box-shadow: 0 0 0 3px rgba(227,27,35,.12), 0 0 10px rgba(227,27,35,.72); } 50% { box-shadow: 0 0 0 5px rgba(227,27,35,.06), 0 0 17px rgba(227,27,35,.95); } }
+    @keyframes serviceGlowBreath { 0%,100% { opacity: .72; transform: scale(.92); } 50% { opacity: 1; transform: scale(1.06); } }
 
     .trust-strip {
       position: absolute;
@@ -457,13 +536,16 @@
       width: 100%;
       min-height: 0;
       overflow: hidden;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%);
     }
 
     .trust-track {
       height: 100%;
       display: flex;
       align-items: center;
-      width: 100%;
+      width: max-content;
+      animation: trustMarquee 42s linear infinite;
     }
 
     .trust-run {
@@ -471,15 +553,15 @@
       display: flex;
       align-items: center;
       flex: 0 0 auto;
-      width: 100%;
-      min-width: 100%;
-      justify-content: space-evenly;
-      gap: clamp(18px, 2.6vw, 46px);
-      padding: 0 clamp(16px, 2vw, 34px);
+      min-width: 100vw;
+      justify-content: space-around;
+      gap: clamp(28px, 3.4vw, 58px);
+      padding: 0 clamp(22px, 3vw, 48px);
     }
 
-    .trust-run:first-child > .client-logo:nth-child(n+7),
-    .trust-run:nth-child(2) { display: none; }
+    .trust-window:hover .trust-track { animation-play-state: paused; }
+
+    @keyframes trustMarquee { to { transform: translateX(-50%); } }
 
     .client-logo {
       width: clamp(132px, 10vw, 174px);
@@ -566,9 +648,8 @@
       .trust-strip { grid-template-rows: 24px minmax(0, 1fr); }
       .trust-heading { gap: 14px; padding: 0 16px; }
       .trust-heading strong { font-size: .75rem; letter-spacing: .36em; padding-left: .36em; white-space: nowrap; }
-      .trust-run { gap: 8px; padding: 0 8px; }
-      .trust-run:first-child > .client-logo:nth-child(n+4) { display: none; }
-      .client-logo { width: min(29vw, 110px); height: 50px; }
+      .trust-run { gap: 28px; padding: 0 28px 0 0; }
+      .client-logo { width: 118px; height: 50px; }
       .client-logo--wide img { max-width: 112px; max-height: 27px; }
       .client-logo--kurka img { max-width: 72px; max-height: 39px; }
       .client-logo--krzywe img { max-width: 84px; max-height: 48px; }
@@ -735,6 +816,7 @@
     (() => {
       const slides = [...document.querySelectorAll('.video-slide')];
       const buttons = [...document.querySelectorAll('.slide-button')];
+      const bottomNav = document.querySelector('.bottom-nav');
       const indexEl = document.querySelector('.eyebrow .index');
       const serviceEl = document.querySelector('.eyebrow .service');
       const taglineEl = document.querySelector('.tagline');
@@ -764,6 +846,7 @@
 
       function applySlide(next, userInitiated = false) {
         active = next;
+        bottomNav.style.setProperty('--rail-progress', `${12.5 + active * 25}%`);
         slides.forEach((slide, i) => {
           const isActive = i === active;
           slide.classList.toggle('active', isActive);
