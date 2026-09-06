@@ -2,9 +2,9 @@
 
 Filmy wykorzystane w sekcji hero pochodzą z Pexels i zostały przycięte oraz zoptymalizowane do użycia w tle strony.
 
-- Branding: https://www.pexels.com/video/woman-looking-at-camera-while-red-cloth-flying-around-her-back-8746844/
+- Branding: https://www.pexels.com/video/graphic-designer-photo-editing-home-studio-20765858/
 - Digital: https://www.pexels.com/video/man-working-using-his-computer-5240935/
-- Dron: https://www.pexels.com/video/an-aerial-footage-of-a-forest-4553737/
-- Eventy: https://www.pexels.com/video/man-having-fun-at-a-party-while-drinking-wine-3402881/
+- Dron: https://www.pexels.com/video/drone-shot-of-a-beautiful-lake-in-the-forest-4169462/
+- Eventy: https://www.pexels.com/video/crowd-on-concert-13641377/
 
 Licencja: https://www.pexels.com/license/

@@ -5,6 +5,17 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#080808">
   <meta name="description" content="HostControl — agencja digital. Strony i aplikacje, branding, produkcja foto-video, ujęcia z drona i realizacja wydarzeń.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://host-control-hero.hybyszy.chatgpt.site/">
+  <meta property="og:title" content="HostControl — agencja digital">
+  <meta property="og:description" content="Branding, digital, produkcja dronowa i eventy w całej Polsce.">
+  <meta property="og:image" content="https://host-control-hero.hybyszy.chatgpt.site/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="HostControl — agencja digital">
+  <meta name="twitter:description" content="Branding, digital, produkcja dronowa i eventy w całej Polsce.">
+  <meta name="twitter:image" content="https://host-control-hero.hybyszy.chatgpt.site/assets/og.png">
   <title>HostControl — agencja digital</title>
   <style>
     :root {
@@ -63,24 +74,21 @@
     .video-slide video {
       object-fit: cover;
       object-position: center;
-      filter: saturate(.76) contrast(1.08) brightness(.82);
+      filter: none;
     }
 
-    .video-slide[data-slide="0"] video { object-position: 50% 43%; }
+    .video-slide[data-slide="0"] video { object-position: 50% 50%; }
     .video-slide[data-slide="1"] video { object-position: 56% 50%; }
-    .video-slide[data-slide="2"] video { object-position: 50% 54%; filter: saturate(.3) contrast(1.14) brightness(.66); }
-    .video-slide[data-slide="3"] video { object-position: 51% 42%; }
+    .video-slide[data-slide="2"] video { object-position: 50% 52%; }
+    .video-slide[data-slide="3"] video { object-position: 50% 44%; }
 
     .wash {
       position: absolute;
       inset: 0;
       z-index: -4;
       background:
-        radial-gradient(circle at 80% 20%, rgba(227, 27, 35, .22), transparent 34%),
-        linear-gradient(90deg, rgba(0,0,0,.63) 0%, rgba(0,0,0,.05) 48%, rgba(0,0,0,.42) 100%),
-        linear-gradient(180deg, rgba(0,0,0,.38) 0%, transparent 32%, rgba(0,0,0,.62) 100%),
-        rgba(128, 0, 10, .18);
-      mix-blend-mode: multiply;
+        linear-gradient(90deg, rgba(3,3,4,.54) 0%, rgba(3,3,4,.08) 45%, rgba(3,3,4,.4) 100%),
+        linear-gradient(180deg, rgba(3,3,4,.34) 0%, rgba(3,3,4,.04) 32%, rgba(3,3,4,.54) 100%);
       pointer-events: none;
     }
 
@@ -88,18 +96,8 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(118deg, transparent 0 57%, rgba(227,27,35,.2) 68%, transparent 84%);
-      mix-blend-mode: screen;
-      opacity: .75;
-    }
-
-    .grain {
-      position: absolute;
-      inset: 0;
-      z-index: 10;
-      opacity: .055;
-      pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");
+      background: radial-gradient(circle at 83% 28%, rgba(227,27,35,.2), transparent 35%);
+      opacity: .58;
     }
 
     .topbar {
@@ -298,18 +296,19 @@
       --active-x: 0%;
       position: absolute;
       z-index: 20;
-      left: 0;
-      right: 0;
-      bottom: var(--trust-height);
-      min-height: 56px;
+      left: clamp(18px, 3.5vw, 58px);
+      right: clamp(18px, 3.5vw, 58px);
+      bottom: calc(var(--trust-height) + 5px);
+      min-height: 54px;
       padding-bottom: env(safe-area-inset-bottom, 0);
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       isolation: isolate;
-      overflow: hidden;
-      background: linear-gradient(180deg, rgba(7,7,7,.16), rgba(5,5,5,.58));
-      backdrop-filter: blur(12px) saturate(1.08);
-      border-top: 1px solid rgba(255,255,255,.1);
+      overflow: visible;
+      background: transparent;
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+      border: 0;
       box-shadow: none;
     }
 
@@ -336,7 +335,7 @@
       border: 0;
       border-radius: 0;
       overflow: hidden;
-      background: radial-gradient(ellipse at 50% 105%, rgba(227,27,35,.11), transparent 68%);
+      background: radial-gradient(ellipse at 50% 108%, rgba(227,27,35,.15), transparent 68%);
       box-shadow: none;
       transition: left .78s var(--ease);
       pointer-events: none;
@@ -366,6 +365,7 @@
       text-align: left;
       overflow: hidden;
       transition: color .35s ease;
+      text-shadow: 0 2px 10px rgba(0,0,0,.72);
     }
 
     .slide-button::before { content: ""; position: absolute; left: 22%; right: 78%; bottom: env(safe-area-inset-bottom, 0); height: 1px; border-radius: 2px; background: rgba(255,255,255,.34); box-shadow: none; }
@@ -593,7 +593,7 @@
       .eyebrow .divider { width: 24px; }
       .eyebrow .service { min-width: 128px; }
       .tagline { width: min(86vw, 430px); font-size: clamp(.78rem, 3.4vw, 1rem); letter-spacing: .12em; line-height: 1.55; margin-top: 24px; }
-      .bottom-nav { min-height: calc(44px + env(safe-area-inset-bottom, 0)); }
+      .bottom-nav { left: 7px; right: 7px; bottom: calc(var(--trust-height) + 3px); min-height: calc(44px + env(safe-area-inset-bottom, 0)); }
       .active-track { top: 0; bottom: env(safe-area-inset-bottom, 0); left: var(--active-x); width: 25%; border-radius: 0; }
       .slide-button { justify-content: center; flex-direction: row; gap: 5px; padding: 3px 1px; text-align: center; }
       .icon-wrap { width: 16px; height: 16px; border-radius: 0; }
@@ -606,8 +606,8 @@
       .video-slide[data-slide="0"] video { object-position: 52% 50%; }
       .video-slide[data-slide="1"] video { object-position: 60% 50%; }
       .video-slide[data-slide="2"] video { object-position: 50% 50%; }
-      .video-slide[data-slide="3"] video { object-position: 45% 50%; }
-      .wash { background: linear-gradient(180deg, rgba(0,0,0,.5), rgba(0,0,0,.03) 35%, rgba(0,0,0,.58)), rgba(128,0,10,.22); }
+      .video-slide[data-slide="3"] video { object-position: 50% 48%; }
+      .wash { background: linear-gradient(180deg, rgba(3,3,4,.48), rgba(3,3,4,.05) 34%, rgba(3,3,4,.58)); }
       .trust-strip { grid-template-rows: 24px minmax(0, 1fr); }
       .trust-heading { gap: 14px; padding: 0 16px; }
       .trust-heading strong { font-size: .75rem; letter-spacing: .36em; padding-left: .36em; white-space: nowrap; }
@@ -653,7 +653,6 @@
     </div>
 
     <div class="wash"></div>
-    <div class="grain"></div>
 
     <header class="topbar">
       <a class="brand" href="#" aria-label="HostControl — strona główna">
@@ -672,14 +671,14 @@
       </div>
     </header>
 
-    <div class="side-note">Mazury · Polska · pracujemy wszędzie</div>
+    <div class="side-note">Mazury · pracujemy w całej Polsce</div>
     <div class="socials" aria-label="Media społecznościowe"><a href="https://www.instagram.com/much4ty/" target="_blank" rel="noreferrer" aria-label="Instagram">IG</a><a href="tel:+48692746031" aria-label="Telefon">TEL</a></div>
 
     <section class="hero-main" aria-labelledby="hero-title">
       <div class="hero-copy is-initial">
-        <div class="eyebrow"><span class="index">01 / 04</span><span class="divider"></span><span class="service">Kreacja i branding</span></div>
+        <div class="eyebrow"><span class="index">01 / 04</span><span class="divider"></span><span class="service">Branding i identyfikacja</span></div>
         <h1 id="hero-title">Host<span>Control</span></h1>
-        <p class="tagline">Tworzymy marki, które zostają</p>
+        <p class="tagline">Marki, które widać, pamięta się i wybiera</p>
       </div>
     </section>
 
@@ -757,7 +756,7 @@
   </section>
   </main>
 
-  <!-- Filmy: Pexels 8746844, 5240935, 4553737, 3402881. Licencja: https://www.pexels.com/license/ -->
+  <!-- Filmy: Pexels 20765858, 5240935, 4169462, 13641377. Licencja: https://www.pexels.com/license/ -->
   <script>
     (() => {
       const slides = [...document.querySelectorAll('.video-slide')];
@@ -782,10 +781,10 @@
       const bottomNav = document.querySelector('.bottom-nav');
       const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
       const copy = [
-        ['Kreacja i branding', 'Tworzymy marki, które zostają'],
-        ['Strony i aplikacje', 'Digital, który pracuje na Twój wynik'],
-        ['Foto i ujęcia z drona', 'Nowa perspektywa dla Twojej marki'],
-        ['Eventy w całej Polsce', 'Od pomysłu do ostatniego światła']
+        ['Branding i identyfikacja', 'Marki, które widać, pamięta się i wybiera'],
+        ['Strony i aplikacje', 'Strony, które zamieniają uwagę w wynik'],
+        ['Foto i film z drona', 'Kadry z powietrza, które budują emocje'],
+        ['Eventy w całej Polsce', 'Wydarzenia, które zostają w pamięci']
       ];
       let active = 0;
       let timer;
