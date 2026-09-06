@@ -340,16 +340,7 @@
     }
 
     .bottom-nav::before {
-      content: "";
-      position: absolute;
-      z-index: 4;
-      bottom: env(safe-area-inset-bottom, 0);
-      left: var(--active-x);
-      width: 25%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent 13%, rgba(227,27,35,.85) 50%, transparent 87%);
-      filter: drop-shadow(0 0 3px rgba(227,27,35,.38));
-      transition: left .78s var(--ease);
+      display: none;
     }
 
     .active-track {
@@ -395,9 +386,7 @@
       text-shadow: 0 2px 10px rgba(0,0,0,.72);
     }
 
-    .slide-button::before { content: ""; position: absolute; left: 22%; right: 78%; bottom: env(safe-area-inset-bottom, 0); height: 1px; border-radius: 2px; background: rgba(255,255,255,.34); box-shadow: none; }
-    .slide-button.active::before { animation: progress 8s linear forwards; }
-    @keyframes progress { from { right: 78%; } to { right: 22%; } }
+    .slide-button::before { display: none; }
 
     .slide-button::after {
       display: none;
@@ -452,18 +441,25 @@
       display: grid;
       grid-template-columns: minmax(0, 1fr);
       grid-template-rows: 26px minmax(0, 1fr);
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 76% -25%, rgba(227,27,35,.075), transparent 40%),
-        linear-gradient(180deg, rgba(11,11,13,.25), rgba(7,7,9,.48));
-      backdrop-filter: blur(8px) saturate(1.02);
-      -webkit-backdrop-filter: blur(8px) saturate(1.02);
+      isolation: isolate;
+      overflow: visible;
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
       border: 0;
       box-shadow: none;
     }
 
     .trust-strip::before {
-      content: none;
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: -52px 0 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 18% 18%, rgba(12,12,15,.13), transparent 42%),
+        radial-gradient(ellipse at 78% 8%, rgba(227,27,35,.06), transparent 38%),
+        linear-gradient(180deg, transparent 0%, rgba(8,8,10,.055) 25%, rgba(8,8,10,.27) 57%, rgba(6,6,8,.54) 100%);
     }
 
     .trust-strip::after {
@@ -496,8 +492,9 @@
     .trust-heading::before, .trust-heading::after {
       content: "";
       height: 1px;
-      flex: 1 1 0;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.15));
+      width: clamp(42px, 8vw, 126px);
+      flex: 0 1 126px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.11));
     }
     .trust-heading::after { transform: scaleX(-1); }
 
