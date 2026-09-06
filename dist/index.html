@@ -7,6 +7,7 @@
   <meta name="description" content="HostControl — agencja digital. Strony i aplikacje, branding, produkcja foto-video, ujęcia z drona i realizacja wydarzeń.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://host-control-hero.hybyszy.chatgpt.site/">
+  <meta property="og:site_name" content="HostControl">
   <meta property="og:title" content="HostControl — agencja digital">
   <meta property="og:description" content="Branding, digital, produkcja dronowa i eventy w całej Polsce.">
   <meta property="og:image" content="https://host-control-hero.hybyszy.chatgpt.site/assets/og.png">
@@ -16,7 +17,27 @@
   <meta name="twitter:title" content="HostControl — agencja digital">
   <meta name="twitter:description" content="Branding, digital, produkcja dronowa i eventy w całej Polsce.">
   <meta name="twitter:image" content="https://host-control-hero.hybyszy.chatgpt.site/assets/og.png">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
   <title>HostControl — agencja digital</title>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "HostControl",
+      "url": "https://host-control-hero.hybyszy.chatgpt.site/",
+      "logo": "https://host-control-hero.hybyszy.chatgpt.site/assets/favicon-512.png",
+      "telephone": "+48 692 746 031",
+      "sameAs": [
+        "https://www.instagram.com/much4ty/",
+        "https://www.facebook.com/much4ty/",
+        "https://pl.linkedin.com/in/krystian-stykowski-10380429a"
+      ]
+    }
+  </script>
   <style>
     :root {
       color-scheme: dark;
@@ -107,7 +128,7 @@
       inset: 0 0 auto;
       z-index: 50;
       isolation: isolate;
-      height: calc(54px + env(safe-area-inset-top, 0));
+      height: calc(62px + env(safe-area-inset-top, 0));
       display: grid;
       grid-template-columns: 1fr auto 1fr;
       align-items: center;
@@ -118,25 +139,19 @@
       content: "";
       position: absolute;
       z-index: -1;
-      inset: 0 auto -7px 0;
-      width: calc(var(--header-gutter) + var(--brand-width) + 46px);
-      background: linear-gradient(115deg, rgba(12,12,15,.78), rgba(26,23,27,.46));
-      -webkit-backdrop-filter: blur(18px) saturate(1.15);
-      backdrop-filter: blur(18px) saturate(1.15);
-      clip-path: polygon(0 0, 100% 0, calc(100% - 32px) 100%, 0 100%);
-      box-shadow: inset 0 -1px rgba(255,255,255,.09);
+      inset: 0 0 -58px;
+      background:
+        radial-gradient(circle at 88% 26%, rgba(227,27,35,.1), transparent 24%),
+        linear-gradient(180deg, rgba(8,8,10,.72) 0%, rgba(8,8,10,.38) 54%, rgba(8,8,10,0) 100%);
+      -webkit-backdrop-filter: blur(9px) saturate(1.08);
+      backdrop-filter: blur(9px) saturate(1.08);
+      -webkit-mask-image: linear-gradient(#000 0 58%, transparent 100%);
+      mask-image: linear-gradient(#000 0 58%, transparent 100%);
       opacity: 0;
       pointer-events: none;
       transition: opacity .4s ease;
     }
     .topbar.is-scrolled::before { opacity: 1; }
-    .topbar.is-scrolled .menu-button {
-      background: rgba(18,17,21,.64);
-      -webkit-backdrop-filter: blur(18px) saturate(1.15);
-      backdrop-filter: blur(18px) saturate(1.15);
-      border-color: rgba(255,255,255,.26);
-      box-shadow: 0 4px 18px rgba(0,0,0,.16);
-    }
 
     .brand { width: var(--brand-width); display: block; }
     .brand img { display: block; width: 100%; height: auto; }
@@ -156,37 +171,39 @@
     .nav a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: 4px; height: 1px; background: var(--red); transition: right .35s var(--ease); }
     .nav a:hover::after, .nav a:focus-visible::after { right: 0; }
 
-    .header-actions { justify-self: end; display: flex; align-items: center; gap: 22px; }
-    .phone { font-size: .78rem; letter-spacing: .12em; font-weight: 650; }
-
-    .menu-button {
-      position: relative;
-      width: 38px;
-      height: 38px;
-      padding: 0;
-      flex: 0 0 auto;
-      border: 1px solid rgba(255,255,255,.24);
-      border-radius: 50%;
-      background: rgba(0,0,0,.12);
+    .header-actions { justify-self: end; align-self: start; padding-top: calc(11px + env(safe-area-inset-top, 0)); }
+    .contact-stack { display: grid; justify-items: end; gap: 7px; }
+    .phone { font-size: .76rem; letter-spacing: .12em; font-weight: 700; text-shadow: 0 2px 14px rgba(0,0,0,.55); transition: color .25s ease; }
+    .phone:hover, .phone:focus-visible { color: #fff; }
+    .header-socials { display: flex; align-items: center; gap: 7px; }
+    .social-link {
+      width: 31px;
+      height: 31px;
       display: grid;
       place-items: center;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
-      transition: background .3s ease, border-color .3s ease, box-shadow .3s ease;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 50%;
+      background: rgba(7,7,9,.28);
+      color: rgba(255,255,255,.82);
+      box-shadow: 0 7px 20px rgba(0,0,0,.16), inset 0 0 0 1px rgba(255,255,255,.025);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      animation: socialFloat 4.6s ease-in-out infinite;
+      transition: transform .35s var(--ease), color .25s ease, background .25s ease, border-color .25s ease, box-shadow .35s ease;
     }
-
-    .menu-button::after { content: ""; position: absolute; inset: -5px; border-radius: 50%; }
-    .menu-button:focus-visible { outline: 2px solid var(--white); outline-offset: 5px; }
-    .menu-button[aria-expanded="true"] { background: rgba(227,27,35,.1); border-color: rgba(227,27,35,.55); }
-    @media (hover: hover) {
-      .menu-button:hover { background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.55); }
+    .social-link:nth-child(2) { animation-delay: -.8s; }
+    .social-link:nth-child(3) { animation-delay: -1.6s; }
+    .social-link svg { width: 14px; height: 14px; display: block; fill: currentColor; }
+    .social-link:hover, .social-link:focus-visible {
+      color: #fff;
+      background: rgba(227,27,35,.9);
+      border-color: rgba(255,255,255,.6);
+      box-shadow: 0 8px 24px rgba(227,27,35,.28), 0 0 16px rgba(227,27,35,.16);
+      transform: translateY(-3px) scale(1.08);
+      animation-play-state: paused;
     }
-    .menu-button:active { box-shadow: inset 0 0 0 18px rgba(255,255,255,.08); }
-    .menu-icon { position: relative; width: 18px; height: 14px; pointer-events: none; }
-    .menu-icon i { position: absolute; top: 6px; left: 0; width: 18px; height: 2px; background: var(--white); border-radius: 2px; transform-origin: center; transition: transform .42s var(--ease); }
-    .menu-icon i:first-child { transform: translateY(-3px); }
-    .menu-icon i:last-child { transform: translateY(3px); }
+    .social-link:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+    @keyframes socialFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
 
     .hero-main {
       position: absolute;
@@ -278,19 +295,6 @@
       letter-spacing: .22em;
       text-transform: uppercase;
     }
-
-    .socials {
-      position: absolute;
-      right: clamp(22px, 4vw, 68px);
-      top: 50%;
-      z-index: 16;
-      transform: translateY(-50%);
-      display: grid;
-      gap: 16px;
-    }
-
-    .socials a { width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 50%; display: grid; place-items: center; font-size: .68rem; font-weight: 700; transition: background .25s ease, border-color .25s ease; }
-    .socials a:hover, .socials a:focus-visible { background: var(--red); border-color: var(--red); }
 
     .bottom-nav {
       --active-x: 0%;
@@ -544,47 +548,19 @@
 
     .client-logo--wide img { max-width: 154px; max-height: 34px; }
     .client-logo--kurka img { max-width: 92px; max-height: 48px; }
-    .client-logo--krzywe img { max-width: 86px; max-height: 50px; filter: none; }
+    .client-logo--krzywe { opacity: .88; }
+    .client-logo--krzywe img { max-width: 108px; max-height: 56px; filter: drop-shadow(0 0 7px rgba(255,255,255,.08)); }
     .client-logo:hover { opacity: .9; transform: translateY(-1px); }
     .trust-window:hover .trust-track { animation-play-state: paused; }
 
     @keyframes trustMarquee { to { transform: translateX(-50%); } }
     @keyframes filmLight { 0%, 66% { left: -18%; opacity: 0; } 72% { opacity: 1; } 88% { left: 110%; opacity: .75; } 100% { left: 110%; opacity: 0; } }
 
-    .menu-panel {
-      position: fixed;
-      z-index: 40;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      background: rgba(8,8,8,.96);
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-18px);
-      transition: opacity .45s ease, visibility .45s ease, transform .55s var(--ease);
-    }
-
-    .menu-panel.open { opacity: 1; visibility: visible; transform: none; }
-    .menu-panel { padding: calc(80px + env(safe-area-inset-top, 0)) 28px calc(28px + env(safe-area-inset-bottom, 0)); overflow-y: auto; overscroll-behavior: contain; background: radial-gradient(ellipse at 100% 0, rgba(94,17,25,.16), transparent 60%), rgba(10,10,12,.98); }
-    .menu-panel nav { display: grid; width: min(100%, 480px); text-align: left; counter-reset: menu-item; }
-    .menu-panel a { display: flex; align-items: center; gap: 20px; min-height: 64px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,.1); font-size: clamp(1.4rem, 4vw, 2.25rem); line-height: 1.2; font-weight: 650; letter-spacing: -.035em; transition: color .25s ease, transform .5s var(--ease), opacity .4s ease; opacity: 0; transform: translateX(18px); }
-    .menu-panel a::before { counter-increment: menu-item; content: "0" counter(menu-item); font-size: .75rem; letter-spacing: .06em; font-weight: 500; color: rgba(255,255,255,.35); }
-    .menu-panel.open a { opacity: 1; transform: none; transition-delay: calc(var(--item, 0) * 55ms + 80ms); }
-    .menu-panel a:nth-child(2) { --item: 1; }
-    .menu-panel a:nth-child(3) { --item: 2; }
-    .menu-panel a:nth-child(4) { --item: 3; }
-    .menu-panel a:hover, .menu-panel a:focus-visible { color: #f14d54; }
-    .menu-panel a:focus-visible { outline: 1px solid rgba(255,255,255,.6); outline-offset: 5px; }
-    .menu-open { overflow: hidden; }
-    .menu-open .menu-icon i:first-child { transform: rotate(45deg); }
-    .menu-open .menu-icon i:last-child { transform: rotate(-45deg); }
-
     @media (max-width: 900px) {
       .hero { --trust-height: 74px; }
       .topbar { --header-gutter: 17px; --brand-width: clamp(124px, 36vw, 154px); height: calc(42px + env(safe-area-inset-top, 0)); grid-template-columns: 1fr auto; padding-left: 17px; padding-right: 15px; }
       .brand { width: clamp(124px, 36vw, 154px); }
-      .menu-button { width: 34px; height: 34px; }
-      .nav, .phone, .side-note, .socials { display: none; }
+      .nav, .contact-stack, .side-note { display: none; }
       .hero-main { inset: calc(80px + env(safe-area-inset-top, 0)) 0 calc(82px + env(safe-area-inset-bottom, 0) + var(--trust-height)); padding: 24px 16px; }
       .hero-copy { transform: translateY(-1vh); }
       h1 { font-size: clamp(2.75rem, 12.6vw, 5.2rem); letter-spacing: -.07em; line-height: .88; }
@@ -615,7 +591,7 @@
       .client-logo { width: 118px; height: 50px; }
       .client-logo--wide img { max-width: 112px; max-height: 27px; }
       .client-logo--kurka img { max-width: 72px; max-height: 39px; }
-      .client-logo--krzywe img { max-width: 66px; max-height: 42px; }
+      .client-logo--krzywe img { max-width: 84px; max-height: 48px; }
     }
 
     @media (max-height: 620px) {
@@ -664,15 +640,24 @@
         <a href="#o-nas">O nas</a>
       </nav>
       <div class="header-actions">
-        <a class="phone" href="tel:+48692746031">+48 692 746 031</a>
-        <button class="menu-button" type="button" aria-expanded="false" aria-controls="menu-panel" aria-label="Otwórz menu">
-          <span class="menu-icon" aria-hidden="true"><i></i><i></i></span>
-        </button>
+        <div class="contact-stack">
+          <a class="phone" href="tel:+48692746031">+48 692 746 031</a>
+          <nav class="header-socials" aria-label="Media społecznościowe">
+            <a class="social-link" href="https://www.instagram.com/much4ty/" target="_blank" rel="noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2Zm0 2A3.8 3.8 0 0 0 4 7.8v8.4A3.8 3.8 0 0 0 7.8 20h8.4a3.8 3.8 0 0 0 3.8-3.8V7.8A3.8 3.8 0 0 0 16.2 4H7.8Zm4.2 3.1A4.9 4.9 0 1 1 7.1 12 4.9 4.9 0 0 1 12 7.1Zm0 2A2.9 2.9 0 1 0 14.9 12 2.9 2.9 0 0 0 12 9.1Zm5.15-2.55a1.18 1.18 0 1 1-1.18 1.18 1.18 1.18 0 0 1 1.18-1.18Z"/></svg>
+            </a>
+            <a class="social-link" href="https://www.facebook.com/much4ty/" target="_blank" rel="noreferrer" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.2 22v-8h2.8l.42-3.25H14.2V8.68c0-.94.26-1.58 1.61-1.58h1.72V4.2c-.3-.04-1.32-.13-2.51-.13-2.48 0-4.18 1.51-4.18 4.3v2.38H8.03V14h2.81v8h3.36Z"/></svg>
+            </a>
+            <a class="social-link" href="https://pl.linkedin.com/in/krystian-stykowski-10380429a" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.34 7.69H2.28V22h3.06V7.69ZM3.81 2A1.79 1.79 0 1 0 3.8 5.58 1.79 1.79 0 0 0 3.81 2Zm18.19 11.8c0-4.31-2.3-6.31-5.37-6.31a4.63 4.63 0 0 0-4.2 2.31V7.69H9.37V22h3.06v-7.09c0-1.87.36-3.68 2.68-3.68 2.29 0 2.32 2.15 2.32 3.8V22H22v-8.2Z"/></svg>
+            </a>
+          </nav>
+        </div>
       </div>
     </header>
 
     <div class="side-note">Mazury · pracujemy w całej Polsce</div>
-    <div class="socials" aria-label="Media społecznościowe"><a href="https://www.instagram.com/much4ty/" target="_blank" rel="noreferrer" aria-label="Instagram">IG</a><a href="tel:+48692746031" aria-label="Telefon">TEL</a></div>
 
     <section class="hero-main" aria-labelledby="hero-title">
       <div class="hero-copy is-initial">
@@ -722,9 +707,6 @@
       </button>
     </nav>
 
-    <div class="menu-panel" id="menu-panel" role="dialog" aria-label="Menu główne" aria-hidden="true" inert>
-      <nav aria-label="Menu pełnoekranowe"><a href="#oferta">Oferta</a><a href="#realizacje">Realizacje</a><a href="#o-nas">O nas</a><a href="tel:+48692746031">Kontakt</a></nav>
-    </div>
   <section class="trust-strip" aria-label="Zaufali nam">
     <div class="trust-heading"><strong>Zaufali nam</strong></div>
     <div class="trust-window">
@@ -732,24 +714,24 @@
         <div class="trust-run">
           <span class="client-logo client-logo--wide"><img src="assets/client-dlawas.png" alt="DLAWAS.FUN"></span>
           <span class="client-logo client-logo--kurka"><img src="assets/client-kurka.png" alt="Kurka Wodna"></span>
-          <span class="client-logo client-logo--krzywe"><img src="assets/client-krzywe-light.png" alt="Krzywe Lake Houses Mazury"></span>
+          <span class="client-logo client-logo--krzywe"><img src="assets/client-krzywe.png" alt="Krzywe Lake Houses Mazury"></span>
           <span class="client-logo client-logo--wide" aria-hidden="true"><img src="assets/client-dlawas.png" alt=""></span>
           <span class="client-logo client-logo--kurka" aria-hidden="true"><img src="assets/client-kurka.png" alt=""></span>
-          <span class="client-logo client-logo--krzywe" aria-hidden="true"><img src="assets/client-krzywe-light.png" alt=""></span>
+          <span class="client-logo client-logo--krzywe" aria-hidden="true"><img src="assets/client-krzywe.png" alt=""></span>
           <span class="client-logo client-logo--wide" aria-hidden="true"><img src="assets/client-dlawas.png" alt=""></span>
           <span class="client-logo client-logo--kurka" aria-hidden="true"><img src="assets/client-kurka.png" alt=""></span>
-          <span class="client-logo client-logo--krzywe" aria-hidden="true"><img src="assets/client-krzywe-light.png" alt=""></span>
+          <span class="client-logo client-logo--krzywe" aria-hidden="true"><img src="assets/client-krzywe.png" alt=""></span>
         </div>
         <div class="trust-run" aria-hidden="true">
           <span class="client-logo client-logo--wide"><img src="assets/client-dlawas.png" alt=""></span>
           <span class="client-logo client-logo--kurka"><img src="assets/client-kurka.png" alt=""></span>
-          <span class="client-logo client-logo--krzywe"><img src="assets/client-krzywe-light.png" alt=""></span>
+          <span class="client-logo client-logo--krzywe"><img src="assets/client-krzywe.png" alt=""></span>
           <span class="client-logo client-logo--wide"><img src="assets/client-dlawas.png" alt=""></span>
           <span class="client-logo client-logo--kurka"><img src="assets/client-kurka.png" alt=""></span>
-          <span class="client-logo client-logo--krzywe"><img src="assets/client-krzywe-light.png" alt=""></span>
+          <span class="client-logo client-logo--krzywe"><img src="assets/client-krzywe.png" alt=""></span>
           <span class="client-logo client-logo--wide"><img src="assets/client-dlawas.png" alt=""></span>
           <span class="client-logo client-logo--kurka"><img src="assets/client-kurka.png" alt=""></span>
-          <span class="client-logo client-logo--krzywe"><img src="assets/client-krzywe-light.png" alt=""></span>
+          <span class="client-logo client-logo--krzywe"><img src="assets/client-krzywe.png" alt=""></span>
         </div>
       </div>
     </div>
@@ -765,8 +747,6 @@
       const serviceEl = document.querySelector('.eyebrow .service');
       const taglineEl = document.querySelector('.tagline');
       const heroCopy = document.querySelector('.hero-copy');
-      const menuButton = document.querySelector('.menu-button');
-      const menuPanel = document.querySelector('.menu-panel');
       const topbar = document.querySelector('.topbar');
       let scrollFrame = null;
       function updateHeader() {
@@ -797,7 +777,7 @@
           const isActive = i === active;
           slide.classList.toggle('active', isActive);
           const video = slide.querySelector('video');
-          if (isActive && !reduceMotion && !menuPanel.classList.contains('open')) {
+          if (isActive && !reduceMotion) {
             if (userInitiated) video.currentTime = 0;
             video.play().catch(() => {});
           } else video.pause();
@@ -865,53 +845,15 @@
 
       function restartTimer() {
         clearTimeout(timer);
-        if (reduceMotion || menuPanel.classList.contains('open')) return;
+        if (reduceMotion) return;
         timer = setTimeout(() => show(active + 1, false, 'forward'), 8000);
       }
 
       buttons.forEach((button, i) => button.addEventListener('click', () => show(i, true)));
       document.addEventListener('keydown', event => {
-        if (menuPanel.classList.contains('open')) {
-          if (event.key === 'Escape') { event.preventDefault(); toggleMenu(false); }
-          if (event.key === 'Tab') {
-            const focusable = [menuButton, ...menuPanel.querySelectorAll('a')];
-            const first = focusable[0], last = focusable[focusable.length - 1];
-            if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
-            else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
-          }
-          return;
-        }
         if (event.key === 'ArrowRight') show(active + 1, true, 'forward');
         if (event.key === 'ArrowLeft') show(active - 1, true, 'backward');
-        if (event.key === 'Escape' && menuPanel.classList.contains('open')) toggleMenu(false);
       });
-
-      function toggleMenu(force) {
-        const open = typeof force === 'boolean' ? force : !menuPanel.classList.contains('open');
-        if (open === menuPanel.classList.contains('open')) return;
-        menuPanel.inert = !open;
-        menuPanel.classList.toggle('open', open);
-        document.body.classList.toggle('menu-open', open);
-        menuButton.setAttribute('aria-expanded', String(open));
-        menuButton.setAttribute('aria-label', open ? 'Zamknij menu' : 'Otwórz menu');
-        menuPanel.setAttribute('aria-hidden', String(!open));
-        [...document.querySelector('.hero').children].forEach(element => {
-          if (element !== topbar && element !== menuPanel) element.inert = open;
-        });
-        topbar.querySelectorAll('.brand, .nav, .phone').forEach(element => { element.inert = open; });
-        if (open) {
-          clearTimeout(timer);
-          slides.forEach(slide => slide.querySelector('video').pause());
-          menuPanel.querySelector('a').focus({ preventScroll: true });
-        } else {
-          menuButton.focus({ preventScroll: true });
-          if (!reduceMotion) slides[active].querySelector('video').play().catch(() => {});
-          restartTimer();
-        }
-      }
-
-      menuButton.addEventListener('click', () => toggleMenu());
-      menuPanel.querySelectorAll('a').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
       if (!reduceMotion) restartTimer();
     })();
   </script>
