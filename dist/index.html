@@ -57,6 +57,7 @@
 
     * { box-sizing: border-box; }
 
+    html { scroll-behavior: smooth; }
     html, body { margin: 0; min-height: 100%; background: #080808; }
 
     body {
@@ -747,6 +748,319 @@
     .client-logo--krzywe img { max-width: 108px; max-height: 56px; filter: saturate(1.08) drop-shadow(0 0 7px rgba(255,255,255,.1)); }
     .client-logo:hover { opacity: 1; transform: translateY(-1px); }
     .client-logo:focus-visible { opacity: 1; outline: 1px solid rgba(255,255,255,.48); outline-offset: 4px; }
+
+    .anchor-target {
+      position: absolute;
+      top: 0;
+      width: 1px;
+      height: 1px;
+      pointer-events: none;
+    }
+
+    .agency-section {
+      --agency-x: 74%;
+      --agency-y: 30%;
+      position: relative;
+      min-height: 100svh;
+      padding: clamp(112px, 12vw, 184px) clamp(22px, 5vw, 78px) clamp(96px, 10vw, 154px);
+      overflow: hidden;
+      isolation: isolate;
+      background:
+        radial-gradient(circle at var(--agency-x) var(--agency-y), rgba(227,27,35,.115), transparent 22%),
+        radial-gradient(circle at 8% 88%, rgba(227,27,35,.07), transparent 25%),
+        linear-gradient(142deg, #050506 0%, #0b0a0b 48%, #050506 100%);
+      border-top: 1px solid rgba(255,255,255,.055);
+    }
+
+    .agency-section::before {
+      content: "";
+      position: absolute;
+      z-index: -2;
+      inset: 0;
+      opacity: .17;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+      background-size: clamp(72px, 8vw, 128px) clamp(72px, 8vw, 128px);
+      -webkit-mask-image: radial-gradient(circle at 68% 44%, #000, transparent 68%);
+      mask-image: radial-gradient(circle at 68% 44%, #000, transparent 68%);
+    }
+
+    .agency-section::after {
+      content: "HC";
+      position: absolute;
+      z-index: -1;
+      right: -2vw;
+      bottom: -7vw;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255,255,255,.035);
+      font-size: clamp(18rem, 35vw, 40rem);
+      font-weight: 900;
+      line-height: .7;
+      letter-spacing: -.12em;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .agency-shell {
+      width: min(1500px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(300px, .77fr) minmax(560px, 1.23fr);
+      align-items: center;
+      gap: clamp(58px, 7vw, 118px);
+    }
+
+    .agency-intro {
+      position: relative;
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .8s ease, transform .9s var(--ease);
+    }
+
+    .agency-section.is-visible .agency-intro { opacity: 1; transform: translateY(0); }
+
+    .agency-kicker {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: clamp(28px, 4vw, 48px);
+      color: rgba(255,255,255,.62);
+      font-size: .75rem;
+      font-weight: 720;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+    }
+
+    .agency-kicker::after { content: ""; width: 48px; height: 1px; background: rgba(255,255,255,.28); }
+    .agency-kicker span { color: #f12b34; }
+
+    .agency-intro h2 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(3rem, 5.8vw, 6.8rem);
+      font-weight: 840;
+      line-height: .89;
+      letter-spacing: -.068em;
+      text-transform: uppercase;
+      text-wrap: balance;
+    }
+
+    .agency-intro h2 span {
+      color: transparent;
+      -webkit-text-stroke: 1.15px rgba(255,255,255,.75);
+    }
+
+    .agency-lead {
+      max-width: 610px;
+      margin: clamp(34px, 4vw, 54px) 0 0;
+      color: rgba(255,255,255,.68);
+      font-size: clamp(1rem, 1.2vw, 1.18rem);
+      line-height: 1.72;
+    }
+
+    .agency-signature {
+      margin-top: clamp(34px, 4vw, 52px);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: rgba(255,255,255,.88);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .agency-signature-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(227,27,35,.45);
+      border-radius: 50%;
+      color: #f5f2ef;
+      background: rgba(227,27,35,.08);
+      box-shadow: 0 0 28px rgba(227,27,35,.12);
+      font-size: .72rem;
+      letter-spacing: -.03em;
+    }
+
+    .agency-control {
+      position: relative;
+      opacity: 0;
+      transform: translateX(42px);
+      transition: opacity .9s ease .12s, transform 1s var(--ease) .12s;
+    }
+
+    .agency-section.is-visible .agency-control { opacity: 1; transform: translateX(0); }
+
+    .agency-stage {
+      position: relative;
+      min-height: clamp(460px, 50vw, 650px);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 2px;
+      background: #111;
+      box-shadow: 0 38px 90px rgba(0,0,0,.42);
+    }
+
+    .agency-stage::before {
+      content: "";
+      position: absolute;
+      z-index: 4;
+      inset: -1px;
+      border: 1px solid rgba(255,255,255,.07);
+      pointer-events: none;
+    }
+
+    .agency-stage::after {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(4,4,5,.13) 0%, rgba(4,4,5,.12) 30%, rgba(4,4,5,.87) 100%),
+        linear-gradient(102deg, rgba(4,4,5,.62) 0%, transparent 58%);
+      pointer-events: none;
+    }
+
+    .agency-media, .agency-media img { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .agency-media { z-index: 1; }
+    .agency-media img {
+      object-fit: cover;
+      opacity: 0;
+      transform: scale(1.075);
+      filter: saturate(.78) contrast(1.06) brightness(.8);
+      transition: opacity .75s ease, transform 1.35s var(--ease);
+    }
+    .agency-media img.active { opacity: 1; transform: scale(1.01); }
+
+    .agency-spotlight {
+      position: absolute;
+      z-index: 3;
+      inset: 0;
+      background: radial-gradient(circle at var(--stage-x, 78%) var(--stage-y, 26%), rgba(241,43,52,.2), transparent 23%);
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .agency-stage-top, .agency-stage-copy, .agency-stage-footer { position: absolute; z-index: 5; left: clamp(22px, 3.2vw, 44px); right: clamp(22px, 3.2vw, 44px); }
+    .agency-stage-top {
+      top: clamp(22px, 3vw, 38px);
+      display: flex;
+      justify-content: space-between;
+      color: rgba(255,255,255,.72);
+      font-size: .68rem;
+      font-weight: 720;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+    .agency-stage-top span:first-child { color: #f3434b; }
+
+    .agency-stage-copy { bottom: clamp(58px, 7vw, 82px); max-width: 630px; }
+    .agency-stage-copy.is-changing { animation: agencyCopySwap .48s var(--ease); }
+    @keyframes agencyCopySwap { 0% { opacity: .2; transform: translateY(12px); } 100% { opacity: 1; transform: translateY(0); } }
+
+    .agency-active-label {
+      margin: 0 0 15px;
+      color: rgba(255,255,255,.68);
+      font-size: .72rem;
+      font-weight: 750;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    .agency-stage-copy h3 {
+      max-width: 590px;
+      margin: 0;
+      font-size: clamp(2.15rem, 4vw, 4.6rem);
+      font-weight: 820;
+      line-height: .94;
+      letter-spacing: -.055em;
+      text-transform: uppercase;
+      text-wrap: balance;
+    }
+
+    .agency-active-description {
+      max-width: 570px;
+      margin: 22px 0 0;
+      color: rgba(255,255,255,.72);
+      font-size: clamp(.96rem, 1vw, 1.08rem);
+      line-height: 1.62;
+    }
+
+    .agency-stage-footer {
+      bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255,255,255,.18);
+      color: rgba(255,255,255,.48);
+      font-size: .63rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .agency-options {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-right: 1px solid rgba(255,255,255,.12);
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      border-left: 1px solid rgba(255,255,255,.12);
+    }
+
+    .agency-option {
+      position: relative;
+      min-height: 112px;
+      display: grid;
+      align-content: space-between;
+      gap: 14px;
+      padding: 20px 18px 18px;
+      border: 0;
+      border-right: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.018);
+      text-align: left;
+      cursor: pointer;
+      transition: background .35s ease, color .35s ease;
+    }
+    .agency-option:last-child { border-right: 0; }
+    .agency-option::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 100%;
+      bottom: 0;
+      height: 2px;
+      background: #ed2029;
+      box-shadow: 0 0 14px rgba(227,27,35,.55);
+      transition: right .5s var(--ease);
+    }
+    .agency-option:hover, .agency-option:focus-visible, .agency-option.active { background: rgba(255,255,255,.055); }
+    .agency-option:focus-visible { outline: 1px solid rgba(255,255,255,.72); outline-offset: -4px; }
+    .agency-option.active::after { right: 0; }
+    .agency-option-index { color: rgba(255,255,255,.4); font-size: .62rem; font-weight: 750; letter-spacing: .18em; }
+    .agency-option.active .agency-option-index { color: #f03b43; }
+    .agency-option-label { color: rgba(255,255,255,.62); font-size: clamp(.72rem, .78vw, .82rem); font-weight: 720; letter-spacing: .09em; line-height: 1.25; text-transform: uppercase; }
+    .agency-option.active .agency-option-label { color: #fff; }
+
+    .agency-flow {
+      grid-column: 1 / -1;
+      margin-top: clamp(58px, 7vw, 94px);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      color: rgba(255,255,255,.38);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    .agency-flow span { position: relative; padding: 16px 20px 0 0; border-top: 1px solid rgba(255,255,255,.12); }
+    .agency-flow span::before { content: ""; position: absolute; top: -3px; left: 0; width: 5px; height: 5px; border-radius: 50%; background: #e31b23; box-shadow: 0 0 10px rgba(227,27,35,.65); }
+    .agency-flow span:not(:last-child)::after { content: "→"; position: absolute; top: 12px; right: 18px; color: rgba(255,255,255,.2); }
+
     @media (max-width: 900px) {
       .hero { --trust-height: 74px; }
       .topbar { --header-gutter: 17px; --brand-width: clamp(124px, 36vw, 154px); height: calc(42px + env(safe-area-inset-top, 0)); grid-template-columns: 1fr auto; padding-left: 17px; padding-right: 15px; }
@@ -785,6 +1099,33 @@
       .client-logo--wide img { max-width: 112px; max-height: 27px; }
       .client-logo--kurka img { max-width: 72px; max-height: 39px; }
       .client-logo--krzywe img { max-width: 84px; max-height: 48px; }
+      .agency-section { padding: 102px 18px 92px; }
+      .agency-shell { grid-template-columns: 1fr; gap: 52px; }
+      .agency-intro h2 { max-width: 720px; font-size: clamp(3rem, 11.5vw, 5.6rem); }
+      .agency-lead { max-width: 680px; }
+      .agency-control { transform: translateY(34px); }
+      .agency-section.is-visible .agency-control { transform: translateY(0); }
+      .agency-stage { min-height: clamp(440px, 83vw, 610px); }
+      .agency-options { grid-template-columns: repeat(2, 1fr); }
+      .agency-option { min-height: 96px; }
+      .agency-option:nth-child(2) { border-right: 0; }
+      .agency-option:nth-child(-n+2) { border-bottom: 1px solid rgba(255,255,255,.12); }
+      .agency-option:nth-child(3) { border-right: 1px solid rgba(255,255,255,.12); }
+      .agency-flow { margin-top: 58px; grid-template-columns: repeat(2, 1fr); row-gap: 28px; }
+      .agency-flow span:nth-child(2)::after { display: none; }
+    }
+
+    @media (max-width: 560px) {
+      .agency-section { padding-left: 14px; padding-right: 14px; }
+      .agency-kicker { margin-left: 4px; }
+      .agency-intro h2, .agency-lead, .agency-signature { margin-left: 4px; margin-right: 4px; }
+      .agency-stage { min-height: 510px; }
+      .agency-stage-copy { bottom: 62px; }
+      .agency-stage-copy h3 { font-size: clamp(2rem, 10vw, 3.1rem); }
+      .agency-active-description { margin-top: 18px; font-size: .96rem; line-height: 1.55; }
+      .agency-option { min-height: 92px; padding: 17px 14px 15px; }
+      .agency-option-label { font-size: .68rem; }
+      .agency-flow { padding: 0 4px; font-size: .6rem; letter-spacing: .12em; }
     }
 
     @media (max-height: 620px) {
@@ -801,12 +1142,15 @@
       *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
       .video-slide video { display: none; }
       .trust-track { transform: translateX(0); }
+      .agency-intro, .agency-control { opacity: 1; transform: none; }
+      .agency-media img { transition: none; }
     }
 
   </style>
 </head>
 <body>
-  <main class="hero">
+  <main>
+  <section class="hero" aria-label="HostControl — agencja digital">
     <div class="media" aria-hidden="true">
       <div class="video-slide active" data-slide="0" style="background-image:url('assets/branding.jpg')">
         <video muted playsinline loop autoplay preload="auto" poster="assets/branding.jpg"><source src="assets/branding.mp4" type="video/mp4"></video>
@@ -957,6 +1301,49 @@
       </div>
     </div>
   </section>
+  </section>
+
+  <section class="agency-section" id="o-nas" aria-labelledby="agency-title">
+    <span class="anchor-target" id="oferta" aria-hidden="true"></span>
+    <div class="agency-shell">
+      <header class="agency-intro">
+        <div class="agency-kicker"><span>01</span> O agencji</div>
+        <h2 id="agency-title">Pomysł zamieniamy <span>w markę, którą widać.</span></h2>
+        <p class="agency-lead">Budujemy marki od podstaw i pomagamy im rosnąć. Łączymy strategię, design, technologię i produkcję, żeby wszystkie elementy komunikacji pracowały na jeden, konkretny efekt.</p>
+        <div class="agency-signature"><span class="agency-signature-mark" aria-hidden="true">HC</span><span>Jeden zespół · jedna odpowiedzialność</span></div>
+      </header>
+
+      <div class="agency-control">
+        <div class="agency-stage" id="agency-panel" role="tabpanel" aria-labelledby="agency-tab-0" aria-live="polite">
+          <div class="agency-media" aria-hidden="true">
+            <img class="active" src="assets/branding.jpg" alt="">
+            <img src="assets/digital.jpg" alt="">
+            <img src="assets/drone.jpg" alt="">
+            <img src="assets/events.jpg" alt="">
+          </div>
+          <div class="agency-spotlight" aria-hidden="true"></div>
+          <div class="agency-stage-top"><span class="agency-active-index">Zakres 01 / 04</span><span>HostControl</span></div>
+          <div class="agency-stage-copy">
+            <p class="agency-active-label">Strategia &amp; branding</p>
+            <h3>Marka gotowa do działania.</h3>
+            <p class="agency-active-description">Tworzymy nazwę, pozycjonowanie, identyfikację i system komunikacji, dzięki którym marka jest rozpoznawalna i spójna w każdym punkcie styku.</p>
+          </div>
+          <div class="agency-stage-footer"><span>Mazury</span><span>Pracujemy w całej Polsce</span></div>
+        </div>
+
+        <div class="agency-options" role="tablist" aria-label="Kompetencje agencji">
+          <button class="agency-option active" id="agency-tab-0" type="button" role="tab" aria-selected="true" aria-controls="agency-panel" data-agency="0"><span class="agency-option-index">01</span><span class="agency-option-label">Strategia &amp; branding</span></button>
+          <button class="agency-option" id="agency-tab-1" type="button" role="tab" tabindex="-1" aria-selected="false" aria-controls="agency-panel" data-agency="1"><span class="agency-option-index">02</span><span class="agency-option-label">Strony &amp; aplikacje</span></button>
+          <button class="agency-option" id="agency-tab-2" type="button" role="tab" tabindex="-1" aria-selected="false" aria-controls="agency-panel" data-agency="2"><span class="agency-option-index">03</span><span class="agency-option-label">Foto, film &amp; dron</span></button>
+          <button class="agency-option" id="agency-tab-3" type="button" role="tab" tabindex="-1" aria-selected="false" aria-controls="agency-panel" data-agency="3"><span class="agency-option-index">04</span><span class="agency-option-label">Produkcja eventów</span></button>
+        </div>
+      </div>
+
+      <div class="agency-flow" aria-label="Sposób pracy HostControl">
+        <span>Poznajemy cel</span><span>Projektujemy</span><span>Produkujemy</span><span>Dostarczamy efekt</span>
+      </div>
+    </div>
+  </section>
   </main>
 
   <!-- Filmy: Pexels 20765858, 5240935, 4169462, 13641377. Licencja: https://www.pexels.com/license/ -->
@@ -1099,6 +1486,85 @@
       }
 
       buttons.forEach((button, i) => button.addEventListener('click', () => show(i, true)));
+
+      const agencySection = document.querySelector('.agency-section');
+      const agencyStage = document.querySelector('.agency-stage');
+      const agencyButtons = [...document.querySelectorAll('.agency-option')];
+      const agencyImages = [...document.querySelectorAll('.agency-media img')];
+      const agencyIndex = document.querySelector('.agency-active-index');
+      const agencyLabel = document.querySelector('.agency-active-label');
+      const agencyTitle = document.querySelector('.agency-stage-copy h3');
+      const agencyDescription = document.querySelector('.agency-active-description');
+      const agencyCopy = document.querySelector('.agency-stage-copy');
+      const agencyData = [
+        ['Strategia & branding', 'Marka gotowa do działania.', 'Tworzymy nazwę, pozycjonowanie, identyfikację i system komunikacji, dzięki którym marka jest rozpoznawalna i spójna w każdym punkcie styku.'],
+        ['Strony & aplikacje', 'Doświadczenie, które prowadzi do decyzji.', 'Projektujemy i wdrażamy strony oraz aplikacje, które dobrze wyglądają, szybko działają i zamieniają uwagę odbiorcy w konkretną reakcję.'],
+        ['Foto, film & dron', 'Obraz, który zatrzymuje uwagę.', 'Produkujemy zdjęcia, filmy i ujęcia z drona, które pokazują produkt, miejsce lub wydarzenie z właściwej perspektywy i budują emocje.'],
+        ['Produkcja eventów', 'Realizacja dopięta od początku do końca.', 'Od pomysłu i oprawy po produkcję na miejscu. Dbamy, żeby marka była widoczna, a całe wydarzenie przebiegało sprawnie i bez chaosu.']
+      ];
+
+      function setAgency(next) {
+        agencyButtons.forEach((button, i) => {
+          button.classList.toggle('active', i === next);
+          button.setAttribute('aria-selected', i === next ? 'true' : 'false');
+          button.tabIndex = i === next ? 0 : -1;
+        });
+        agencyImages.forEach((image, i) => image.classList.toggle('active', i === next));
+        agencyIndex.textContent = `Zakres ${String(next + 1).padStart(2, '0')} / 04`;
+        agencyStage.setAttribute('aria-labelledby', `agency-tab-${next}`);
+        agencyLabel.textContent = agencyData[next][0];
+        agencyTitle.textContent = agencyData[next][1];
+        agencyDescription.textContent = agencyData[next][2];
+        agencyCopy.classList.remove('is-changing');
+        void agencyCopy.offsetWidth;
+        agencyCopy.classList.add('is-changing');
+      }
+
+      agencyButtons.forEach((button, i) => {
+        button.addEventListener('click', () => setAgency(i));
+        button.addEventListener('mouseenter', () => setAgency(i));
+        button.addEventListener('focus', () => setAgency(i));
+        button.addEventListener('keydown', event => {
+          if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+          event.preventDefault();
+          event.stopPropagation();
+          let next = i;
+          if (event.key === 'ArrowLeft') next = (i - 1 + agencyButtons.length) % agencyButtons.length;
+          if (event.key === 'ArrowRight') next = (i + 1) % agencyButtons.length;
+          if (event.key === 'Home') next = 0;
+          if (event.key === 'End') next = agencyButtons.length - 1;
+          agencyButtons[next].focus();
+        });
+      });
+
+      agencyStage.addEventListener('pointermove', event => {
+        const rect = agencyStage.getBoundingClientRect();
+        agencyStage.style.setProperty('--stage-x', `${((event.clientX - rect.left) / rect.width) * 100}%`);
+        agencyStage.style.setProperty('--stage-y', `${((event.clientY - rect.top) / rect.height) * 100}%`);
+      }, { passive: true });
+      agencyStage.addEventListener('pointerleave', () => {
+        agencyStage.style.setProperty('--stage-x', '78%');
+        agencyStage.style.setProperty('--stage-y', '26%');
+      });
+
+      agencySection.addEventListener('pointermove', event => {
+        const rect = agencySection.getBoundingClientRect();
+        agencySection.style.setProperty('--agency-x', `${((event.clientX - rect.left) / rect.width) * 100}%`);
+        agencySection.style.setProperty('--agency-y', `${((event.clientY - rect.top) / rect.height) * 100}%`);
+      }, { passive: true });
+
+      if ('IntersectionObserver' in window && !reduceMotion) {
+        const agencyObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              agencySection.classList.add('is-visible');
+              agencyObserver.disconnect();
+            }
+          });
+        }, { threshold: .16 });
+        agencyObserver.observe(agencySection);
+      } else agencySection.classList.add('is-visible');
+
       document.addEventListener('keydown', event => {
         if (menuOpen && event.key === 'Escape') {
           event.preventDefault();
