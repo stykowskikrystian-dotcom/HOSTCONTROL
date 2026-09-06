@@ -49,12 +49,6 @@
       --ease: cubic-bezier(.22, 1, .36, 1);
     }
 
-    @property --active-x {
-      syntax: "<percentage>";
-      inherits: true;
-      initial-value: 0%;
-    }
-
     * { box-sizing: border-box; }
 
     html, body { margin: 0; min-height: 100%; background: #080808; }
@@ -326,7 +320,6 @@
     }
 
     .bottom-nav {
-      --active-x: 0%;
       position: absolute;
       z-index: 20;
       left: clamp(18px, 3.5vw, 58px);
@@ -336,7 +329,6 @@
       padding-bottom: env(safe-area-inset-bottom, 0);
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      isolation: isolate;
       overflow: visible;
       background: transparent;
       -webkit-backdrop-filter: none;
@@ -345,15 +337,7 @@
       box-shadow: none;
     }
 
-    .bottom-nav::before {
-      content: "";
-      position: absolute;
-      z-index: 0;
-      inset: -34px -3vw -36px;
-      background: radial-gradient(ellipse 19% 72% at calc(var(--active-x) + 12.5%) 68%, rgba(227,27,35,.18) 0%, rgba(227,27,35,.075) 38%, transparent 76%);
-      filter: blur(15px);
-      pointer-events: none;
-    }
+    .bottom-nav::before { display: none; }
 
     .slide-button {
       position: relative;
@@ -401,8 +385,8 @@
     .slide-button .label { font-size: clamp(.62rem, .78vw, .72rem); letter-spacing: .12em; font-weight: 650; text-transform: uppercase; color: rgba(255,255,255,.42); transition: color .45s ease, opacity .45s ease; }
 
     .slide-button:hover .icon-wrap, .slide-button:focus-visible .icon-wrap { color: rgba(255,255,255,.86); transform: translateY(-1px); }
-    .slide-button.active .icon-wrap { color: rgba(239,45,53,.96); background: transparent; border-color: transparent; box-shadow: none; }
-    .slide-button.active .label { color: rgba(255,255,255,.92); transform: none; }
+    .slide-button.active .icon-wrap { color: rgba(239,45,53,.98); background: transparent; border-color: transparent; box-shadow: none; filter: drop-shadow(0 0 8px rgba(227,27,35,.62)); }
+    .slide-button.active .label { color: rgba(255,255,255,.94); transform: none; text-shadow: 0 0 12px rgba(227,27,35,.32), 0 2px 10px rgba(0,0,0,.8); }
 
     .slide-button.active .branding-orbit { transform-origin: 12px 12px; animation: iconOrbit 14s linear infinite; }
     .slide-button.active .digital-scan { animation: scanLine 3.2s ease-in-out infinite; }
@@ -427,41 +411,17 @@
       display: grid;
       grid-template-columns: minmax(0, 1fr);
       grid-template-rows: 26px minmax(0, 1fr);
-      isolation: isolate;
       overflow: visible;
       background: transparent;
       backdrop-filter: none;
       -webkit-backdrop-filter: none;
       border: 0;
       box-shadow: none;
-      transition: --active-x .78s var(--ease);
     }
 
-    .trust-strip::before {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      inset: -52px 0 0;
-      pointer-events: none;
-      background:
-        radial-gradient(ellipse at 18% 18%, rgba(12,12,15,.13), transparent 42%),
-        radial-gradient(ellipse at 78% 8%, rgba(227,27,35,.06), transparent 38%),
-        linear-gradient(180deg, transparent 0%, rgba(8,8,10,.055) 25%, rgba(8,8,10,.27) 57%, rgba(6,6,8,.54) 100%);
-    }
+    .trust-strip::before { content: none; }
 
-    .trust-strip::after {
-      content: "";
-      position: absolute;
-      z-index: 3;
-      top: 0;
-      bottom: 0;
-      left: -18%;
-      width: 18%;
-      pointer-events: none;
-      background: linear-gradient(110deg, transparent 15%, rgba(255,255,255,.045) 50%, transparent 85%);
-      transform: skewX(-18deg);
-      animation: filmLight 9s ease-in-out infinite;
-    }
+    .trust-strip::after { content: none; }
 
     .trust-heading {
       position: relative;
@@ -471,7 +431,7 @@
       justify-content: center;
       gap: clamp(16px, 3vw, 40px);
       padding: 0 clamp(18px, 3vw, 48px);
-      background: rgba(8,6,7,.08);
+      background: transparent;
       border: 0;
       white-space: nowrap;
     }
@@ -488,6 +448,7 @@
       line-height: 1;
       text-transform: uppercase;
       color: rgba(255,255,255,.82);
+      text-shadow: 0 2px 12px rgba(0,0,0,.82);
     }
 
     .trust-window {
@@ -496,17 +457,13 @@
       width: 100%;
       min-height: 0;
       overflow: hidden;
-      mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
-      -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
     }
 
     .trust-track {
       height: 100%;
       display: flex;
       align-items: center;
-      width: max-content;
-      animation: trustMarquee 38s linear infinite;
-      will-change: transform;
+      width: 100%;
     }
 
     .trust-run {
@@ -514,11 +471,15 @@
       display: flex;
       align-items: center;
       flex: 0 0 auto;
-      min-width: 100vw;
-      justify-content: space-around;
-      gap: clamp(34px, 4vw, 62px);
-      padding-right: clamp(34px, 4vw, 62px);
+      width: 100%;
+      min-width: 100%;
+      justify-content: space-evenly;
+      gap: clamp(18px, 2.6vw, 46px);
+      padding: 0 clamp(16px, 2vw, 34px);
     }
+
+    .trust-run:first-child > .client-logo:nth-child(n+7),
+    .trust-run:nth-child(2) { display: none; }
 
     .client-logo {
       width: clamp(132px, 10vw, 174px);
@@ -546,11 +507,6 @@
     .client-logo--krzywe img { max-width: 108px; max-height: 56px; filter: saturate(1.08) drop-shadow(0 0 7px rgba(255,255,255,.1)); }
     .client-logo:hover { opacity: 1; transform: translateY(-1px); }
     .client-logo:focus-visible { opacity: 1; outline: 1px solid rgba(255,255,255,.48); outline-offset: 4px; }
-    .trust-window:hover .trust-track { animation-play-state: paused; }
-
-    @keyframes trustMarquee { to { transform: translateX(-50%); } }
-    @keyframes filmLight { 0%, 66% { left: -18%; opacity: 0; } 72% { opacity: 1; } 88% { left: 110%; opacity: .75; } 100% { left: 110%; opacity: 0; } }
-
     .test-section {
       position: relative;
       min-height: 68vh;
@@ -610,8 +566,9 @@
       .trust-strip { grid-template-rows: 24px minmax(0, 1fr); }
       .trust-heading { gap: 14px; padding: 0 16px; }
       .trust-heading strong { font-size: .75rem; letter-spacing: .36em; padding-left: .36em; white-space: nowrap; }
-      .trust-run { gap: 28px; padding-right: 28px; }
-      .client-logo { width: 118px; height: 50px; }
+      .trust-run { gap: 8px; padding: 0 8px; }
+      .trust-run:first-child > .client-logo:nth-child(n+4) { display: none; }
+      .client-logo { width: min(29vw, 110px); height: 50px; }
       .client-logo--wide img { max-width: 112px; max-height: 27px; }
       .client-logo--kurka img { max-width: 72px; max-height: 39px; }
       .client-logo--krzywe img { max-width: 84px; max-height: 48px; }
@@ -633,6 +590,7 @@
       .video-slide video { display: none; }
       .trust-track { transform: translateX(0); }
     }
+
   </style>
 </head>
 <body>
@@ -792,7 +750,6 @@
       }, { passive: true });
       window.addEventListener('pageshow', updateHeader);
       updateHeader();
-      const bottomNav = document.querySelector('.bottom-nav');
       const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
       const copy = [
         ['Branding i identyfikacja', 'Marki, które widać, pamięta się i wybiera'],
@@ -822,7 +779,6 @@
         });
         void buttons[active].offsetWidth;
         buttons[active].classList.add('active');
-        bottomNav.style.setProperty('--active-x', `${active * 25}%`);
         indexEl.textContent = `${String(active + 1).padStart(2, '0')} / 04`;
         serviceEl.textContent = copy[active][0];
         taglineEl.textContent = copy[active][1];
