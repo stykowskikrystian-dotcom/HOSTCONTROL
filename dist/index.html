@@ -162,20 +162,33 @@
     .phone { font-size: .78rem; letter-spacing: .12em; font-weight: 650; }
 
     .menu-button {
+      position: relative;
       width: 38px;
       height: 38px;
-      border: 1px solid var(--line);
+      padding: 0;
+      flex: 0 0 auto;
+      border: 1px solid rgba(255,255,255,.24);
       border-radius: 50%;
       background: rgba(0,0,0,.12);
       display: grid;
       place-items: center;
       cursor: pointer;
-      transition: background .25s ease, border-color .25s ease, transform .25s ease;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      transition: background .3s ease, border-color .3s ease, box-shadow .3s ease;
     }
 
-    .menu-button:hover, .menu-button:focus-visible { background: var(--red); border-color: var(--red); transform: rotate(4deg); }
-    .menu-icon { width: 17px; display: grid; gap: 4px; }
-    .menu-icon i { display: block; height: 1.5px; background: #fff; border-radius: 2px; transition: transform .35s var(--ease), opacity .25s ease; }
+    .menu-button::after { content: ""; position: absolute; inset: -5px; border-radius: 50%; }
+    .menu-button:focus-visible { outline: 2px solid var(--white); outline-offset: 5px; }
+    .menu-button[aria-expanded="true"] { background: rgba(227,27,35,.1); border-color: rgba(227,27,35,.55); }
+    @media (hover: hover) {
+      .menu-button:hover { background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.55); }
+    }
+    .menu-button:active { box-shadow: inset 0 0 0 18px rgba(255,255,255,.08); }
+    .menu-icon { position: relative; width: 18px; height: 14px; pointer-events: none; }
+    .menu-icon i { position: absolute; top: 6px; left: 0; width: 18px; height: 2px; background: var(--white); border-radius: 2px; transform-origin: center; transition: transform .42s var(--ease); }
+    .menu-icon i:first-child { transform: translateY(-3px); }
+    .menu-icon i:last-child { transform: translateY(3px); }
 
     .hero-main {
       position: absolute;
@@ -233,53 +246,27 @@
     .hero-copy.is-initial .eyebrow { animation: contentFromLeft .76s var(--ease) .04s both; }
     .hero-copy.is-initial h1 { animation: contentFromLeft .82s var(--ease) .14s both; }
     .hero-copy.is-initial .tagline { animation: contentFromLeft .78s var(--ease) .27s both; }
-    .hero-copy.is-initial .cta { animation: contentFromLeft .82s var(--ease) .4s both; }
 
     .hero-copy.is-exiting-left .eyebrow { animation: contentToLeft .4s cubic-bezier(.55,.05,.86,.48) 0s both; }
     .hero-copy.is-exiting-left h1 { animation: contentToLeft .42s cubic-bezier(.55,.05,.86,.48) .045s both; }
     .hero-copy.is-exiting-left .tagline { animation: contentToLeft .4s cubic-bezier(.55,.05,.86,.48) .09s both; }
-    .hero-copy.is-exiting-left .cta { animation: contentToLeft .4s cubic-bezier(.55,.05,.86,.48) .135s both; }
     .hero-copy.is-entering-right .eyebrow { animation: contentFromRight .72s var(--ease) .03s both; }
     .hero-copy.is-entering-right h1 { animation: contentFromRight .8s var(--ease) .12s both; }
     .hero-copy.is-entering-right .tagline { animation: contentFromRight .74s var(--ease) .23s both; }
-    .hero-copy.is-entering-right .cta { animation: contentFromRight .78s var(--ease) .34s both; }
 
     .hero-copy.is-exiting-right .eyebrow { animation: contentToRight .4s cubic-bezier(.55,.05,.86,.48) 0s both; }
     .hero-copy.is-exiting-right h1 { animation: contentToRight .42s cubic-bezier(.55,.05,.86,.48) .045s both; }
     .hero-copy.is-exiting-right .tagline { animation: contentToRight .4s cubic-bezier(.55,.05,.86,.48) .09s both; }
-    .hero-copy.is-exiting-right .cta { animation: contentToRight .4s cubic-bezier(.55,.05,.86,.48) .135s both; }
     .hero-copy.is-entering-left .eyebrow { animation: contentFromLeft .72s var(--ease) .03s both; }
     .hero-copy.is-entering-left h1 { animation: contentFromLeft .8s var(--ease) .12s both; }
     .hero-copy.is-entering-left .tagline { animation: contentFromLeft .74s var(--ease) .23s both; }
-    .hero-copy.is-entering-left .cta { animation: contentFromLeft .78s var(--ease) .34s both; }
 
     @keyframes contentFromLeft { from { opacity: 0; transform: translateX(-60vw); filter: blur(7px); } to { opacity: 1; transform: translateX(0); filter: blur(0); } }
     @keyframes contentFromRight { from { opacity: 0; transform: translateX(60vw); filter: blur(7px); } to { opacity: 1; transform: translateX(0); filter: blur(0); } }
     @keyframes contentToLeft { from { opacity: 1; transform: translateX(0); filter: blur(0); } to { opacity: 0; transform: translateX(-60vw); filter: blur(6px); } }
     @keyframes contentToRight { from { opacity: 1; transform: translateX(0); filter: blur(0); } to { opacity: 0; transform: translateX(60vw); filter: blur(6px); } }
 
-    .cta {
-      position: relative;
-      top: 38px;
-      display: inline-flex;
-      align-items: center;
-      gap: 16px;
-      margin-top: clamp(26px, 4vh, 42px);
-      padding: 13px 15px 13px 22px;
-      border: 1px solid rgba(255,255,255,.38);
-      border-radius: 999px;
-      background: rgba(8,8,8,.22);
-      backdrop-filter: blur(8px);
-      font-size: .74rem;
-      font-weight: 720;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      transition: background .3s ease, border-color .3s ease, transform .3s var(--ease);
-    }
 
-    .cta b { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 50%; background: var(--red); font-size: 1rem; font-weight: 400; transition: transform .3s var(--ease); }
-    .cta:hover, .cta:focus-visible { background: rgba(227,27,35,.88); border-color: var(--red); transform: translateY(-2px); }
-    .cta:hover b, .cta:focus-visible b { transform: translateX(3px); background: #fff; color: #111; }
 
     .side-note {
       position: absolute;
@@ -570,11 +557,19 @@
     }
 
     .menu-panel.open { opacity: 1; visibility: visible; transform: none; }
-    .menu-panel nav { display: grid; text-align: center; gap: 12px; }
-    .menu-panel a { font-size: clamp(2.2rem, 6vw, 5.5rem); line-height: 1; font-weight: 840; letter-spacing: -.055em; text-transform: uppercase; transition: color .2s ease; }
-    .menu-panel a:hover, .menu-panel a:focus-visible { color: var(--red); }
-    .menu-open .menu-icon i:first-child { transform: translateY(3.25px) rotate(45deg); }
-    .menu-open .menu-icon i:last-child { transform: translateY(-3.25px) rotate(-45deg); }
+    .menu-panel { padding: calc(80px + env(safe-area-inset-top, 0)) 28px calc(28px + env(safe-area-inset-bottom, 0)); overflow-y: auto; overscroll-behavior: contain; background: radial-gradient(ellipse at 100% 0, rgba(94,17,25,.16), transparent 60%), rgba(10,10,12,.98); }
+    .menu-panel nav { display: grid; width: min(100%, 480px); text-align: left; counter-reset: menu-item; }
+    .menu-panel a { display: flex; align-items: center; gap: 20px; min-height: 64px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,.1); font-size: clamp(1.4rem, 4vw, 2.25rem); line-height: 1.2; font-weight: 650; letter-spacing: -.035em; transition: color .25s ease, transform .5s var(--ease), opacity .4s ease; opacity: 0; transform: translateX(18px); }
+    .menu-panel a::before { counter-increment: menu-item; content: "0" counter(menu-item); font-size: .75rem; letter-spacing: .06em; font-weight: 500; color: rgba(255,255,255,.35); }
+    .menu-panel.open a { opacity: 1; transform: none; transition-delay: calc(var(--item, 0) * 55ms + 80ms); }
+    .menu-panel a:nth-child(2) { --item: 1; }
+    .menu-panel a:nth-child(3) { --item: 2; }
+    .menu-panel a:nth-child(4) { --item: 3; }
+    .menu-panel a:hover, .menu-panel a:focus-visible { color: #f14d54; }
+    .menu-panel a:focus-visible { outline: 1px solid rgba(255,255,255,.6); outline-offset: 5px; }
+    .menu-open { overflow: hidden; }
+    .menu-open .menu-icon i:first-child { transform: rotate(45deg); }
+    .menu-open .menu-icon i:last-child { transform: rotate(-45deg); }
 
     @media (max-width: 900px) {
       .hero { --trust-height: 64px; }
@@ -590,7 +585,6 @@
       .eyebrow .divider { width: 24px; }
       .eyebrow .service { min-width: 128px; }
       .tagline { width: min(86vw, 430px); font-size: clamp(.78rem, 3.4vw, 1rem); letter-spacing: .12em; line-height: 1.55; margin-top: 24px; }
-      .cta { top: 34px; margin-top: 28px; }
       .bottom-nav { min-height: calc(44px + env(safe-area-inset-bottom, 0)); }
       .active-track { top: 0; bottom: env(safe-area-inset-bottom, 0); left: var(--active-x); width: 25%; border-radius: 0; }
       .slide-button { justify-content: center; flex-direction: row; gap: 5px; padding: 3px 1px; text-align: center; }
@@ -622,7 +616,6 @@
       .hero-main { inset: 68px 0 calc(72px + var(--trust-height)); }
       .eyebrow { top: -30px; margin-bottom: 14px; }
       .tagline { margin-top: 16px; }
-      .cta { top: 22px; margin-top: 17px; padding-top: 8px; padding-bottom: 8px; }
       .bottom-nav { min-height: 42px; }
       .icon-wrap { width: 15px; height: 15px; }
       .service-icon { width: 13px; height: 13px; }
@@ -680,7 +673,6 @@
         <div class="eyebrow"><span class="index">01 / 04</span><span class="divider"></span><span class="service">Kreacja i branding</span></div>
         <h1 id="hero-title">Host<span>Control</span></h1>
         <p class="tagline">Tworzymy marki, które zostają</p>
-        <a class="cta" href="tel:+48692746031">Porozmawiajmy o projekcie <b aria-hidden="true">↗</b></a>
       </div>
     </section>
 
@@ -724,7 +716,7 @@
       </button>
     </nav>
 
-    <div class="menu-panel" id="menu-panel" aria-hidden="true">
+    <div class="menu-panel" id="menu-panel" role="dialog" aria-label="Menu główne" aria-hidden="true" inert>
       <nav aria-label="Menu pełnoekranowe"><a href="#oferta">Oferta</a><a href="#realizacje">Realizacje</a><a href="#o-nas">O nas</a><a href="tel:+48692746031">Kontakt</a></nav>
     </div>
   <section class="trust-strip" aria-label="Zaufali nam">
@@ -799,7 +791,7 @@
           const isActive = i === active;
           slide.classList.toggle('active', isActive);
           const video = slide.querySelector('video');
-          if (isActive && !reduceMotion) {
+          if (isActive && !reduceMotion && !menuPanel.classList.contains('open')) {
             if (userInitiated) video.currentTime = 0;
             video.play().catch(() => {});
           } else video.pause();
@@ -867,11 +859,22 @@
 
       function restartTimer() {
         clearTimeout(timer);
+        if (reduceMotion || menuPanel.classList.contains('open')) return;
         timer = setTimeout(() => show(active + 1, false, 'forward'), 8000);
       }
 
       buttons.forEach((button, i) => button.addEventListener('click', () => show(i, true)));
       document.addEventListener('keydown', event => {
+        if (menuPanel.classList.contains('open')) {
+          if (event.key === 'Escape') { event.preventDefault(); toggleMenu(false); }
+          if (event.key === 'Tab') {
+            const focusable = [menuButton, ...menuPanel.querySelectorAll('a')];
+            const first = focusable[0], last = focusable[focusable.length - 1];
+            if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+            else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+          }
+          return;
+        }
         if (event.key === 'ArrowRight') show(active + 1, true, 'forward');
         if (event.key === 'ArrowLeft') show(active - 1, true, 'backward');
         if (event.key === 'Escape' && menuPanel.classList.contains('open')) toggleMenu(false);
@@ -879,12 +882,26 @@
 
       function toggleMenu(force) {
         const open = typeof force === 'boolean' ? force : !menuPanel.classList.contains('open');
+        if (open === menuPanel.classList.contains('open')) return;
+        menuPanel.inert = !open;
         menuPanel.classList.toggle('open', open);
         document.body.classList.toggle('menu-open', open);
         menuButton.setAttribute('aria-expanded', String(open));
         menuButton.setAttribute('aria-label', open ? 'Zamknij menu' : 'Otwórz menu');
         menuPanel.setAttribute('aria-hidden', String(!open));
-        open ? clearTimeout(timer) : restartTimer();
+        [...document.querySelector('.hero').children].forEach(element => {
+          if (element !== topbar && element !== menuPanel) element.inert = open;
+        });
+        topbar.querySelectorAll('.brand, .nav, .phone').forEach(element => { element.inert = open; });
+        if (open) {
+          clearTimeout(timer);
+          slides.forEach(slide => slide.querySelector('video').pause());
+          menuPanel.querySelector('a').focus({ preventScroll: true });
+        } else {
+          menuButton.focus({ preventScroll: true });
+          if (!reduceMotion) slides[active].querySelector('video').play().catch(() => {});
+          restartTimer();
+        }
       }
 
       menuButton.addEventListener('click', () => toggleMenu());
