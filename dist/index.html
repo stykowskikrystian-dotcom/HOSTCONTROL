@@ -8,13 +8,13 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://host-control-hero.hybyszy.chatgpt.site/">
   <meta property="og:site_name" content="HostControl">
-  <meta property="og:title" content="HostControl — agencja digital">
+  <meta property="og:title" content="HostControl | AGENCJA DIGITAL">
   <meta property="og:description" content="Branding, digital, produkcja dronowa i eventy w całej Polsce.">
   <meta property="og:image" content="https://host-control-hero.hybyszy.chatgpt.site/assets/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="HostControl — agencja digital">
+  <meta name="twitter:title" content="HostControl | AGENCJA DIGITAL">
   <meta name="twitter:description" content="Branding, digital, produkcja dronowa i eventy w całej Polsce.">
   <meta name="twitter:image" content="https://host-control-hero.hybyszy.chatgpt.site/assets/og.png">
   <link rel="shortcut icon" href="favicon.ico">
@@ -22,7 +22,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
-  <title>HostControl — agencja digital</title>
+  <title>HostControl | AGENCJA DIGITAL</title>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -346,14 +346,16 @@
     .active-track {
       position: absolute;
       z-index: 0;
-      top: 0;
-      bottom: env(safe-area-inset-bottom, 0);
-      left: var(--active-x);
-      width: 25%;
+      top: -12px;
+      bottom: calc(-10px + env(safe-area-inset-bottom, 0));
+      left: calc(var(--active-x) + 12.5%);
+      width: 42%;
       border: 0;
       border-radius: 0;
-      overflow: hidden;
-      background: radial-gradient(ellipse at 50% 108%, rgba(227,27,35,.15), transparent 68%);
+      overflow: visible;
+      background: radial-gradient(ellipse at 50% 78%, rgba(227,27,35,.17) 0%, rgba(227,27,35,.075) 30%, transparent 66%);
+      filter: blur(13px);
+      transform: translateX(-50%);
       box-shadow: none;
       transition: left .78s var(--ease);
       pointer-events: none;
@@ -490,13 +492,8 @@
     }
 
     .trust-heading::before, .trust-heading::after {
-      content: "";
-      height: 1px;
-      width: clamp(42px, 8vw, 126px);
-      flex: 0 1 126px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.11));
+      display: none;
     }
-    .trust-heading::after { transform: scaleX(-1); }
 
     .trust-heading strong {
       font-size: .75rem;
@@ -563,6 +560,7 @@
     .client-logo--krzywe { opacity: .95; }
     .client-logo--krzywe img { max-width: 108px; max-height: 56px; filter: saturate(1.08) drop-shadow(0 0 7px rgba(255,255,255,.1)); }
     .client-logo:hover { opacity: 1; transform: translateY(-1px); }
+    .client-logo:focus-visible { opacity: 1; outline: 1px solid rgba(255,255,255,.48); outline-offset: 4px; }
     .trust-window:hover .trust-track { animation-play-state: paused; }
 
     @keyframes trustMarquee { to { transform: translateX(-50%); } }
@@ -611,7 +609,7 @@
       .eyebrow .service { min-width: 128px; }
       .tagline { width: min(86vw, 430px); font-size: clamp(.78rem, 3.4vw, 1rem); letter-spacing: .12em; line-height: 1.55; margin-top: 24px; }
       .bottom-nav { left: 7px; right: 7px; bottom: calc(var(--trust-height) + 3px); min-height: calc(44px + env(safe-area-inset-bottom, 0)); }
-      .active-track { top: 0; bottom: env(safe-area-inset-bottom, 0); left: var(--active-x); width: 25%; border-radius: 0; }
+      .active-track { top: -8px; bottom: calc(-6px + env(safe-area-inset-bottom, 0)); left: calc(var(--active-x) + 12.5%); width: 48%; }
       .slide-button { justify-content: center; flex-direction: row; gap: 5px; padding: 3px 1px; text-align: center; }
       .icon-wrap { width: 16px; height: 16px; border-radius: 0; }
       .service-icon { width: 14px; height: 14px; }
@@ -757,26 +755,26 @@
     <div class="trust-window">
       <div class="trust-track">
         <div class="trust-run">
-          <span class="client-logo client-logo--wide"><img src="assets/client-dlawas.png" alt="DLAWAS.FUN"></span>
-          <span class="client-logo client-logo--kurka"><img src="assets/client-kurka.png" alt="Kurka Wodna"></span>
-          <span class="client-logo client-logo--krzywe"><img src="assets/client-krzywe.png" alt="Krzywe Lake Houses Mazury"></span>
-          <span class="client-logo client-logo--wide" aria-hidden="true"><img src="assets/client-dlawas.png" alt=""></span>
-          <span class="client-logo client-logo--kurka" aria-hidden="true"><img src="assets/client-kurka.png" alt=""></span>
-          <span class="client-logo client-logo--krzywe" aria-hidden="true"><img src="assets/client-krzywe.png" alt=""></span>
-          <span class="client-logo client-logo--wide" aria-hidden="true"><img src="assets/client-dlawas.png" alt=""></span>
-          <span class="client-logo client-logo--kurka" aria-hidden="true"><img src="assets/client-kurka.png" alt=""></span>
-          <span class="client-logo client-logo--krzywe" aria-hidden="true"><img src="assets/client-krzywe.png" alt=""></span>
+          <a class="client-logo client-logo--wide" href="https://dlawas.fun/" target="_blank" rel="noreferrer"><img src="assets/client-dlawas.png" alt="DLAWAS.FUN"></a>
+          <a class="client-logo client-logo--kurka" href="https://www.kurka-wodna.com.pl/" target="_blank" rel="noreferrer"><img src="assets/client-kurka.png" alt="Kurka Wodna"></a>
+          <a class="client-logo client-logo--krzywe" href="https://krzywelakehouses.pl/" target="_blank" rel="noreferrer"><img src="assets/client-krzywe.png" alt="Krzywe Lake Houses Mazury"></a>
+          <a class="client-logo client-logo--wide" href="https://dlawas.fun/" target="_blank" rel="noreferrer" aria-hidden="true" tabindex="-1"><img src="assets/client-dlawas.png" alt=""></a>
+          <a class="client-logo client-logo--kurka" href="https://www.kurka-wodna.com.pl/" target="_blank" rel="noreferrer" aria-hidden="true" tabindex="-1"><img src="assets/client-kurka.png" alt=""></a>
+          <a class="client-logo client-logo--krzywe" href="https://krzywelakehouses.pl/" target="_blank" rel="noreferrer" aria-hidden="true" tabindex="-1"><img src="assets/client-krzywe.png" alt=""></a>
+          <a class="client-logo client-logo--wide" href="https://dlawas.fun/" target="_blank" rel="noreferrer" aria-hidden="true" tabindex="-1"><img src="assets/client-dlawas.png" alt=""></a>
+          <a class="client-logo client-logo--kurka" href="https://www.kurka-wodna.com.pl/" target="_blank" rel="noreferrer" aria-hidden="true" tabindex="-1"><img src="assets/client-kurka.png" alt=""></a>
+          <a class="client-logo client-logo--krzywe" href="https://krzywelakehouses.pl/" target="_blank" rel="noreferrer" aria-hidden="true" tabindex="-1"><img src="assets/client-krzywe.png" alt=""></a>
         </div>
         <div class="trust-run" aria-hidden="true">
-          <span class="client-logo client-logo--wide"><img src="assets/client-dlawas.png" alt=""></span>
-          <span class="client-logo client-logo--kurka"><img src="assets/client-kurka.png" alt=""></span>
-          <span class="client-logo client-logo--krzywe"><img src="assets/client-krzywe.png" alt=""></span>
-          <span class="client-logo client-logo--wide"><img src="assets/client-dlawas.png" alt=""></span>
-          <span class="client-logo client-logo--kurka"><img src="assets/client-kurka.png" alt=""></span>
-          <span class="client-logo client-logo--krzywe"><img src="assets/client-krzywe.png" alt=""></span>
-          <span class="client-logo client-logo--wide"><img src="assets/client-dlawas.png" alt=""></span>
-          <span class="client-logo client-logo--kurka"><img src="assets/client-kurka.png" alt=""></span>
-          <span class="client-logo client-logo--krzywe"><img src="assets/client-krzywe.png" alt=""></span>
+          <a class="client-logo client-logo--wide" href="https://dlawas.fun/" target="_blank" rel="noreferrer" tabindex="-1"><img src="assets/client-dlawas.png" alt=""></a>
+          <a class="client-logo client-logo--kurka" href="https://www.kurka-wodna.com.pl/" target="_blank" rel="noreferrer" tabindex="-1"><img src="assets/client-kurka.png" alt=""></a>
+          <a class="client-logo client-logo--krzywe" href="https://krzywelakehouses.pl/" target="_blank" rel="noreferrer" tabindex="-1"><img src="assets/client-krzywe.png" alt=""></a>
+          <a class="client-logo client-logo--wide" href="https://dlawas.fun/" target="_blank" rel="noreferrer" tabindex="-1"><img src="assets/client-dlawas.png" alt=""></a>
+          <a class="client-logo client-logo--kurka" href="https://www.kurka-wodna.com.pl/" target="_blank" rel="noreferrer" tabindex="-1"><img src="assets/client-kurka.png" alt=""></a>
+          <a class="client-logo client-logo--krzywe" href="https://krzywelakehouses.pl/" target="_blank" rel="noreferrer" tabindex="-1"><img src="assets/client-krzywe.png" alt=""></a>
+          <a class="client-logo client-logo--wide" href="https://dlawas.fun/" target="_blank" rel="noreferrer" tabindex="-1"><img src="assets/client-dlawas.png" alt=""></a>
+          <a class="client-logo client-logo--kurka" href="https://www.kurka-wodna.com.pl/" target="_blank" rel="noreferrer" tabindex="-1"><img src="assets/client-kurka.png" alt=""></a>
+          <a class="client-logo client-logo--krzywe" href="https://krzywelakehouses.pl/" target="_blank" rel="noreferrer" tabindex="-1"><img src="assets/client-krzywe.png" alt=""></a>
         </div>
       </div>
     </div>
