@@ -49,6 +49,12 @@
       --ease: cubic-bezier(.22, 1, .36, 1);
     }
 
+    @property --active-x {
+      syntax: "<percentage>";
+      inherits: true;
+      initial-value: 0%;
+    }
+
     * { box-sizing: border-box; }
 
     html, body { margin: 0; min-height: 100%; background: #080808; }
@@ -340,35 +346,13 @@
     }
 
     .bottom-nav::before {
-      display: none;
-    }
-
-    .active-track {
+      content: "";
       position: absolute;
       z-index: 0;
-      top: -12px;
-      bottom: calc(-10px + env(safe-area-inset-bottom, 0));
-      left: calc(var(--active-x) + 12.5%);
-      width: 42%;
-      border: 0;
-      border-radius: 0;
-      overflow: visible;
-      background: radial-gradient(ellipse at 50% 78%, rgba(227,27,35,.17) 0%, rgba(227,27,35,.075) 30%, transparent 66%);
-      filter: blur(13px);
-      transform: translateX(-50%);
-      box-shadow: none;
-      transition: left .78s var(--ease);
+      inset: -34px -3vw -36px;
+      background: radial-gradient(ellipse 19% 72% at calc(var(--active-x) + 12.5%) 68%, rgba(227,27,35,.18) 0%, rgba(227,27,35,.075) 38%, transparent 76%);
+      filter: blur(15px);
       pointer-events: none;
-    }
-
-    .active-track::before {
-      display: none;
-    }
-
-    .bottom-nav.is-switching .active-track::before { animation: none; }
-
-    .active-track::after {
-      display: none;
     }
 
     .slide-button {
@@ -450,6 +434,7 @@
       -webkit-backdrop-filter: none;
       border: 0;
       box-shadow: none;
+      transition: --active-x .78s var(--ease);
     }
 
     .trust-strip::before {
@@ -609,7 +594,6 @@
       .eyebrow .service { min-width: 128px; }
       .tagline { width: min(86vw, 430px); font-size: clamp(.78rem, 3.4vw, 1rem); letter-spacing: .12em; line-height: 1.55; margin-top: 24px; }
       .bottom-nav { left: 7px; right: 7px; bottom: calc(var(--trust-height) + 3px); min-height: calc(44px + env(safe-area-inset-bottom, 0)); }
-      .active-track { top: -8px; bottom: calc(-6px + env(safe-area-inset-bottom, 0)); left: calc(var(--active-x) + 12.5%); width: 48%; }
       .slide-button { justify-content: center; flex-direction: row; gap: 5px; padding: 3px 1px; text-align: center; }
       .icon-wrap { width: 16px; height: 16px; border-radius: 0; }
       .service-icon { width: 14px; height: 14px; }
@@ -711,7 +695,6 @@
     </section>
 
     <nav class="bottom-nav" aria-label="Zakres usług">
-      <span class="active-track" aria-hidden="true"></span>
       <button class="slide-button active" type="button" data-target="0" aria-pressed="true">
         <span class="icon-wrap" aria-hidden="true">
           <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
