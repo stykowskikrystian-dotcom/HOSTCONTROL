@@ -145,19 +145,18 @@
       content: "";
       position: absolute;
       z-index: -1;
-      inset: 0 0 -48px;
+      inset: 0;
       background:
-        radial-gradient(circle at 88% 22%, rgba(227,27,35,.065), transparent 25%),
-        linear-gradient(180deg, rgba(8,8,10,.44) 0%, rgba(8,8,10,.18) 56%, rgba(8,8,10,0) 100%);
-      -webkit-backdrop-filter: blur(6px) saturate(1.04);
-      backdrop-filter: blur(6px) saturate(1.04);
-      -webkit-mask-image: linear-gradient(#000 0 50%, transparent 100%);
-      mask-image: linear-gradient(#000 0 50%, transparent 100%);
-      opacity: 0;
+        radial-gradient(circle at 88% 12%, rgba(227,27,35,.07), transparent 28%),
+        linear-gradient(180deg, rgba(7,7,9,.66) 0%, rgba(7,7,9,.42) 100%);
+      border-bottom: 1px solid rgba(255,255,255,.055);
+      -webkit-backdrop-filter: blur(12px) saturate(1.08);
+      backdrop-filter: blur(12px) saturate(1.08);
+      opacity: .8;
       pointer-events: none;
       transition: opacity .4s ease;
     }
-    .topbar.is-scrolled::before { opacity: 1; }
+    .topbar.is-scrolled::before { opacity: .96; }
 
     .brand {
       width: clamp(228px, 20vw, 292px);
@@ -647,6 +646,7 @@
     .trust-strip {
       position: relative;
       z-index: 20;
+      margin-top: -64px;
       min-height: 164px;
       display: grid;
       grid-template-columns: minmax(0, 1fr);
@@ -764,18 +764,18 @@
     }
 
     .agency-section {
-      --agency-x: 74%;
-      --agency-y: 30%;
       position: relative;
       min-height: 100svh;
       padding: clamp(112px, 12vw, 184px) clamp(22px, 5vw, 78px) clamp(96px, 10vw, 154px);
       overflow: hidden;
       isolation: isolate;
       background:
-        radial-gradient(circle at var(--agency-x) var(--agency-y), rgba(227,27,35,.115), transparent 22%),
-        radial-gradient(circle at 8% 88%, rgba(227,27,35,.07), transparent 25%),
-        linear-gradient(142deg, #050506 0%, #0b0a0b 48%, #050506 100%);
+        radial-gradient(ellipse at 10% 18%, rgba(227,27,35,.12), transparent 34%),
+        radial-gradient(ellipse at 88% 82%, rgba(143,7,17,.15), transparent 38%),
+        linear-gradient(112deg, transparent 14%, rgba(227,27,35,.035) 44%, transparent 72%),
+        linear-gradient(142deg, #050506 0%, #0b090a 48%, #050506 100%);
       border-top: 1px solid rgba(255,255,255,.055);
+      box-shadow: inset 0 1px rgba(255,255,255,.025), inset 0 -90px 140px rgba(0,0,0,.24);
     }
 
     .agency-section::before {
@@ -783,14 +783,14 @@
       position: absolute;
       z-index: -2;
       inset: 0;
-      opacity: .17;
+      opacity: .12;
       pointer-events: none;
       background-image:
         linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
       background-size: clamp(72px, 8vw, 128px) clamp(72px, 8vw, 128px);
-      -webkit-mask-image: radial-gradient(circle at 68% 44%, #000, transparent 68%);
-      mask-image: radial-gradient(circle at 68% 44%, #000, transparent 68%);
+      -webkit-mask-image: radial-gradient(ellipse at center, #000, transparent 72%);
+      mask-image: radial-gradient(ellipse at center, #000, transparent 72%);
     }
 
     .agency-section::after {
@@ -800,7 +800,7 @@
       right: -2vw;
       bottom: -7vw;
       color: transparent;
-      -webkit-text-stroke: 1px rgba(255,255,255,.035);
+      -webkit-text-stroke: 1px rgba(227,27,35,.055);
       font-size: clamp(18rem, 35vw, 40rem);
       font-weight: 900;
       line-height: .7;
@@ -1068,12 +1068,12 @@
     .agency-flow span:not(:last-child)::after { content: "→"; position: absolute; top: 12px; right: 18px; color: rgba(255,255,255,.2); }
 
     .agency-section {
-      min-height: 160svh;
+      min-height: 100svh;
       padding: 0 clamp(22px, 5vw, 78px);
     }
 
     .agency-shell {
-      position: sticky;
+      position: relative;
       top: 0;
       min-height: 100svh;
       width: min(1540px, 100%);
@@ -1086,57 +1086,74 @@
     .agency-intro {
       width: 100%;
       max-width: 1480px;
-      padding: 96px 0 72px;
+      padding: 100px 0 38px;
       text-align: center;
       opacity: 1;
       transform: none;
       transition: none;
     }
 
-    .agency-kicker { justify-content: center; margin-bottom: clamp(30px, 4vw, 56px); }
+    .agency-kicker {
+      width: 100%;
+      justify-content: flex-start;
+      margin: 0 0 clamp(32px, 4vw, 54px);
+      padding-left: clamp(2px, 1.2vw, 18px);
+    }
 
     .agency-intro h2 {
-      max-width: none;
-      font-size: clamp(4rem, 8.4vw, 9.8rem);
-      line-height: .85;
-      letter-spacing: -.075em;
+      max-width: 1460px;
+      margin-inline: auto;
+      font-size: clamp(3.75rem, 7.15vw, 8.35rem);
+      line-height: .88;
+      letter-spacing: -.07em;
     }
+
+    .agency-title-line { display: block; }
 
     .agency-intro h2 .reveal-word {
       display: inline-block;
-      color: rgba(255,255,255,.14);
       -webkit-text-stroke: 0;
-      opacity: var(--word-reveal, .14);
-      transform: translateY(calc((1 - var(--word-shift, 0)) * 22px));
-      filter: blur(calc((1 - var(--word-shift, 0)) * 5px));
-      transition: opacity .12s linear, transform .16s linear, filter .16s linear;
-      will-change: opacity, transform, filter;
+      opacity: calc(.2 + var(--word-reveal, 0) * .8);
+      transition: opacity .12s linear, color .12s linear, -webkit-text-stroke-color .12s linear;
+      will-change: opacity;
+    }
+
+    .agency-title-line--solid .reveal-word { color: #f7f5f2; }
+
+    .agency-intro h2 .agency-title-line--outline .reveal-word {
+      color: transparent;
+      -webkit-text-stroke: 1.2px rgba(255,255,255,.9);
+      text-shadow: 0 0 28px rgba(227,27,35,calc(var(--word-reveal, 0) * .12));
     }
 
     .agency-statement {
-      max-width: 1080px;
-      margin: clamp(54px, 7vw, 92px) auto 0;
+      max-width: 1050px;
+      margin: clamp(38px, 4.2vw, 64px) auto 0;
       color: rgba(255,255,255,.75);
-      font-size: clamp(1.15rem, 1.7vw, 1.72rem);
-      line-height: 1.62;
+      font-size: clamp(1.08rem, 1.48vw, 1.48rem);
+      line-height: 1.58;
       text-wrap: balance;
     }
 
     .agency-statement .reveal-copy {
-      opacity: var(--copy-reveal, .08);
-      filter: blur(calc((1 - var(--copy-shift, 0)) * 4px));
-      transition: opacity .12s linear, filter .16s linear;
-      will-change: opacity, filter;
+      opacity: calc(.24 + var(--copy-reveal, 0) * .76);
+      transition: opacity .12s linear;
+      will-change: opacity;
     }
 
     .agency-statement .accent { color: #f23841; }
 
     @media (max-width: 900px) {
-      .topbar { --header-gutter: 17px; --brand-width: clamp(124px, 36vw, 154px); height: calc(42px + env(safe-area-inset-top, 0)); grid-template-columns: 1fr auto; padding-left: 17px; padding-right: 15px; }
-      .brand { width: clamp(176px, 48vw, 224px); height: 38px; }
+      html, body { scrollbar-width: none; -ms-overflow-style: none; }
+      html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; width: 0; height: 0; }
+      .topbar { --header-gutter: 17px; --brand-width: clamp(124px, 36vw, 154px); height: calc(52px + env(safe-area-inset-top, 0)); grid-template-columns: 1fr auto; padding-left: 17px; padding-right: 14px; }
+      .topbar::before { -webkit-backdrop-filter: blur(10px) saturate(1.06); backdrop-filter: blur(10px) saturate(1.06); }
+      .brand { width: clamp(168px, 46vw, 208px); height: 34px; }
       .nav, .contact-stack, .side-note { display: none; }
       .header-actions { align-self: center; padding-top: 0; }
-      .menu-toggle { display: grid; }
+      .menu-toggle { display: grid; width: 38px; height: 38px; }
+      .menu-toggle::before { inset: 4px; }
+      .menu-toggle-lines { transform: scale(.9); }
       .mobile-menu { display: block; }
       .hero-main { inset: calc(80px + env(safe-area-inset-top, 0)) 0 calc(82px + env(safe-area-inset-bottom, 0)); padding: 24px 16px; }
       .hero-copy { transform: translateY(-1vh); }
@@ -1160,7 +1177,7 @@
       .video-slide[data-slide="2"] video { object-position: 50% 50%; }
       .video-slide[data-slide="3"] video { object-position: 50% 48%; }
       .wash { background: linear-gradient(180deg, rgba(3,3,4,.48), rgba(3,3,4,.05) 34%, rgba(3,3,4,.58)); }
-      .trust-strip { min-height: 174px; grid-template-rows: 34px minmax(92px, 1fr); padding: 22px 0 20px; }
+      .trust-strip { margin-top: -32px; min-height: 174px; grid-template-rows: 34px minmax(92px, 1fr); padding: 22px 0 20px; }
       .trust-heading { gap: 14px; padding: 0 16px; }
       .trust-heading strong { font-size: .75rem; letter-spacing: .36em; padding-left: .36em; white-space: nowrap; }
       .trust-run { gap: 28px; padding: 0 28px 0 0; }
@@ -1168,19 +1185,22 @@
       .client-logo--wide img { max-width: 151px; max-height: 36px; }
       .client-logo--kurka img { max-width: 97px; max-height: 53px; }
       .client-logo--krzywe img { max-width: 113px; max-height: 65px; }
-      .agency-section { min-height: 150svh; padding: 0 18px; }
+      .agency-section { min-height: 100svh; padding: 0 18px; }
       .agency-shell { min-height: 100svh; }
-      .agency-intro { padding: 88px 0 64px; }
-      .agency-intro h2 { font-size: clamp(3.3rem, 13.5vw, 6.4rem); }
-      .agency-statement { max-width: 760px; font-size: clamp(1.05rem, 3.4vw, 1.4rem); }
+      .agency-intro { padding: 82px 0 26px; }
+      .agency-kicker { margin-bottom: 34px; padding-left: 2px; }
+      .agency-intro h2 { font-size: clamp(3.05rem, 12.7vw, 5.8rem); }
+      .agency-statement { max-width: 760px; margin-top: 38px; font-size: clamp(1.02rem, 3.4vw, 1.28rem); }
     }
 
     @media (max-width: 560px) {
       .agency-section { padding-left: 14px; padding-right: 14px; }
-      .agency-kicker { margin-left: 4px; }
+      .agency-kicker { margin-left: 4px; margin-bottom: 30px; }
       .agency-intro h2, .agency-statement { margin-left: 4px; margin-right: 4px; }
-      .agency-intro h2 { font-size: clamp(3rem, 15.2vw, 5.2rem); line-height: .88; }
-      .agency-statement { margin-top: 52px; font-size: 1.05rem; line-height: 1.65; }
+      .agency-intro h2 { font-size: clamp(2.75rem, 13.5vw, 4.65rem); line-height: .9; }
+      .agency-intro h2 .reveal-word { -webkit-text-stroke-width: 0; }
+      .agency-intro h2 .agency-title-line--outline .reveal-word { -webkit-text-stroke-width: 1px; }
+      .agency-statement { margin-top: 34px; font-size: 1rem; line-height: 1.58; }
     }
 
     @media (max-height: 620px) {
@@ -1336,8 +1356,8 @@
     <div class="agency-shell">
       <header class="agency-intro">
         <div class="agency-kicker"><span>01</span> O agencji</div>
-        <h2 id="agency-title" aria-label="Pomysł zamieniamy w markę, którą widać."><span class="reveal-word" aria-hidden="true">Pomysł</span> <span class="reveal-word" aria-hidden="true">zamieniamy</span> <span class="reveal-word" aria-hidden="true">w markę,</span> <span class="reveal-word" aria-hidden="true">którą</span> <span class="reveal-word" aria-hidden="true">widać.</span></h2>
-        <p class="agency-statement" aria-label="Skupiamy się na tym, co naprawdę buduje markę. Tworzymy strony internetowe, organizujemy eventy dla firm, projektujemy branding i realizujemy fotografię. Wszystko prowadzimy w jednym zespole — od pierwszego pomysłu po gotowy efekt."><span class="reveal-copy" aria-hidden="true">Skupiamy się na tym, co naprawdę buduje markę. </span><span class="reveal-copy accent" aria-hidden="true">Tworzymy strony internetowe, </span><span class="reveal-copy accent" aria-hidden="true">organizujemy eventy dla firm, </span><span class="reveal-copy accent" aria-hidden="true">projektujemy branding i realizujemy fotografię. </span><span class="reveal-copy" aria-hidden="true">Wszystko prowadzimy w jednym zespole — od pierwszego pomysłu po gotowy efekt.</span></p>
+        <h2 id="agency-title" aria-label="Pomysł zamieniamy w markę, którą widać."><span class="agency-title-line agency-title-line--solid" aria-hidden="true"><span class="reveal-word">Pomysł</span> <span class="reveal-word">zamieniamy</span></span><span class="agency-title-line agency-title-line--outline" aria-hidden="true"><span class="reveal-word">w markę,</span> <span class="reveal-word">którą</span> <span class="reveal-word">widać.</span></span></h2>
+        <p class="agency-statement" aria-label="Skupiamy się na tym, co naprawdę buduje markę. Tworzymy strony internetowe, organizujemy eventy dla firm, projektujemy branding i realizujemy fotografię. Wszystko prowadzimy w jednym zespole - od pierwszego pomysłu po gotowy efekt."><span class="reveal-copy" aria-hidden="true">Skupiamy się na tym, co naprawdę buduje markę. </span><span class="reveal-copy accent" aria-hidden="true">Tworzymy strony internetowe, </span><span class="reveal-copy accent" aria-hidden="true">organizujemy eventy dla firm, </span><span class="reveal-copy accent" aria-hidden="true">projektujemy branding i realizujemy fotografię. </span><span class="reveal-copy" aria-hidden="true">Wszystko prowadzimy w jednym zespole - od pierwszego pomysłu po gotowy efekt.</span></p>
       </header>
     </div>
   </section>
@@ -1524,21 +1544,18 @@
       function updateAgencyReveal() {
         const rect = agencySection.getBoundingClientRect();
         const viewport = window.innerHeight;
-        const travel = Math.max(1, rect.height - viewport);
-        const entryOffset = viewport * .72;
-        const progress = clamp((entryOffset - rect.top) / (travel + entryOffset));
+        const revealStart = viewport * .88;
+        const revealEnd = viewport * .08;
+        const progress = clamp((revealStart - rect.top) / (revealStart - revealEnd));
 
         revealWords.forEach((word, i) => {
-          const offset = revealWords.length > 1 ? (i / (revealWords.length - 1)) * .72 : 0;
-          const local = clamp(progress * 1.7 - offset);
-          word.style.setProperty('--word-reveal', String(.14 + local * .86));
-          word.style.setProperty('--word-shift', String(local));
+          const local = clamp(progress * 1.62 - i * .12);
+          word.style.setProperty('--word-reveal', String(local));
         });
 
         revealCopy.forEach((part, i) => {
-          const local = clamp(progress * 2.5 - 1.05 - i * .11);
-          part.style.setProperty('--copy-reveal', String(.08 + local * .92));
-          part.style.setProperty('--copy-shift', String(local));
+          const local = clamp(progress * 2.75 - .9 - i * .14);
+          part.style.setProperty('--copy-reveal', String(local));
         });
         agencyScrollFrame = null;
       }
@@ -1550,11 +1567,9 @@
       if (reduceMotion) {
         revealWords.forEach(word => {
           word.style.setProperty('--word-reveal', '1');
-          word.style.setProperty('--word-shift', '1');
         });
         revealCopy.forEach(part => {
           part.style.setProperty('--copy-reveal', '1');
-          part.style.setProperty('--copy-shift', '1');
         });
       } else {
         window.addEventListener('scroll', requestAgencyReveal, { passive: true });
@@ -1562,12 +1577,6 @@
         window.addEventListener('pageshow', requestAgencyReveal);
         updateAgencyReveal();
       }
-
-      agencySection.addEventListener('pointermove', event => {
-        const rect = agencySection.getBoundingClientRect();
-        agencySection.style.setProperty('--agency-x', `${((event.clientX - rect.left) / rect.width) * 100}%`);
-        agencySection.style.setProperty('--agency-y', `${((event.clientY - rect.top) / rect.height) * 100}%`);
-      }, { passive: true });
 
       document.addEventListener('keydown', event => {
         if (menuOpen && event.key === 'Escape') {
