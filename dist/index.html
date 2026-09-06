@@ -76,10 +76,12 @@
       width: 100%;
       min-height: 100svh;
       height: 100dvh;
-      isolation: isolate;
+      isolation: auto;
       overflow: hidden;
       background: #0a0808;
     }
+
+    .media { z-index: 0; isolation: isolate; }
 
     .media, .video-slide, .video-slide video {
       position: absolute;
@@ -112,7 +114,7 @@
     .wash {
       position: absolute;
       inset: 0;
-      z-index: -4;
+      z-index: 1;
       background:
         linear-gradient(90deg, rgba(3,3,4,.54) 0%, rgba(3,3,4,.08) 45%, rgba(3,3,4,.4) 100%),
         linear-gradient(180deg, rgba(3,3,4,.34) 0%, rgba(3,3,4,.04) 32%, rgba(3,3,4,.54) 100%);
@@ -152,7 +154,7 @@
       border-bottom: 1px solid rgba(255,255,255,.055);
       -webkit-backdrop-filter: blur(12px) saturate(1.08);
       backdrop-filter: blur(12px) saturate(1.08);
-      opacity: .8;
+      opacity: 0;
       pointer-events: none;
       transition: opacity .4s ease;
     }
@@ -646,7 +648,7 @@
     .trust-strip {
       position: relative;
       z-index: 20;
-      margin-top: -64px;
+      margin-top: -72px;
       min-height: 164px;
       display: grid;
       grid-template-columns: minmax(0, 1fr);
@@ -1068,12 +1070,12 @@
     .agency-flow span:not(:last-child)::after { content: "→"; position: absolute; top: 12px; right: 18px; color: rgba(255,255,255,.2); }
 
     .agency-section {
-      min-height: 100svh;
+      min-height: 150svh;
       padding: 0 clamp(22px, 5vw, 78px);
     }
 
     .agency-shell {
-      position: relative;
+      position: sticky;
       top: 0;
       min-height: 100svh;
       width: min(1540px, 100%);
@@ -1113,9 +1115,10 @@
     .agency-intro h2 .reveal-word {
       display: inline-block;
       -webkit-text-stroke: 0;
-      opacity: calc(.2 + var(--word-reveal, 0) * .8);
-      transition: opacity .12s linear, color .12s linear, -webkit-text-stroke-color .12s linear;
-      will-change: opacity;
+      opacity: calc(.06 + var(--word-reveal, 0) * .94);
+      transform: translateY(calc((1 - var(--word-reveal, 0)) * 10px));
+      transition: opacity .1s linear, transform .1s linear;
+      will-change: opacity, transform;
     }
 
     .agency-title-line--solid .reveal-word { color: #f7f5f2; }
@@ -1136,12 +1139,50 @@
     }
 
     .agency-statement .reveal-copy {
-      opacity: calc(.24 + var(--copy-reveal, 0) * .76);
-      transition: opacity .12s linear;
+      opacity: calc(.08 + var(--copy-reveal, 0) * .92);
+      transition: opacity .1s linear;
       will-change: opacity;
     }
 
     .agency-statement .accent { color: #f23841; }
+
+    .agency-bridge-mark {
+      position: relative;
+      z-index: 34;
+      height: 0;
+      pointer-events: none;
+    }
+
+    .agency-bridge-mark span {
+      position: absolute;
+      right: clamp(42px, 7vw, 132px);
+      top: 0;
+      width: clamp(118px, 10.5vw, 178px);
+      aspect-ratio: 390 / 330;
+      display: grid;
+      place-items: center;
+      transform: translateY(-50%);
+      filter: drop-shadow(0 14px 24px rgba(0,0,0,.5)) drop-shadow(0 0 18px rgba(227,27,35,.12));
+    }
+
+    .agency-bridge-mark span::before {
+      content: "";
+      position: absolute;
+      left: -26px;
+      right: -26px;
+      top: 50%;
+      height: 1px;
+      z-index: -1;
+      background: linear-gradient(90deg, transparent, rgba(227,27,35,.52) 24%, rgba(227,27,35,.18) 76%, transparent);
+      box-shadow: 0 0 22px rgba(227,27,35,.18);
+    }
+
+    .agency-bridge-mark img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
 
     @media (max-width: 900px) {
       html, body { scrollbar-width: none; -ms-overflow-style: none; }
@@ -1177,7 +1218,7 @@
       .video-slide[data-slide="2"] video { object-position: 50% 50%; }
       .video-slide[data-slide="3"] video { object-position: 50% 48%; }
       .wash { background: linear-gradient(180deg, rgba(3,3,4,.48), rgba(3,3,4,.05) 34%, rgba(3,3,4,.58)); }
-      .trust-strip { margin-top: -32px; min-height: 174px; grid-template-rows: 34px minmax(92px, 1fr); padding: 22px 0 20px; }
+      .trust-strip { margin-top: -40px; min-height: 174px; grid-template-rows: 34px minmax(92px, 1fr); padding: 22px 0 20px; }
       .trust-heading { gap: 14px; padding: 0 16px; }
       .trust-heading strong { font-size: .75rem; letter-spacing: .36em; padding-left: .36em; white-space: nowrap; }
       .trust-run { gap: 28px; padding: 0 28px 0 0; }
@@ -1185,12 +1226,13 @@
       .client-logo--wide img { max-width: 151px; max-height: 36px; }
       .client-logo--kurka img { max-width: 97px; max-height: 53px; }
       .client-logo--krzywe img { max-width: 113px; max-height: 65px; }
-      .agency-section { min-height: 100svh; padding: 0 18px; }
+      .agency-section { min-height: 145svh; padding: 0 18px; }
       .agency-shell { min-height: 100svh; }
       .agency-intro { padding: 82px 0 26px; }
       .agency-kicker { margin-bottom: 34px; padding-left: 2px; }
       .agency-intro h2 { font-size: clamp(3.05rem, 12.7vw, 5.8rem); }
       .agency-statement { max-width: 760px; margin-top: 38px; font-size: clamp(1.02rem, 3.4vw, 1.28rem); }
+      .agency-bridge-mark span { right: 24px; width: 98px; }
     }
 
     @media (max-width: 560px) {
@@ -1201,6 +1243,7 @@
       .agency-intro h2 .reveal-word { -webkit-text-stroke-width: 0; }
       .agency-intro h2 .agency-title-line--outline .reveal-word { -webkit-text-stroke-width: 1px; }
       .agency-statement { margin-top: 34px; font-size: 1rem; line-height: 1.58; }
+      .agency-bridge-mark span { right: 18px; width: 86px; }
     }
 
     @media (max-height: 620px) {
@@ -1356,11 +1399,13 @@
     <div class="agency-shell">
       <header class="agency-intro">
         <div class="agency-kicker"><span>01</span> O agencji</div>
-        <h2 id="agency-title" aria-label="Pomysł zamieniamy w markę, którą widać."><span class="agency-title-line agency-title-line--solid" aria-hidden="true"><span class="reveal-word">Pomysł</span> <span class="reveal-word">zamieniamy</span></span><span class="agency-title-line agency-title-line--outline" aria-hidden="true"><span class="reveal-word">w markę,</span> <span class="reveal-word">którą</span> <span class="reveal-word">widać.</span></span></h2>
+        <h2 id="agency-title" aria-label="Pomysł zamieniamy w markę, którą widać"><span class="agency-title-line agency-title-line--solid" aria-hidden="true"><span class="reveal-word">Pomysł</span> <span class="reveal-word">zamieniamy</span></span><span class="agency-title-line agency-title-line--outline" aria-hidden="true"><span class="reveal-word">w markę,</span> <span class="reveal-word">którą</span> <span class="reveal-word">widać</span></span></h2>
         <p class="agency-statement" aria-label="Skupiamy się na tym, co naprawdę buduje markę. Tworzymy strony internetowe, organizujemy eventy dla firm, projektujemy branding i realizujemy fotografię. Wszystko prowadzimy w jednym zespole - od pierwszego pomysłu po gotowy efekt."><span class="reveal-copy" aria-hidden="true">Skupiamy się na tym, co naprawdę buduje markę. </span><span class="reveal-copy accent" aria-hidden="true">Tworzymy strony internetowe, </span><span class="reveal-copy accent" aria-hidden="true">organizujemy eventy dla firm, </span><span class="reveal-copy accent" aria-hidden="true">projektujemy branding i realizujemy fotografię. </span><span class="reveal-copy" aria-hidden="true">Wszystko prowadzimy w jednym zespole - od pierwszego pomysłu po gotowy efekt.</span></p>
       </header>
     </div>
   </section>
+
+  <div class="agency-bridge-mark" aria-hidden="true"><span><img src="assets/logo-hc.png" alt=""></span></div>
 
   <section class="trust-strip" aria-label="Zaufali nam">
     <div class="trust-heading"><strong>Zaufali nam</strong></div>
@@ -1544,17 +1589,16 @@
       function updateAgencyReveal() {
         const rect = agencySection.getBoundingClientRect();
         const viewport = window.innerHeight;
-        const revealStart = viewport * .88;
-        const revealEnd = viewport * .08;
-        const progress = clamp((revealStart - rect.top) / (revealStart - revealEnd));
+        const revealTravel = Math.max(1, rect.height - viewport);
+        const progress = clamp(-rect.top / revealTravel);
 
         revealWords.forEach((word, i) => {
-          const local = clamp(progress * 1.62 - i * .12);
+          const local = clamp(progress * 1.72 - i * .15);
           word.style.setProperty('--word-reveal', String(local));
         });
 
         revealCopy.forEach((part, i) => {
-          const local = clamp(progress * 2.75 - .9 - i * .14);
+          const local = clamp(progress * 2.45 - .72 - i * .17);
           part.style.setProperty('--copy-reveal', String(local));
         });
         agencyScrollFrame = null;
