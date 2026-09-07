@@ -957,23 +957,24 @@
       z-index: 4;
       inset: auto 0 0;
       min-height: 73%;
-      padding: 22px clamp(22px, 2.2vw, 34px) 26px;
-      border-top: 1px solid rgba(255,255,255,.1);
+      padding: 32px clamp(22px, 2.2vw, 34px) 26px;
+      border-top: 0;
       border-radius: 28px 28px 0 0;
       background: linear-gradient(155deg, rgba(15,15,16,.985), rgba(8,8,9,.99));
       box-shadow: 0 -24px 54px rgba(0,0,0,.34);
-      transform: translateY(calc(100% - 116px));
+      transform: translateY(calc(100% - 134px));
       transition: transform .78s var(--ease);
     }
 
     .service-detail::before {
       content: "";
       position: absolute;
-      top: -1px;
-      left: clamp(28px, 7vw, 104px);
-      width: 92px;
-      height: 2px;
-      background: linear-gradient(90deg, #e31b23, transparent);
+      top: 0;
+      left: clamp(22px, 3vw, 42px);
+      right: clamp(22px, 3vw, 42px);
+      width: auto;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(227,27,35,.98), rgba(227,27,35,.5) 58%, rgba(227,27,35,.16));
       box-shadow: 0 0 18px rgba(227,27,35,.34);
     }
 
@@ -982,14 +983,12 @@
     .service-card.is-open .service-detail { transform: translateY(0); }
 
     .service-detail-head {
-      min-height: 70px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 20px;
+      min-height: 76px;
+      display: block;
     }
 
     .service-name {
+      margin: 0;
       color: #f8f6f2;
       font-family: "Arial Narrow", Arial, sans-serif;
       font-size: clamp(1.8rem, 2.45vw, 3rem);
@@ -1002,32 +1001,43 @@
     .service-type {
       display: block;
       margin-top: 7px;
-      color: rgba(255,255,255,.48);
+      color: rgba(255,255,255,.56);
       font-family: Arial, sans-serif;
-      font-size: .72rem;
+      font-size: .74rem;
       font-weight: 700;
       letter-spacing: .16em;
       text-transform: uppercase;
     }
 
     .service-toggle {
-      width: 44px;
-      height: 44px;
-      display: grid;
-      place-items: center;
-      border: 1px solid rgba(255,255,255,.18);
-      border-radius: 50%;
-      color: #fff;
-      background: rgba(255,255,255,.035);
+      position: absolute;
+      z-index: 3;
+      top: -17px;
+      right: clamp(22px, 3vw, 42px);
+      width: auto;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 15px;
+      border: 1px solid rgba(227,27,35,.58);
+      border-radius: 999px;
+      color: rgba(255,255,255,.82);
+      background: #0d0d0e;
       font: inherit;
+      font-size: .66rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+      line-height: 1;
+      text-transform: uppercase;
       cursor: pointer;
-      transition: transform .55s var(--ease), color .35s ease, background .35s ease, border-color .35s ease, box-shadow .35s ease;
+      box-shadow: 0 0 0 7px #0d0d0e, 0 10px 28px rgba(0,0,0,.35);
+      transition: color .35s ease, background .35s ease, border-color .35s ease, box-shadow .35s ease, transform .45s var(--ease);
     }
 
-    .service-toggle span { display: block; font-size: 1.15rem; line-height: 1; transition: transform .55s var(--ease); }
-    .service-toggle:hover, .service-toggle:focus-visible { color: #fff; background: #e31b23; border-color: #e31b23; box-shadow: 0 0 0 7px rgba(227,27,35,.1); outline: none; }
-    .service-card:hover .service-toggle span, .service-card:focus-within .service-toggle span { transform: translateY(-3px); }
-    .service-card.is-open .service-toggle span { transform: rotate(180deg); }
+    .service-toggle::before { content: ""; width: 5px; height: 5px; margin-right: 9px; border-radius: 50%; background: #e31b23; box-shadow: 0 0 12px rgba(227,27,35,.9); }
+    .service-toggle:hover, .service-toggle:focus-visible, .service-card.is-open .service-toggle { color: #fff; background: #e31b23; border-color: #e31b23; box-shadow: 0 0 0 7px #0d0d0e, 0 0 24px rgba(227,27,35,.22); outline: none; transform: translateY(-1px); }
+    .service-toggle:hover::before, .service-toggle:focus-visible::before, .service-card.is-open .service-toggle::before { background: #fff; box-shadow: none; }
 
     .service-detail-body {
       display: grid;
@@ -1058,33 +1068,22 @@
       width: max-content;
       display: inline-flex;
       align-items: center;
-      gap: 16px;
+      gap: 0;
       margin-top: 0;
-      color: #fff;
+      padding: 10px 15px;
+      border: 1px solid rgba(227,27,35,.42);
+      border-radius: 999px;
+      color: rgba(255,255,255,.9);
+      background: rgba(227,27,35,.07);
       font-size: .72rem;
       font-weight: 800;
       letter-spacing: .2em;
       text-decoration: none;
       text-transform: uppercase;
+      transition: color .35s ease, background .35s ease, border-color .35s ease, transform .4s var(--ease), box-shadow .35s ease;
     }
 
-    .service-cta::after {
-      content: "↗";
-      width: 34px;
-      height: 34px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      color: #fff;
-      background: #e31b23;
-      box-shadow: 0 0 0 0 rgba(227,27,35,.38);
-      transition: transform .4s var(--ease), box-shadow .4s ease;
-      animation: serviceCtaPulse 2.8s ease-in-out infinite;
-    }
-
-    .service-cta:hover::after, .service-cta:focus-visible::after { transform: translate(3px,-3px) rotate(8deg); box-shadow: 0 0 0 8px rgba(227,27,35,.1); }
-    .service-cta:focus-visible { outline: 1px solid rgba(255,255,255,.62); outline-offset: 7px; }
-    @keyframes serviceCtaPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(227,27,35,.28); } 50% { box-shadow: 0 0 0 7px rgba(227,27,35,0); } }
+    .service-cta:hover, .service-cta:focus-visible { color: #fff; background: #e31b23; border-color: #e31b23; transform: translateY(-2px); box-shadow: 0 10px 24px rgba(227,27,35,.18); outline: none; }
 
     .anchor-target {
       position: absolute;
@@ -1593,6 +1592,7 @@
         transform: translateY(24px) scale(.97);
       }
       .service-card.is-seen { opacity: 1; transform: translateY(0) scale(1); }
+      .service-card.is-open { height: clamp(344px, 92vw, 382px); }
       .service-card:hover, .service-card:focus-within { border-color: rgba(255,255,255,.1); box-shadow: 0 24px 52px rgba(0,0,0,.44), inset 0 1px rgba(255,255,255,.06); }
       .service-media video,
       .service-card:hover .service-media video,
@@ -1606,27 +1606,26 @@
         height: 100%;
         min-height: 0;
         overflow: hidden;
-        padding: 14px 14px 16px;
+        padding: 38px 14px 16px;
         border-radius: 20px 20px 0 0;
-        transform: translateY(calc(100% - 104px));
+        transform: translateY(calc(100% - 130px));
       }
-      .service-card.is-open .service-detail { transform: translateY(0); }
-      .service-detail-head { min-height: 76px; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; align-items: center; }
+      .service-card.is-open .service-detail { padding-top: 46px; transform: translateY(0); }
+      .service-detail::before { top: 14px; left: 12px; right: 12px; }
+      .service-detail-head { min-height: 76px; display: block; }
       .service-detail-head > div { min-width: 0; }
       .service-name { font-size: clamp(1.08rem, 4.7vw, 1.65rem); line-height: .92; }
-      .service-type { margin-top: 6px; font-size: .58rem; letter-spacing: .1em; line-height: 1.25; }
-      .service-toggle { width: 34px; height: 34px; flex: 0 0 auto; }
-      .service-toggle span { font-size: 1rem; }
-      .service-card:hover .service-toggle span, .service-card:focus-within .service-toggle span { transform: none; }
-      .service-card.is-open .service-toggle span { transform: rotate(180deg); }
+      .service-type { max-width: 100%; margin-top: 8px; font-size: .62rem; letter-spacing: .1em; line-height: 1.3; }
+      .service-toggle { top: 0; right: 12px; height: 28px; padding: 0 10px; font-size: .56rem; letter-spacing: .1em; box-shadow: 0 0 0 5px #0d0d0e, 0 8px 22px rgba(0,0,0,.32); }
+      .service-toggle::before { width: 4px; height: 4px; margin-right: 6px; }
+      .service-card.is-open .service-toggle { top: 11px; box-shadow: 0 0 0 5px #0d0d0e, 0 0 20px rgba(227,27,35,.18); }
       .service-detail-body,
       .service-card:hover .service-detail-body,
       .service-card:focus-within .service-detail-body { gap: 10px; padding-top: 12px; opacity: 0; transform: translateY(14px); }
       .service-card.is-open .service-detail-body { opacity: 1; transform: translateY(0); }
       .service-description { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 6; font-size: .875rem; line-height: 1.34; }
       .service-scope { display: none; }
-      .service-cta { gap: 9px; margin-top: 0; font-size: .68rem; letter-spacing: .11em; }
-      .service-cta::after { width: 29px; height: 29px; }
+      .service-cta { margin-top: 0; padding: 8px 11px; font-size: .64rem; letter-spacing: .1em; }
     }
 
     @media (max-width: 560px) {
@@ -1643,11 +1642,12 @@
       .services-header h2, .services-lead { margin-left: 4px; margin-right: 4px; }
       .services-stack { gap: 9px; }
       .service-card, .service-card:nth-child(even) { height: clamp(278px, 76vw, 316px); border-radius: 20px; }
+      .service-card.is-open { height: clamp(344px, 96vw, 370px); }
       .service-detail,
       .service-card:hover .service-detail,
-      .service-card:focus-within .service-detail { padding-left: 12px; padding-right: 12px; border-radius: 18px 18px 0 0; transform: translateY(calc(100% - 100px)); }
-      .service-card.is-open .service-detail { transform: translateY(0); }
-      .service-name { font-size: clamp(.9rem, 4vw, 1.08rem); letter-spacing: -.055em; }
+      .service-card:focus-within .service-detail { padding-left: 12px; padding-right: 12px; border-radius: 18px 18px 0 0; transform: translateY(calc(100% - 126px)); }
+      .service-card.is-open .service-detail { padding-top: 44px; transform: translateY(0); }
+      .service-name { font-size: clamp(.98rem, 4.25vw, 1.14rem); letter-spacing: -.055em; }
       .service-description { -webkit-line-clamp: 6; font-size: .82rem; }
     }
 
@@ -1845,8 +1845,8 @@
   <section class="services-section" id="oferta" aria-labelledby="services-title">
     <header class="services-header">
       <div class="services-kicker"><span>02</span> Usługi</div>
-      <h2 id="services-title">Jeden zespół.<br><span>Cztery kompetencje.</span></h2>
-      <p class="services-lead">Możesz wybrać jedną usługę albo połączyć je w spójny projekt. Strategia, kreacja i realizacja pozostają po jednej stronie.</p>
+      <h2 id="services-title">Pełna obsługa marki<br><span>Od pomysłu do realizacji</span></h2>
+      <p class="services-lead">Strategia, kreacja, technologia i produkcja w jednym miejscu. Wybierz konkretną usługę albo powierz nam cały projekt.</p>
     </header>
 
     <div class="services-stack">
@@ -1855,13 +1855,13 @@
         <div class="service-number">01 / Digital</div>
         <div class="service-detail">
           <div class="service-detail-head">
-            <div><h3 class="service-name" id="service-web-title">Strony internetowe</h3><span class="service-type">WWW · sklepy · aplikacje</span></div>
-            <button class="service-toggle" type="button" aria-expanded="false" aria-controls="service-web-body" aria-label="Rozwiń usługę Strony internetowe"><span aria-hidden="true">↑</span></button>
+            <div><h3 class="service-name" id="service-web-title">Strony internetowe</h3><span class="service-type">Serwisy · sklepy · landing pages</span></div>
+            <button class="service-toggle" type="button" aria-expanded="false" aria-controls="service-web-body" aria-label="Rozwiń usługę Strony internetowe">Zobacz więcej</button>
           </div>
           <div class="service-detail-body" id="service-web-body">
-            <p class="service-description">Projektujemy szybkie, czytelne strony, które prowadzą użytkownika od pierwszego wrażenia do konkretnego działania. Łączymy strategię, UX/UI i wdrożenie.</p>
-            <div class="service-scope" aria-label="Zakres usługi"><span>Strategia</span><span>UX/UI</span><span>Development</span><span>SEO</span></div>
-            <a class="service-cta" href="tel:+48692746031">Porozmawiajmy</a>
+            <p class="service-description">Tworzymy szybkie i czytelne serwisy, które prowadzą odbiorcę od pierwszego wrażenia do kontaktu lub zakupu. Odpowiadamy za strategię, projekt UX/UI i wdrożenie.</p>
+            <div class="service-scope" aria-label="Zakres usługi"><span>Strategia</span><span>UX/UI</span><span>Wdrożenie</span><span>SEO</span></div>
+            <a class="service-cta" href="/uslugi/strony-internetowe/">Czytaj więcej</a>
           </div>
         </div>
       </article>
@@ -1871,13 +1871,13 @@
         <div class="service-number">02 / Marka</div>
         <div class="service-detail">
           <div class="service-detail-head">
-            <div><h3 class="service-name" id="service-branding-title">Branding</h3><span class="service-type">Identyfikacja · komunikacja</span></div>
-            <button class="service-toggle" type="button" aria-expanded="false" aria-controls="service-branding-body" aria-label="Rozwiń usługę Branding"><span aria-hidden="true">↑</span></button>
+            <div><h3 class="service-name" id="service-branding-title">Branding</h3><span class="service-type">Strategia · identyfikacja · brandbook</span></div>
+            <button class="service-toggle" type="button" aria-expanded="false" aria-controls="service-branding-body" aria-label="Rozwiń usługę Branding">Zobacz więcej</button>
           </div>
           <div class="service-detail-body" id="service-branding-body">
-            <p class="service-description">Budujemy marki od fundamentów: od pozycjonowania i języka komunikacji po logo oraz kompletny system wizualny, który działa konsekwentnie w każdym kanale.</p>
+            <p class="service-description">Nadajemy markom wyrazisty kierunek, język i wygląd. Projektujemy logo oraz kompletny system identyfikacji, dzięki któremu komunikacja pozostaje spójna w każdym kanale.</p>
             <div class="service-scope" aria-label="Zakres usługi"><span>Strategia marki</span><span>Logo</span><span>Identyfikacja</span><span>Brandbook</span></div>
-            <a class="service-cta" href="tel:+48692746031">Porozmawiajmy</a>
+            <a class="service-cta" href="/uslugi/branding/">Czytaj więcej</a>
           </div>
         </div>
       </article>
@@ -1887,29 +1887,29 @@
         <div class="service-number">03 / Obraz</div>
         <div class="service-detail">
           <div class="service-detail-head">
-            <div><h3 class="service-name" id="service-photo-title">Fotografia</h3><span class="service-type">Wizerunek · produkt · reportaż</span></div>
-            <button class="service-toggle" type="button" aria-expanded="false" aria-controls="service-photo-body" aria-label="Rozwiń usługę Fotografia"><span aria-hidden="true">↑</span></button>
+            <div><h3 class="service-name" id="service-photo-title">Fotografia</h3><span class="service-type">Wizerunek · produkt · kampania</span></div>
+            <button class="service-toggle" type="button" aria-expanded="false" aria-controls="service-photo-body" aria-label="Rozwiń usługę Fotografia">Zobacz więcej</button>
           </div>
           <div class="service-detail-body" id="service-photo-body">
-            <p class="service-description">Tworzymy fotografie, które nie są tylko dokumentacją. Planujemy kadry pod charakter marki i sposób, w jaki materiały będą pracować na stronie, w kampanii i social mediach.</p>
-            <div class="service-scope" aria-label="Zakres usługi"><span>Wizerunek</span><span>Produkt</span><span>Event</span><span>Postprodukcja</span></div>
-            <a class="service-cta" href="tel:+48692746031">Porozmawiajmy</a>
+            <p class="service-description">Planujemy sesje pod charakter marki i konkretne miejsca publikacji. Powstają kadry gotowe do pracy na stronie, w kampaniach, materiałach sprzedażowych i social mediach.</p>
+            <div class="service-scope" aria-label="Zakres usługi"><span>Wizerunek</span><span>Produkt</span><span>Reportaż</span><span>Postprodukcja</span></div>
+            <a class="service-cta" href="/uslugi/fotografia/">Czytaj więcej</a>
           </div>
         </div>
       </article>
 
       <article class="service-card" aria-labelledby="service-events-title">
         <div class="service-media" aria-hidden="true"><video muted loop playsinline preload="metadata" src="https://videos.pexels.com/video-files/34917493/14791115_1920_1080_60fps.mp4"></video></div>
-        <div class="service-number">04 / Na żywo</div>
+        <div class="service-number">04 / Organizacja</div>
         <div class="service-detail">
           <div class="service-detail-head">
-            <div><h3 class="service-name" id="service-events-title">Eventy</h3><span class="service-type">Koncepcja · produkcja · oprawa</span></div>
-            <button class="service-toggle" type="button" aria-expanded="false" aria-controls="service-events-body" aria-label="Rozwiń usługę Eventy"><span aria-hidden="true">↑</span></button>
+            <div><h3 class="service-name" id="service-events-title">Eventy</h3><span class="service-type">Koncepcja · produkcja · koordynacja</span></div>
+            <button class="service-toggle" type="button" aria-expanded="false" aria-controls="service-events-body" aria-label="Rozwiń usługę Eventy">Zobacz więcej</button>
           </div>
           <div class="service-detail-body" id="service-events-body">
-            <p class="service-description">Projektujemy i realizujemy wydarzenia firmowe od pierwszej koncepcji po ostatni element produkcji. Pilnujemy przestrzeni, oprawy wizualnej i przebiegu całego wydarzenia.</p>
+            <p class="service-description">Organizujemy wydarzenia firmowe od pierwszego pomysłu po realizację na miejscu. Łączymy koncepcję, przestrzeń, oprawę wizualną, produkcję i sprawną koordynację.</p>
             <div class="service-scope" aria-label="Zakres usługi"><span>Koncepcja</span><span>Scenografia</span><span>Produkcja</span><span>Koordynacja</span></div>
-            <a class="service-cta" href="tel:+48692746031">Porozmawiajmy</a>
+            <a class="service-cta" href="/uslugi/eventy/">Czytaj więcej</a>
           </div>
         </div>
       </article>
@@ -2140,6 +2140,7 @@
               if (otherToggle) {
                 otherToggle.setAttribute('aria-expanded', 'false');
                 otherToggle.setAttribute('aria-label', `Rozwiń usługę ${otherCard.querySelector('.service-name')?.textContent?.trim() || ''}`);
+                otherToggle.textContent = 'Zobacz więcej';
               }
             });
           }
@@ -2147,6 +2148,7 @@
           toggle.setAttribute('aria-expanded', String(willOpen));
           const serviceName = card.querySelector('.service-name')?.textContent?.trim() || '';
           toggle.setAttribute('aria-label', `${willOpen ? 'Zwiń' : 'Rozwiń'} usługę ${serviceName}`);
+          toggle.textContent = willOpen ? 'Zamknij' : 'Zobacz więcej';
         });
       });
 
@@ -2158,6 +2160,7 @@
           const serviceName = card.querySelector('.service-name')?.textContent?.trim() || '';
           toggle.setAttribute('aria-expanded', 'false');
           toggle.setAttribute('aria-label', `Rozwiń usługę ${serviceName}`);
+          toggle.textContent = 'Zobacz więcej';
         });
       });
 
