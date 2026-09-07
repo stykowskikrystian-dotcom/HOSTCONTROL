@@ -794,7 +794,7 @@
       position: relative;
       isolation: isolate;
       overflow: clip;
-      padding: clamp(118px, 10vw, 176px) clamp(22px, 5vw, 78px) clamp(132px, 12vw, 210px);
+      padding: clamp(100px, 8vw, 142px) clamp(22px, 5vw, 78px) clamp(110px, 9vw, 160px);
       background:
         radial-gradient(ellipse at 9% 18%, rgba(227,27,35,.09), transparent 29%),
         radial-gradient(ellipse at 92% 64%, rgba(119,8,16,.12), transparent 34%),
@@ -833,10 +833,15 @@
 
     .services-header {
       width: min(1480px, 100%);
-      margin: 0 auto clamp(74px, 9vw, 142px);
+      margin: 0 auto clamp(54px, 6vw, 86px);
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(320px, .65fr);
+      column-gap: clamp(42px, 7vw, 118px);
+      align-items: end;
     }
 
     .services-kicker {
+      grid-column: 1 / -1;
       display: flex;
       align-items: center;
       gap: 14px;
@@ -855,7 +860,7 @@
       max-width: 1180px;
       color: #f6f4f1;
       font-family: "Arial Narrow", Arial, sans-serif;
-      font-size: clamp(3.7rem, 7vw, 8.2rem);
+      font-size: clamp(3.4rem, 5.8vw, 7rem);
       font-weight: 900;
       letter-spacing: -.068em;
       line-height: .88;
@@ -870,7 +875,7 @@
 
     .services-lead {
       max-width: 690px;
-      margin: 34px 0 0 auto;
+      margin: 0 0 5px;
       color: rgba(255,255,255,.64);
       font-size: clamp(1rem, 1.2vw, 1.22rem);
       line-height: 1.62;
@@ -879,18 +884,19 @@
     .services-stack {
       width: min(1480px, 100%);
       margin: 0 auto;
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(16px, 1.7vw, 26px);
     }
 
     .service-card {
       --enter-x: -72px;
       position: relative;
-      width: min(980px, 76vw);
-      height: clamp(470px, 46vw, 640px);
+      width: 100%;
+      height: clamp(350px, 29vw, 440px);
       overflow: hidden;
       border: 1px solid rgba(255,255,255,.1);
-      border-radius: 30px;
+      border-radius: 26px;
       background: #0a0a0b;
       box-shadow: 0 36px 90px rgba(0,0,0,.48), inset 0 1px rgba(255,255,255,.06);
       opacity: 0;
@@ -898,12 +904,7 @@
       transition: opacity .8s ease, transform 1s var(--ease), border-color .45s ease, box-shadow .45s ease;
     }
 
-    .service-card:nth-child(even) { --enter-x: 72px; margin-left: auto; }
-    .service-card:not(:first-child) { margin-top: -16px; }
-    .service-card:nth-child(1) { z-index: 1; }
-    .service-card:nth-child(2) { z-index: 2; }
-    .service-card:nth-child(3) { z-index: 3; }
-    .service-card:nth-child(4) { z-index: 4; }
+    .service-card:nth-child(even) { --enter-x: 72px; }
     .service-card.is-seen { opacity: 1; transform: translateX(0) scale(1); }
     .service-card:hover, .service-card:focus-within { border-color: rgba(227,27,35,.34); box-shadow: 0 42px 110px rgba(0,0,0,.58), 0 0 44px rgba(227,27,35,.08), inset 0 1px rgba(255,255,255,.08); }
 
@@ -924,7 +925,7 @@
 
     .service-card:hover .service-media video,
     .service-card:focus-within .service-media video,
-    .service-card.is-active .service-media video { filter: brightness(.76) saturate(.9) contrast(1.04); transform: scale(1.055); }
+    .service-card.is-open .service-media video { filter: brightness(.76) saturate(.9) contrast(1.04); transform: scale(1.055); }
 
     .service-media::after {
       content: "";
@@ -955,13 +956,13 @@
       position: absolute;
       z-index: 4;
       inset: auto 0 0;
-      min-height: 61%;
-      padding: 30px clamp(26px, 3.4vw, 54px) 34px;
+      min-height: 73%;
+      padding: 22px clamp(22px, 2.2vw, 34px) 26px;
       border-top: 1px solid rgba(255,255,255,.1);
-      border-radius: 34px 34px 0 0;
+      border-radius: 28px 28px 0 0;
       background: linear-gradient(155deg, rgba(15,15,16,.985), rgba(8,8,9,.99));
       box-shadow: 0 -24px 54px rgba(0,0,0,.34);
-      transform: translateY(calc(100% - 152px));
+      transform: translateY(calc(100% - 116px));
       transition: transform .78s var(--ease);
     }
 
@@ -978,10 +979,10 @@
 
     .service-card:hover .service-detail,
     .service-card:focus-within .service-detail,
-    .service-card.is-active .service-detail { transform: translateY(0); }
+    .service-card.is-open .service-detail { transform: translateY(0); }
 
     .service-detail-head {
-      min-height: 78px;
+      min-height: 70px;
       display: grid;
       grid-template-columns: 1fr auto;
       align-items: center;
@@ -991,7 +992,7 @@
     .service-name {
       color: #f8f6f2;
       font-family: "Arial Narrow", Arial, sans-serif;
-      font-size: clamp(2rem, 3.5vw, 4rem);
+      font-size: clamp(1.8rem, 2.45vw, 3rem);
       font-weight: 900;
       letter-spacing: -.045em;
       line-height: .94;
@@ -1009,27 +1010,30 @@
       text-transform: uppercase;
     }
 
-    .service-arrow {
-      width: 48px;
-      height: 48px;
+    .service-toggle {
+      width: 44px;
+      height: 44px;
       display: grid;
       place-items: center;
       border: 1px solid rgba(255,255,255,.18);
       border-radius: 50%;
       color: #fff;
       background: rgba(255,255,255,.035);
-      transition: transform .55s var(--ease), color .35s ease, background .35s ease, border-color .35s ease;
+      font: inherit;
+      cursor: pointer;
+      transition: transform .55s var(--ease), color .35s ease, background .35s ease, border-color .35s ease, box-shadow .35s ease;
     }
 
-    .service-card:hover .service-arrow,
-    .service-card:focus-within .service-arrow,
-    .service-card.is-active .service-arrow { transform: rotate(45deg); color: #fff; background: #e31b23; border-color: #e31b23; }
+    .service-toggle span { display: block; font-size: 1.15rem; line-height: 1; transition: transform .55s var(--ease); }
+    .service-toggle:hover, .service-toggle:focus-visible { color: #fff; background: #e31b23; border-color: #e31b23; box-shadow: 0 0 0 7px rgba(227,27,35,.1); outline: none; }
+    .service-card:hover .service-toggle span, .service-card:focus-within .service-toggle span { transform: translateY(-3px); }
+    .service-card.is-open .service-toggle span { transform: rotate(180deg); }
 
     .service-detail-body {
       display: grid;
-      grid-template-columns: minmax(0, 1.45fr) minmax(220px, .8fr);
-      gap: clamp(28px, 5vw, 78px);
-      padding-top: 28px;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      padding-top: 18px;
       border-top: 1px solid rgba(255,255,255,.09);
       opacity: 0;
       transform: translateY(20px);
@@ -1038,24 +1042,24 @@
 
     .service-card:hover .service-detail-body,
     .service-card:focus-within .service-detail-body,
-    .service-card.is-active .service-detail-body { opacity: 1; transform: translateY(0); }
+    .service-card.is-open .service-detail-body { opacity: 1; transform: translateY(0); }
 
     .service-description {
       color: rgba(255,255,255,.72);
-      font-size: clamp(1rem, 1.25vw, 1.2rem);
-      line-height: 1.58;
+      max-width: 54ch;
+      font-size: clamp(.94rem, 1.05vw, 1.08rem);
+      line-height: 1.5;
     }
 
     .service-scope { display: flex; flex-wrap: wrap; align-content: flex-start; gap: 8px; }
     .service-scope span { padding: 8px 11px; border: 1px solid rgba(255,255,255,.1); border-radius: 999px; color: rgba(255,255,255,.56); font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 
     .service-cta {
-      grid-column: 1 / -1;
       width: max-content;
       display: inline-flex;
       align-items: center;
       gap: 16px;
-      margin-top: 4px;
+      margin-top: 0;
       color: #fff;
       font-size: .72rem;
       font-weight: 800;
@@ -1574,35 +1578,55 @@
       .agency-intro h2 { font-size: clamp(3.05rem, 12.7vw, 5.8rem); }
       .agency-statement { max-width: 760px; margin-top: 38px; font-size: clamp(1.02rem, 3.4vw, 1.28rem); }
       .agency-bridge-mark { right: 18px; top: 59svh; width: 176px; opacity: .45; }
-      .services-section { padding: 96px 18px 126px; }
-      .services-header { margin-bottom: 62px; }
-      .services-header h2 { font-size: clamp(3.2rem, 12.5vw, 6.3rem); }
-      .services-lead { margin: 26px 0 0; font-size: 1rem; }
-      .services-stack { gap: 24px; }
+      .services-section { padding: 82px 14px 104px; }
+      .services-header { display: block; margin-bottom: 44px; }
+      .services-header h2 { font-size: clamp(2.8rem, 10.7vw, 5.35rem); }
+      .services-lead { max-width: 620px; margin: 24px 0 0; font-size: 1rem; }
+      .services-stack { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
       .service-card, .service-card:nth-child(even) {
         --enter-x: 0;
         width: 100%;
-        height: min(640px, 80svh);
-        min-height: 540px;
+        height: clamp(292px, 75vw, 390px);
+        min-height: 0;
         margin: 0;
         opacity: 0;
-        transform: translateY(34px) scale(.955);
+        transform: translateY(24px) scale(.97);
       }
-      .service-card.is-seen { opacity: .62; transform: translateY(0) scale(.965); }
-      .service-card.is-seen.is-active, .service-card:focus-within { opacity: 1; transform: translateY(0) scale(1); }
-      .service-media video { filter: brightness(.45) saturate(.68) contrast(1.08); }
-      .service-card:hover .service-media video { filter: brightness(.45) saturate(.68) contrast(1.08); transform: scale(1.02); }
-      .service-card.is-active .service-media video, .service-card:focus-within .service-media video { filter: brightness(.76) saturate(.9) contrast(1.04); transform: scale(1.055); }
-      .service-detail { min-height: 66%; padding: 24px 24px 28px; transform: translateY(calc(100% - 108px)); }
-      .service-card:hover .service-detail { transform: translateY(calc(100% - 108px)); }
-      .service-card.is-active .service-detail, .service-card:focus-within .service-detail { transform: translateY(0); }
-      .service-detail-head { min-height: 62px; }
-      .service-name { font-size: clamp(2rem, 7.8vw, 3rem); }
-      .service-arrow { width: 42px; height: 42px; }
-      .service-detail-body { grid-template-columns: 1fr; gap: 18px; padding-top: 22px; }
-      .service-card:hover .service-detail-body { opacity: 0; transform: translateY(20px); }
-      .service-card.is-active .service-detail-body, .service-card:focus-within .service-detail-body { opacity: 1; transform: translateY(0); }
-      .service-cta { margin-top: 2px; }
+      .service-card.is-seen { opacity: 1; transform: translateY(0) scale(1); }
+      .service-card:hover, .service-card:focus-within { border-color: rgba(255,255,255,.1); box-shadow: 0 24px 52px rgba(0,0,0,.44), inset 0 1px rgba(255,255,255,.06); }
+      .service-media video,
+      .service-card:hover .service-media video,
+      .service-card:focus-within .service-media video { filter: brightness(.5) saturate(.72) contrast(1.08); transform: scale(1.02); }
+      .service-card.is-open .service-media video { filter: brightness(.64) saturate(.82) contrast(1.06); transform: scale(1.045); }
+      .service-number { top: 14px; left: 14px; gap: 7px; font-size: .57rem; letter-spacing: .14em; }
+      .service-number::before { width: 5px; height: 5px; }
+      .service-detail,
+      .service-card:hover .service-detail,
+      .service-card:focus-within .service-detail {
+        height: 100%;
+        min-height: 0;
+        overflow: hidden;
+        padding: 14px 14px 16px;
+        border-radius: 20px 20px 0 0;
+        transform: translateY(calc(100% - 104px));
+      }
+      .service-card.is-open .service-detail { transform: translateY(0); }
+      .service-detail-head { min-height: 76px; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; align-items: center; }
+      .service-detail-head > div { min-width: 0; }
+      .service-name { font-size: clamp(1.08rem, 4.7vw, 1.65rem); line-height: .92; }
+      .service-type { margin-top: 6px; font-size: .58rem; letter-spacing: .1em; line-height: 1.25; }
+      .service-toggle { width: 34px; height: 34px; flex: 0 0 auto; }
+      .service-toggle span { font-size: 1rem; }
+      .service-card:hover .service-toggle span, .service-card:focus-within .service-toggle span { transform: none; }
+      .service-card.is-open .service-toggle span { transform: rotate(180deg); }
+      .service-detail-body,
+      .service-card:hover .service-detail-body,
+      .service-card:focus-within .service-detail-body { gap: 10px; padding-top: 12px; opacity: 0; transform: translateY(14px); }
+      .service-card.is-open .service-detail-body { opacity: 1; transform: translateY(0); }
+      .service-description { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 6; font-size: .875rem; line-height: 1.34; }
+      .service-scope { display: none; }
+      .service-cta { gap: 9px; margin-top: 0; font-size: .68rem; letter-spacing: .11em; }
+      .service-cta::after { width: 29px; height: 29px; }
     }
 
     @media (max-width: 560px) {
@@ -1614,14 +1638,17 @@
       .agency-intro h2 .agency-title-line--outline .reveal-word { -webkit-text-stroke-width: 1px; }
       .agency-statement { margin-top: 34px; font-size: 1rem; line-height: 1.58; }
       .agency-bridge-mark { right: -22px; top: 60svh; width: 150px; opacity: .36; }
-      .services-section { padding-left: 14px; padding-right: 14px; }
+      .services-section { padding-left: 10px; padding-right: 10px; }
       .services-kicker { margin-left: 4px; }
       .services-header h2, .services-lead { margin-left: 4px; margin-right: 4px; }
-      .service-card, .service-card:nth-child(even) { height: min(630px, 80svh); min-height: 540px; border-radius: 24px; }
-      .service-number { top: 19px; left: 20px; }
-      .service-detail { padding-left: 20px; padding-right: 20px; border-radius: 28px 28px 0 0; }
-      .service-description { font-size: 1rem; }
-      .service-scope span { font-size: .62rem; padding: 7px 9px; }
+      .services-stack { gap: 9px; }
+      .service-card, .service-card:nth-child(even) { height: clamp(278px, 76vw, 316px); border-radius: 20px; }
+      .service-detail,
+      .service-card:hover .service-detail,
+      .service-card:focus-within .service-detail { padding-left: 12px; padding-right: 12px; border-radius: 18px 18px 0 0; transform: translateY(calc(100% - 100px)); }
+      .service-card.is-open .service-detail { transform: translateY(0); }
+      .service-name { font-size: clamp(.9rem, 4vw, 1.08rem); letter-spacing: -.055em; }
+      .service-description { -webkit-line-clamp: 6; font-size: .82rem; }
     }
 
     @media (max-height: 620px) {
@@ -1823,15 +1850,15 @@
     </header>
 
     <div class="services-stack">
-      <article class="service-card" tabindex="0" aria-labelledby="service-web-title">
+      <article class="service-card" aria-labelledby="service-web-title">
         <div class="service-media" aria-hidden="true"><video muted loop playsinline preload="metadata" src="https://videos.pexels.com/video-files/6330778/6330778-hd_1920_1080_30fps.mp4"></video></div>
         <div class="service-number">01 / Digital</div>
         <div class="service-detail">
           <div class="service-detail-head">
             <div><h3 class="service-name" id="service-web-title">Strony internetowe</h3><span class="service-type">WWW · sklepy · aplikacje</span></div>
-            <span class="service-arrow" aria-hidden="true">↗</span>
+            <button class="service-toggle" type="button" aria-expanded="false" aria-controls="service-web-body" aria-label="Rozwiń usługę Strony internetowe"><span aria-hidden="true">↑</span></button>
           </div>
-          <div class="service-detail-body">
+          <div class="service-detail-body" id="service-web-body">
             <p class="service-description">Projektujemy szybkie, czytelne strony, które prowadzą użytkownika od pierwszego wrażenia do konkretnego działania. Łączymy strategię, UX/UI i wdrożenie.</p>
             <div class="service-scope" aria-label="Zakres usługi"><span>Strategia</span><span>UX/UI</span><span>Development</span><span>SEO</span></div>
             <a class="service-cta" href="tel:+48692746031">Porozmawiajmy</a>
@@ -1839,15 +1866,15 @@
         </div>
       </article>
 
-      <article class="service-card" tabindex="0" aria-labelledby="service-branding-title">
+      <article class="service-card" aria-labelledby="service-branding-title">
         <div class="service-media" aria-hidden="true"><video muted loop playsinline preload="metadata" src="https://videos.pexels.com/video-files/5873059/5873059-hd_1280_720_28fps.mp4"></video></div>
         <div class="service-number">02 / Marka</div>
         <div class="service-detail">
           <div class="service-detail-head">
             <div><h3 class="service-name" id="service-branding-title">Branding</h3><span class="service-type">Identyfikacja · komunikacja</span></div>
-            <span class="service-arrow" aria-hidden="true">↗</span>
+            <button class="service-toggle" type="button" aria-expanded="false" aria-controls="service-branding-body" aria-label="Rozwiń usługę Branding"><span aria-hidden="true">↑</span></button>
           </div>
-          <div class="service-detail-body">
+          <div class="service-detail-body" id="service-branding-body">
             <p class="service-description">Budujemy marki od fundamentów: od pozycjonowania i języka komunikacji po logo oraz kompletny system wizualny, który działa konsekwentnie w każdym kanale.</p>
             <div class="service-scope" aria-label="Zakres usługi"><span>Strategia marki</span><span>Logo</span><span>Identyfikacja</span><span>Brandbook</span></div>
             <a class="service-cta" href="tel:+48692746031">Porozmawiajmy</a>
@@ -1855,15 +1882,15 @@
         </div>
       </article>
 
-      <article class="service-card" tabindex="0" aria-labelledby="service-photo-title">
+      <article class="service-card" aria-labelledby="service-photo-title">
         <div class="service-media" aria-hidden="true"><video muted loop playsinline preload="metadata" src="https://videos.pexels.com/video-files/33607024/14285068_1920_1080_25fps.mp4"></video></div>
         <div class="service-number">03 / Obraz</div>
         <div class="service-detail">
           <div class="service-detail-head">
             <div><h3 class="service-name" id="service-photo-title">Fotografia</h3><span class="service-type">Wizerunek · produkt · reportaż</span></div>
-            <span class="service-arrow" aria-hidden="true">↗</span>
+            <button class="service-toggle" type="button" aria-expanded="false" aria-controls="service-photo-body" aria-label="Rozwiń usługę Fotografia"><span aria-hidden="true">↑</span></button>
           </div>
-          <div class="service-detail-body">
+          <div class="service-detail-body" id="service-photo-body">
             <p class="service-description">Tworzymy fotografie, które nie są tylko dokumentacją. Planujemy kadry pod charakter marki i sposób, w jaki materiały będą pracować na stronie, w kampanii i social mediach.</p>
             <div class="service-scope" aria-label="Zakres usługi"><span>Wizerunek</span><span>Produkt</span><span>Event</span><span>Postprodukcja</span></div>
             <a class="service-cta" href="tel:+48692746031">Porozmawiajmy</a>
@@ -1871,15 +1898,15 @@
         </div>
       </article>
 
-      <article class="service-card" tabindex="0" aria-labelledby="service-events-title">
+      <article class="service-card" aria-labelledby="service-events-title">
         <div class="service-media" aria-hidden="true"><video muted loop playsinline preload="metadata" src="https://videos.pexels.com/video-files/34917493/14791115_1920_1080_60fps.mp4"></video></div>
         <div class="service-number">04 / Na żywo</div>
         <div class="service-detail">
           <div class="service-detail-head">
             <div><h3 class="service-name" id="service-events-title">Eventy</h3><span class="service-type">Koncepcja · produkcja · oprawa</span></div>
-            <span class="service-arrow" aria-hidden="true">↗</span>
+            <button class="service-toggle" type="button" aria-expanded="false" aria-controls="service-events-body" aria-label="Rozwiń usługę Eventy"><span aria-hidden="true">↑</span></button>
           </div>
-          <div class="service-detail-body">
+          <div class="service-detail-body" id="service-events-body">
             <p class="service-description">Projektujemy i realizujemy wydarzenia firmowe od pierwszej koncepcji po ostatni element produkcji. Pilnujemy przestrzeni, oprawy wizualnej i przebiegu całego wydarzenia.</p>
             <div class="service-scope" aria-label="Zakres usługi"><span>Koncepcja</span><span>Scenografia</span><span>Produkcja</span><span>Koordynacja</span></div>
             <a class="service-cta" href="tel:+48692746031">Porozmawiajmy</a>
@@ -2077,7 +2104,6 @@
 
       const serviceCards = [...document.querySelectorAll('.service-card')];
       const mobileServices = matchMedia('(max-width: 900px)');
-      let serviceScrollFrame = null;
 
       const cardRevealObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
@@ -2097,42 +2123,43 @@
         });
       }, { threshold: .12, rootMargin: '28% 0px 28% 0px' });
 
-      function updateActiveService() {
-        if (!mobileServices.matches) {
-          serviceCards.forEach(card => card.classList.remove('is-active'));
-          serviceScrollFrame = null;
-          return;
-        }
-
-        const center = innerHeight * .5;
-        let closest = null;
-        let closestDistance = Infinity;
-        serviceCards.forEach(card => {
-          const rect = card.getBoundingClientRect();
-          if (rect.bottom <= 0 || rect.top >= innerHeight) return;
-          const distance = Math.abs(rect.top + rect.height * .5 - center);
-          if (distance < closestDistance) {
-            closest = card;
-            closestDistance = distance;
-          }
-        });
-        serviceCards.forEach(card => card.classList.toggle('is-active', card === closest));
-        serviceScrollFrame = null;
-      }
-
-      function requestServiceUpdate() {
-        if (serviceScrollFrame === null) serviceScrollFrame = requestAnimationFrame(updateActiveService);
-      }
-
       serviceCards.forEach(card => {
         if (reduceMotion) card.classList.add('is-seen');
         else cardRevealObserver.observe(card);
         serviceVideoObserver.observe(card);
+
+        const toggle = card.querySelector('.service-toggle');
+        if (!toggle) return;
+        toggle.addEventListener('click', () => {
+          const willOpen = !card.classList.contains('is-open');
+          if (mobileServices.matches) {
+            serviceCards.forEach(otherCard => {
+              if (otherCard === card) return;
+              otherCard.classList.remove('is-open');
+              const otherToggle = otherCard.querySelector('.service-toggle');
+              if (otherToggle) {
+                otherToggle.setAttribute('aria-expanded', 'false');
+                otherToggle.setAttribute('aria-label', `Rozwiń usługę ${otherCard.querySelector('.service-name')?.textContent?.trim() || ''}`);
+              }
+            });
+          }
+          card.classList.toggle('is-open', willOpen);
+          toggle.setAttribute('aria-expanded', String(willOpen));
+          const serviceName = card.querySelector('.service-name')?.textContent?.trim() || '';
+          toggle.setAttribute('aria-label', `${willOpen ? 'Zwiń' : 'Rozwiń'} usługę ${serviceName}`);
+        });
       });
-      window.addEventListener('scroll', requestServiceUpdate, { passive: true });
-      window.addEventListener('resize', requestServiceUpdate, { passive: true });
-      mobileServices.addEventListener?.('change', requestServiceUpdate);
-      updateActiveService();
+
+      mobileServices.addEventListener?.('change', () => {
+        serviceCards.forEach(card => {
+          card.classList.remove('is-open');
+          const toggle = card.querySelector('.service-toggle');
+          if (!toggle) return;
+          const serviceName = card.querySelector('.service-name')?.textContent?.trim() || '';
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.setAttribute('aria-label', `Rozwiń usługę ${serviceName}`);
+        });
+      });
 
       document.addEventListener('keydown', event => {
         if (menuOpen && event.key === 'Escape') {
