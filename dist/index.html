@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#080808">
+  <meta name="theme-color" content="#f5f7fa">
   <meta name="description" content="HostControl — agencja digital. Strony i aplikacje, branding, produkcja foto-video, ujęcia z drona i realizacja wydarzeń.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://host-control-hero.hybyszy.chatgpt.site/">
@@ -1700,23 +1700,229 @@
       .service-cta::after { animation: none; }
     }
 
+    /* HostControl editorial hero v33 */
+    .hc-hero {
+      --hc-ink: #06172d;
+      --hc-blue: #086cff;
+      --hc-paper: #f5f7fa;
+      position: relative;
+      min-height: 100svh;
+      overflow: hidden;
+      isolation: isolate;
+      color: var(--hc-ink);
+      background: radial-gradient(circle at 58% 34%, rgba(8,108,255,.07), transparent 28%), linear-gradient(135deg, #fff 0%, var(--hc-paper) 58%, #edf4ff 100%);
+    }
+    .hc-hero::before { content: ""; position: absolute; z-index: -3; inset: 0; opacity: .34; background-image: linear-gradient(rgba(6,23,45,.055) 1px, transparent 1px), linear-gradient(90deg, rgba(6,23,45,.055) 1px, transparent 1px); background-size: 6.25vw 6.25vw; -webkit-mask-image: linear-gradient(90deg, #000, transparent 58%); mask-image: linear-gradient(90deg, #000, transparent 58%); pointer-events: none; }
+    .hc-header { position: fixed; z-index: 100; inset: 0 0 auto; height: calc(92px + env(safe-area-inset-top, 0px)); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px; padding: env(safe-area-inset-top, 0px) clamp(24px, 4vw, 72px) 0; color: var(--hc-ink); transition: height .45s var(--ease), background .45s ease, box-shadow .45s ease, backdrop-filter .45s ease; }
+    .hc-header.is-scrolled { height: calc(70px + env(safe-area-inset-top, 0px)); background: rgba(245,247,250,.84); box-shadow: 0 1px 0 rgba(6,23,45,.08), 0 12px 40px rgba(6,23,45,.06); -webkit-backdrop-filter: blur(18px) saturate(1.3); backdrop-filter: blur(18px) saturate(1.3); }
+    .hc-brand { display: inline-flex; align-items: center; gap: 12px; width: max-content; min-width: 0; }
+    .hc-mark { position: relative; width: 42px; height: 42px; flex: 0 0 auto; }
+    .hc-mark::before, .hc-mark::after { content: ""; position: absolute; top: 4px; bottom: 4px; width: 13px; border: 5px solid var(--hc-ink); }
+    .hc-mark::before { left: 1px; border-right: 0; border-radius: 8px 0 0 8px; }
+    .hc-mark::after { right: 1px; border-left: 0; border-radius: 0 8px 8px 0; }
+    .hc-mark span { position: absolute; left: 50%; top: 50%; width: 10px; height: 10px; transform: translate(-50%,-50%); border-radius: 2px; background: var(--hc-blue); box-shadow: 0 5px 14px rgba(8,108,255,.28); }
+    .hc-brand-copy { display: grid; line-height: 1; }
+    .hc-wordmark { font-size: clamp(1.05rem, 1.55vw, 1.52rem); font-weight: 850; letter-spacing: -.055em; text-transform: uppercase; white-space: nowrap; }
+    .hc-wordmark b { color: var(--hc-blue); font-weight: 900; }
+    .hc-brand-copy small { margin-top: 5px; color: rgba(6,23,45,.66); font-size: .53rem; font-weight: 800; letter-spacing: .43em; text-transform: uppercase; white-space: nowrap; }
+    .hc-nav { display: flex; align-items: center; gap: clamp(25px, 3.4vw, 58px); }
+    .hc-nav a { position: relative; padding: 12px 0; font-size: .72rem; font-weight: 760; letter-spacing: .16em; text-transform: uppercase; }
+    .hc-nav a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: 6px; height: 2px; background: var(--hc-blue); transition: right .35s var(--ease); }
+    .hc-nav a:hover::after, .hc-nav a:focus-visible::after { right: 0; }
+    .hc-header-cta { justify-self: end; min-height: 48px; display: inline-flex; align-items: center; gap: 18px; padding: 0 22px; border-radius: 999px; color: #fff; background: var(--hc-ink); font-size: .72rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; box-shadow: 0 15px 34px rgba(6,23,45,.16); transition: transform .35s var(--ease), background .3s ease; }
+    .hc-header-cta::after { content: "↗"; color: #fff; font-size: 1.2rem; line-height: 1; transition: transform .35s var(--ease); }
+    .hc-header-cta:hover { transform: translateY(-2px); background: var(--hc-blue); }
+    .hc-header-cta:hover::after { transform: translate(3px,-3px); }
+    .hc-menu-toggle { position: relative; z-index: 120; justify-self: end; width: 50px; height: 50px; display: none; place-items: center; padding: 0; border: 1px solid rgba(6,23,45,.13); border-radius: 50%; color: #fff; background: var(--hc-ink); box-shadow: 0 14px 28px rgba(6,23,45,.16); cursor: pointer; }
+    .hc-menu-toggle span, .hc-menu-toggle::before { content: ""; position: absolute; width: 19px; height: 2px; border-radius: 99px; background: currentColor; transition: transform .4s var(--ease), top .4s var(--ease); }
+    .hc-menu-toggle span { top: 20px; }
+    .hc-menu-toggle::before { top: 28px; }
+    .hc-menu-toggle[aria-expanded="true"] span { top: 24px; transform: rotate(45deg); }
+    .hc-menu-toggle[aria-expanded="true"]::before { top: 24px; transform: rotate(-45deg); }
+    .hc-mobile-menu { position: fixed; z-index: 90; inset: 0; display: none; padding: calc(126px + env(safe-area-inset-top, 0px)) 26px calc(34px + env(safe-area-inset-bottom, 0px)); color: var(--hc-ink); background: rgba(245,247,250,.98); visibility: hidden; opacity: 0; pointer-events: none; transition: opacity .35s ease, visibility 0s linear .35s; }
+    .hc-mobile-menu::after { content: ""; position: absolute; right: -38%; bottom: -20%; width: 115%; height: 70%; background: url('assets/hero-ribbon.webp') center / contain no-repeat; opacity: .35; transform: rotate(-16deg); pointer-events: none; }
+    .hc-mobile-menu nav { position: relative; z-index: 2; display: grid; }
+    .hc-mobile-menu nav a { padding: 10px 0; border-bottom: 1px solid rgba(6,23,45,.12); font-size: clamp(2.5rem, 12vw, 4rem); font-weight: 880; line-height: 1; letter-spacing: -.07em; text-transform: uppercase; transform: translateY(22px); opacity: 0; transition: transform .55s var(--ease), opacity .4s ease; }
+    .hc-mobile-menu nav a b { color: var(--hc-blue); font-size: .7rem; letter-spacing: .04em; vertical-align: top; }
+    .hc-mobile-menu-meta { position: absolute; z-index: 2; left: 26px; right: 26px; bottom: calc(34px + env(safe-area-inset-bottom, 0px)); display: flex; justify-content: space-between; gap: 20px; font-size: .72rem; font-weight: 750; letter-spacing: .11em; text-transform: uppercase; }
+    body.hc-menu-open { overflow: hidden; }
+    body.hc-menu-open .hc-mobile-menu { visibility: visible; opacity: 1; pointer-events: auto; transition-delay: 0s; }
+    body.hc-menu-open .hc-mobile-menu nav a { opacity: 1; transform: translateY(0); }
+    body.hc-menu-open .hc-mobile-menu nav a:nth-child(2) { transition-delay: .05s; }
+    body.hc-menu-open .hc-mobile-menu nav a:nth-child(3) { transition-delay: .1s; }
+    body.hc-menu-open .hc-mobile-menu nav a:nth-child(4) { transition-delay: .15s; }
+    .hc-availability { position: absolute; z-index: 5; top: clamp(124px, 14vh, 158px); left: clamp(24px, 4vw, 72px); display: flex; align-items: flex-start; gap: 12px; max-width: 106px; color: rgba(6,23,45,.64); font-size: .58rem; font-weight: 820; line-height: 1.65; letter-spacing: .2em; text-transform: uppercase; }
+    .hc-availability i { width: 8px; height: 8px; margin-top: 2px; flex: 0 0 auto; border-radius: 50%; background: var(--hc-blue); box-shadow: 0 0 0 5px rgba(8,108,255,.1); animation: hcPulse 2.4s ease-in-out infinite; }
+    .hc-hero-content { position: relative; z-index: 4; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding: clamp(146px, 16vh, 180px) clamp(24px, 4vw, 72px) clamp(92px, 11vh, 120px); }
+    .hc-eyebrow { margin: 0 0 clamp(22px, 3vh, 34px); color: rgba(6,23,45,.72); font-size: clamp(.64rem, .72vw, .76rem); font-weight: 800; letter-spacing: .36em; text-transform: uppercase; }
+    .hc-title { position: relative; z-index: 3; max-width: min(970px, 68vw); margin: 0; font-family: "Arial Narrow", Arial, sans-serif; font-size: clamp(3.6rem, 6.85vw, 8.25rem); font-weight: 950; line-height: .79; letter-spacing: -.075em; text-transform: uppercase; text-wrap: balance; }
+    .hc-title-line { display: block; }
+    .hc-title-outline { color: transparent; -webkit-text-stroke: clamp(1.5px, .12vw, 2.2px) var(--hc-blue); }
+    .hc-title-blue { color: var(--hc-blue); }
+    .hc-copy-row { position: relative; z-index: 7; max-width: 770px; margin-top: clamp(24px, 4vh, 46px); display: grid; grid-template-columns: minmax(280px, 1fr) auto; align-items: end; gap: clamp(28px, 4vw, 60px); }
+    .hc-lead { max-width: 520px; margin: 0; color: rgba(6,23,45,.78); font-size: clamp(1rem, 1.18vw, 1.2rem); line-height: 1.5; }
+    .hc-actions { display: flex; align-items: center; gap: 16px; }
+    .hc-primary { min-height: 58px; display: inline-flex; align-items: center; gap: 24px; padding: 0 24px; border-radius: 16px; color: #fff; background: var(--hc-blue); font-size: .72rem; font-weight: 820; letter-spacing: .13em; text-transform: uppercase; box-shadow: 0 18px 38px rgba(8,108,255,.22); transition: transform .4s var(--ease), box-shadow .4s ease; }
+    .hc-primary::after { content: "↗"; font-size: 1.35rem; transition: transform .4s var(--ease); }
+    .hc-primary:hover { transform: translateY(-3px); box-shadow: 0 24px 48px rgba(8,108,255,.3); }
+    .hc-primary:hover::after { transform: translate(3px,-3px); }
+    .hc-secondary { display: inline-flex; align-items: center; gap: 12px; color: var(--hc-ink); font-size: .68rem; font-weight: 820; letter-spacing: .13em; text-transform: uppercase; white-space: nowrap; }
+    .hc-secondary span { width: 48px; height: 48px; display: grid; place-items: center; border: 1px solid var(--hc-blue); border-radius: 50%; color: var(--hc-blue); font-size: 1.25rem; transition: color .35s ease, background .35s ease, transform .35s var(--ease); }
+    .hc-secondary:hover span { color: #fff; background: var(--hc-blue); transform: rotate(45deg); }
+    .hc-art { position: absolute; z-index: 1; top: -9%; right: -9%; width: min(75vw, 1230px); height: 118%; pointer-events: none; transform: translate3d(var(--mx,0px),var(--my,0px),0); transition: transform .4s var(--ease); }
+    .hc-ribbon { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center right; filter: saturate(1.08) drop-shadow(0 40px 50px rgba(8,63,150,.16)); transform: rotate(-10deg) scale(1.12); animation: hcRibbonFloat 9s ease-in-out infinite; }
+    .hc-project { position: absolute; z-index: 3; width: clamp(185px, 18vw, 310px); aspect-ratio: 1.48; overflow: hidden; padding: 18px; border: 1px solid rgba(255,255,255,.42); border-radius: 16px; color: #fff; background: rgba(6,23,45,.88); box-shadow: 0 30px 70px rgba(6,23,45,.22), inset 0 1px rgba(255,255,255,.16); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); transform: rotate(var(--r)); pointer-events: auto; transition: transform .45s var(--ease), box-shadow .45s ease; }
+    .hc-project:hover { transform: rotate(0deg) translateY(-7px); box-shadow: 0 38px 84px rgba(6,23,45,.3); }
+    .hc-project:nth-of-type(1) { --r: -7deg; top: 24%; right: 30%; }
+    .hc-project:nth-of-type(2) { --r: 5deg; top: 48%; right: 4%; background: rgba(255,255,255,.84); color: var(--hc-ink); }
+    .hc-project:nth-of-type(3) { --r: -3deg; bottom: 9%; right: 23%; }
+    .hc-project-index { display: flex; justify-content: space-between; font-size: .58rem; font-weight: 800; letter-spacing: .14em; opacity: .7; }
+    .hc-project h3 { max-width: 12ch; margin: 22px 0 0; font-family: Georgia, serif; font-size: clamp(1.2rem, 1.8vw, 2rem); font-weight: 400; line-height: 1.06; }
+    .hc-project::after { content: "ZOBACZ PROJEKT  ↗"; position: absolute; left: 18px; bottom: 17px; font-size: .55rem; font-weight: 820; letter-spacing: .14em; }
+    .hc-side-index { position: absolute; z-index: 7; top: 50%; right: clamp(24px, 4vw, 72px); display: grid; justify-items: center; gap: 10px; color: rgba(6,23,45,.72); font-size: .65rem; font-weight: 800; letter-spacing: .2em; }
+    .hc-side-index i { width: 1px; height: 45px; background: rgba(6,23,45,.32); }
+    .hc-ticker { position: absolute; z-index: 8; left: clamp(24px, 4vw, 72px); right: clamp(24px, 4vw, 72px); bottom: 24px; display: flex; align-items: center; gap: clamp(14px, 2vw, 34px); overflow: hidden; color: rgba(6,23,45,.7); font-size: .61rem; font-weight: 820; letter-spacing: .18em; text-transform: uppercase; white-space: nowrap; }
+    .hc-ticker::before, .hc-ticker::after { content: ""; height: 1px; flex: 1 1 auto; background: rgba(6,23,45,.2); }
+    .hc-ticker b { color: var(--hc-blue); font-size: .9rem; }
+    @keyframes hcRibbonFloat { 0%,100% { transform: rotate(-10deg) scale(1.12) translate3d(0,0,0); } 50% { transform: rotate(-8deg) scale(1.14) translate3d(-1.2%,1%,0); } }
+    @keyframes hcPulse { 0%,100% { opacity: 1; box-shadow: 0 0 0 5px rgba(8,108,255,.1); } 50% { opacity: .58; box-shadow: 0 0 0 9px rgba(8,108,255,0); } }
+    @media (max-width: 1180px) { .hc-nav { gap: 24px; } .hc-header-cta { padding: 0 17px; } .hc-title { max-width: 72vw; } .hc-art { right: -17%; width: 82vw; } .hc-project:nth-of-type(1) { right: 24%; } .hc-project:nth-of-type(3) { right: 18%; } }
+    @media (max-width: 900px) {
+      .hc-hero { min-height: 1180px; }
+      .hc-hero::before { background-size: 25vw 25vw; opacity: .2; }
+      .hc-header { height: calc(82px + env(safe-area-inset-top, 0px)); grid-template-columns: 1fr auto; padding-inline: 22px; }
+      .hc-header.is-scrolled { height: calc(68px + env(safe-area-inset-top, 0px)); }
+      .hc-brand { gap: 8px; }
+      .hc-mark { width: 34px; height: 34px; }
+      .hc-mark::before, .hc-mark::after { top: 3px; bottom: 3px; width: 11px; border-width: 4px; }
+      .hc-mark span { width: 8px; height: 8px; }
+      .hc-wordmark { font-size: .98rem; }
+      .hc-brand-copy small { font-size: .43rem; letter-spacing: .34em; }
+      .hc-nav, .hc-header-cta { display: none; }
+      .hc-menu-toggle, .hc-mobile-menu { display: grid; }
+      .hc-availability { position: relative; top: auto; left: auto; max-width: none; margin: 0 0 32px; align-items: center; font-size: .58rem; line-height: 1; }
+      .hc-hero-content { min-height: auto; justify-content: flex-start; padding: calc(112px + env(safe-area-inset-top, 0px)) 22px 610px; }
+      .hc-eyebrow { margin-bottom: 22px; font-size: .58rem; letter-spacing: .27em; line-height: 1.6; }
+      .hc-title { max-width: 100%; font-size: clamp(3.2rem, 14.2vw, 6.5rem); line-height: .78; letter-spacing: -.075em; }
+      .hc-copy-row { max-width: 640px; margin-top: 28px; grid-template-columns: 1fr; gap: 24px; }
+      .hc-lead { max-width: 570px; font-size: 1rem; }
+      .hc-actions { align-items: stretch; }
+      .hc-primary { min-height: 58px; justify-content: space-between; flex: 1 1 auto; }
+      .hc-art { top: auto; right: -20%; bottom: 64px; width: 140%; height: 610px; }
+      .hc-ribbon { object-position: center bottom; transform: rotate(-17deg) scale(1.17); animation-name: hcRibbonFloatMobile; }
+      .hc-project { width: 210px; padding: 15px; border-radius: 13px; }
+      .hc-project:nth-of-type(1) { top: 23%; right: 44%; }
+      .hc-project:nth-of-type(2) { top: 48%; right: 8%; }
+      .hc-project:nth-of-type(3) { bottom: 3%; right: 38%; }
+      .hc-project h3 { margin-top: 16px; font-size: 1.3rem; }
+      .hc-project::after { left: 15px; bottom: 14px; }
+      .hc-side-index { top: auto; right: 22px; bottom: 520px; }
+      .hc-ticker { left: 22px; right: 22px; bottom: 22px; justify-content: flex-start; }
+      .hc-ticker::before, .hc-ticker::after { display: none; }
+      .hc-ticker span:nth-of-type(n+4), .hc-ticker b:nth-of-type(n+4) { display: none; }
+    }
+    @media (max-width: 560px) {
+      .hc-hero { min-height: 1180px; }
+      .hc-title { font-size: clamp(3rem, 15.3vw, 5rem); }
+      .hc-lead { max-width: 34ch; }
+      .hc-actions { display: grid; grid-template-columns: 1fr; }
+      .hc-secondary { width: max-content; }
+      .hc-art { right: -35%; bottom: 70px; width: 168%; height: 570px; }
+      .hc-project { width: 178px; }
+      .hc-project:nth-of-type(1) { top: 23%; right: 47%; }
+      .hc-project:nth-of-type(2) { top: 48%; right: 10%; }
+      .hc-project:nth-of-type(3) { bottom: 4%; right: 42%; }
+      .hc-side-index { bottom: 500px; }
+    }
+    @keyframes hcRibbonFloatMobile { 0%,100% { transform: rotate(-17deg) scale(1.17) translate3d(0,0,0); } 50% { transform: rotate(-14deg) scale(1.2) translate3d(-1%,1%,0); } }
+    @media (prefers-reduced-motion: reduce) { .hc-ribbon, .hc-availability i { animation: none; } .hc-art { transform: none !important; } }
+
   </style>
+  <link rel="stylesheet" href="assets/hero-v33.css">
 </head>
 <body>
   <main>
-  <section class="hero" aria-label="HostControl — agencja digital">
+  <section class="hc-hero" aria-labelledby="hc-hero-title">
+    <header class="hc-header">
+      <a class="hc-brand" href="#" aria-label="HostControl — strona główna">
+        <span class="hc-mark" aria-hidden="true"><i></i></span>
+        <span class="hc-wordmark"><strong>HOST<span>CONTROL</span></strong><small>DIGITAL AGENCY</small></span>
+      </a>
+      <nav class="hc-nav" aria-label="Nawigacja główna">
+        <a href="#o-nas">O nas</a>
+        <a href="#oferta">Usługi</a>
+        <a href="#realizacje">Projekty</a>
+        <a href="tel:+48692746031">Kontakt</a>
+      </nav>
+      <a class="hc-start" href="tel:+48692746031">Zacznijmy projekt <span aria-hidden="true">→</span></a>
+      <button class="hc-menu-toggle" type="button" aria-label="Otwórz menu" aria-expanded="false" aria-controls="hc-mobile-menu"><span aria-hidden="true"></span></button>
+    </header>
+
+    <div class="hc-mobile-menu" id="hc-mobile-menu" aria-hidden="true">
+      <div class="hc-mobile-menu-inner">
+        <nav class="hc-mobile-nav" aria-label="Nawigacja mobilna">
+          <a href="#o-nas">O nas</a>
+          <a href="#oferta">Usługi</a>
+          <a href="#realizacje">Projekty</a>
+          <a href="tel:+48692746031">Kontakt</a>
+        </nav>
+        <div class="hc-mobile-contact"><a href="tel:+48692746031">+48 692 746 031</a><a href="https://www.instagram.com/much4ty/" target="_blank" rel="noreferrer">Instagram ↗</a></div>
+      </div>
+    </div>
+
+    <div class="hc-availability"><i aria-hidden="true"></i><span>Dostępni<br>na nowe projekty</span></div>
+
+    <div class="hc-hero-inner">
+      <div class="hc-copy">
+        <div class="hc-kicker">Niezależne studio digital <span>/</span> Polska</div>
+        <h1 class="hc-title" id="hc-hero-title">
+          <span class="hc-title-line">Tworzymy marki,</span>
+          <span class="hc-title-line">których</span>
+          <span class="hc-title-line hc-title-outline">nie da się</span>
+          <span class="hc-title-line hc-title-blue">przeoczyć.</span>
+        </h1>
+        <p class="hc-summary">Strategia, branding, strony internetowe i kampanie — projektowane jako jeden spójny system.</p>
+        <div class="hc-actions">
+          <a class="hc-primary" href="#realizacje">Poznaj nasze realizacje <span aria-hidden="true">↗</span></a>
+          <a class="hc-secondary" href="tel:+48692746031"><i aria-hidden="true">↗</i> Porozmawiajmy</a>
+        </div>
+      </div>
+
+      <div class="hc-art" aria-hidden="true">
+        <img class="hc-ribbon" src="assets/hero-ribbon.webp" alt="" width="1536" height="1024">
+        <div class="hc-project hc-project--one">
+          <img src="assets/branding.jpg" alt="">
+          <div class="hc-project-copy"><small>01 / BRANDING</small><strong>Strategia z perspektywą.</strong><span>Zobacz projekt →</span></div>
+        </div>
+        <div class="hc-project hc-project--two">
+          <img src="assets/digital.jpg" alt="">
+          <div class="hc-project-copy"><small>02 / DIGITAL</small><strong>Marki, które rosną.</strong><span>Branding / WWW</span></div>
+        </div>
+        <div class="hc-project hc-project--three">
+          <img src="assets/events.jpg" alt="">
+          <div class="hc-project-copy"><small>03 / EXPERIENCE</small><strong>Cyfrowe doświadczenia.</strong><span>Realne wyniki →</span></div>
+        </div>
+      </div>
+
+      <div class="hc-drag"><span class="hc-cross" aria-hidden="true"></span> Drag to explore</div>
+      <div class="hc-index" aria-hidden="true"><span>01</span><i></i><span>04</span></div>
+    </div>
+
+    <div class="hc-ticker" aria-label="Zakres usług">Strategia <span>•</span> Identyfikacja <span>•</span> Web design <span>•</span> Social media <span>•</span> Eventy</div>
+  </section>
+  <section class="hero" hidden aria-hidden="true">
     <div class="media" aria-hidden="true">
       <div class="video-slide active" data-slide="0" style="background-image:url('assets/branding.jpg')">
-        <video muted playsinline loop autoplay preload="auto" poster="assets/branding.jpg"><source src="assets/branding.mp4" type="video/mp4"></video>
+        <video muted playsinline loop preload="none" poster="assets/branding.jpg"><source src="assets/branding.mp4" type="video/mp4"></video>
       </div>
       <div class="video-slide" data-slide="1" style="background-image:url('assets/digital.jpg')">
-        <video muted playsinline loop preload="metadata" poster="assets/digital.jpg"><source src="assets/digital.mp4" type="video/mp4"></video>
+        <video muted playsinline loop preload="none" poster="assets/digital.jpg"><source src="assets/digital.mp4" type="video/mp4"></video>
       </div>
       <div class="video-slide" data-slide="2" style="background-image:url('assets/drone.jpg')">
-        <video muted playsinline loop preload="metadata" poster="assets/drone.jpg"><source src="assets/drone.mp4" type="video/mp4"></video>
+        <video muted playsinline loop preload="none" poster="assets/drone.jpg"><source src="assets/drone.mp4" type="video/mp4"></video>
       </div>
       <div class="video-slide" data-slide="3" style="background-image:url('assets/events.jpg')">
-        <video muted playsinline loop preload="metadata" poster="assets/events.jpg"><source src="assets/events.mp4" type="video/mp4"></video>
+        <video muted playsinline loop preload="none" poster="assets/events.jpg"><source src="assets/events.mp4" type="video/mp4"></video>
       </div>
     </div>
 
@@ -1839,7 +2045,7 @@
     <div class="agency-bridge-mark" aria-hidden="true"><span><img src="assets/logo-hc.png" alt=""></span></div>
   </section>
 
-  <section class="trust-strip" aria-label="Zaufali nam">
+  <section class="trust-strip" id="realizacje" aria-label="Zaufali nam">
     <div class="trust-heading"><strong>Zaufali nam</strong></div>
     <div class="trust-window">
       <div class="trust-track">
@@ -1945,8 +2151,9 @@
   </main>
 
   <!-- Filmy: Pexels 20765858, 5240935, 4169462, 13641377, 6330778, 5873059, 33607024, 34917493. Licencja: https://www.pexels.com/license/ -->
-  <script>
+  <script type="application/json" id="legacy-hero-script">
     (() => {
+      if (document.querySelector('.hc-hero')) return;
       const slides = [...document.querySelectorAll('.video-slide')];
       const buttons = [...document.querySelectorAll('.slide-button')];
       const bottomNav = document.querySelector('.bottom-nav');
@@ -2253,5 +2460,6 @@
       if (!reduceMotion) restartTimer();
     })();
   </script>
+  <script src="assets/hero-v33.js"></script>
 </body>
 </html>
