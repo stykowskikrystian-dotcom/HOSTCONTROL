@@ -1700,7 +1700,7 @@
       .service-cta::after { animation: none; }
     }
 
-    /* Legacy HostControl hero styles disabled. The maintained version lives in assets/hero-v33.css.
+    /* Legacy HostControl hero styles disabled. The maintained version lives in assets/hero-v35.css.
     .hc-hero {
       --hc-ink: #06172d;
       --hc-blue: #086cff;
@@ -1839,86 +1839,36 @@
     */
 
   </style>
-  <link rel="stylesheet" href="assets/hero-v33.css">
+  <link rel="stylesheet" href="assets/hero-v35.css">
 </head>
 <body>
   <main>
-  <section class="hc-hero" aria-labelledby="hc-hero-title">
-    <header class="hc-header">
-      <a class="hc-brand" href="#" aria-label="HostControl — strona główna">
-        <span class="hc-mark" aria-hidden="true"><i></i></span>
-        <span class="hc-wordmark"><strong>HOST<span>CONTROL</span></strong><small>DIGITAL AGENCY</small></span>
-      </a>
-      <nav class="hc-nav" aria-label="Nawigacja główna">
-        <a href="#o-nas">O nas</a>
-        <a href="#oferta">Usługi</a>
-        <a href="#realizacje">Projekty</a>
-        <a href="tel:+48692746031">Kontakt</a>
-      </nav>
-      <a class="hc-start" href="tel:+48692746031">Zacznijmy projekt <span aria-hidden="true">→</span></a>
-      <button class="hc-menu-toggle" type="button" aria-label="Otwórz menu" aria-expanded="false" aria-controls="hc-mobile-menu"><span aria-hidden="true"></span></button>
-    </header>
-
-    <div class="hc-mobile-menu" id="hc-mobile-menu" aria-hidden="true">
-      <div class="hc-mobile-menu-inner">
-        <nav class="hc-mobile-nav" aria-label="Nawigacja mobilna">
-          <a href="#o-nas">O nas</a>
-          <a href="#oferta">Usługi</a>
-          <a href="#realizacje">Projekty</a>
-          <a href="tel:+48692746031">Kontakt</a>
-        </nav>
-        <div class="hc-mobile-contact"><a href="tel:+48692746031">+48 692 746 031</a><a href="https://www.instagram.com/much4ty/" target="_blank" rel="noreferrer">Instagram ↗</a></div>
+  <section class="hc-hero hx-hero" id="poczatek" aria-labelledby="hx-title">
+      <header class="hx-header">
+        <a class="hx-brand" href="#poczatek" aria-label="HostControl — strona główna"><span class="hx-mark" aria-hidden="true"><i></i></span><span class="hx-wordmark"><strong>HOST<span>CONTROL</span></strong><small>DIGITAL AGENCY</small></span></a>
+        <nav class="hx-nav" aria-label="Nawigacja główna"><a href="#o-nas">O nas</a><a href="#oferta">Usługi</a><a href="#realizacje">Projekty</a><a href="tel:+48692746031">Kontakt</a></nav>
+        <a class="hx-start" href="tel:+48692746031">Zacznijmy projekt <svg viewBox="0 0 32 24" aria-hidden="true"><path d="M1 12h28M20 3l9 9-9 9"/></svg></a>
+        <button class="hx-menu-toggle" aria-label="Otwórz menu" aria-controls="hx-menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      </header>
+    <div class="hx-stage">
+      <div class="hx-art" aria-hidden="true">
+        <picture><source media="(max-width: 800px)" srcset="assets/ribbon-mobile.webp"><img id="hx-ribbon-image" src="assets/ribbon-desktop.webp" width="1672" height="941" alt="" fetchpriority="high" decoding="async"></picture>
+        <canvas id="hx-ribbon-canvas"></canvas>
       </div>
+
+      <div class="hx-availability"><i aria-hidden="true"></i><span>Dostępni <br>na nowe <br>projekty</span></div>
+      <div class="hx-kicker">Niezależne studio digital <span>/</span> Polska</div>
+      <h1 id="hx-title" class="hx-title" aria-label="Tworzymy marki, których nie da się przeoczyć.">
+        <span class="hx-lines hx-desktop" aria-hidden="true"><span class="hx-line" style="--width:44.8"><span>TWORZYMY</span></span><span class="hx-line" style="--width:28.5"><span>MARKI,</span></span><span class="hx-line hx-outline" style="--width:41.2"><span>NIE DA SIĘ</span></span><span class="hx-line hx-blue" style="--width:51.7"><span>PRZEOCZYĆ.</span></span></span>
+        <span class="hx-lines hx-mobile" aria-hidden="true"><span class="hx-line" style="--width:72"><span>TWORZYMY</span></span><span class="hx-line" style="--width:46"><span>MARKI,</span></span><span class="hx-line" style="--width:57.5"><span>KTÓRYCH</span></span><span class="hx-line hx-outline" style="--width:62"><span>NIE DA SIĘ</span></span><span class="hx-line hx-blue" style="--width:79.4"><span>PRZEOCZYĆ.</span></span></span>
+      </h1>
+      <p class="hx-summary">Strategia, branding, strony internetowe<br>i kampanie — <span class="hx-desktop-inline">projektowane </span>jako jeden spójny system.</p>
+      <div class="hx-actions"><a class="hx-primary" href="#realizacje"><span class="hx-desktop">Poznaj nasze realizacje</span><span class="hx-mobile">Zobacz realizacje</span><svg viewBox="0 0 32 24" aria-hidden="true"><path d="M1 12h28M20 3l9 9-9 9"/></svg></a><a class="hx-secondary" href="tel:+48692746031"><i><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 25 25 7M7 7h18v18"/></svg></i>Porozmawiajmy</a></div>
+      <div class="hx-interaction" role="group" aria-label="Animowana wstęga projektów"><button class="hx-drag" aria-label="Porusz wstęgą; przeciągnij w lewo lub w prawo"><span class="hx-cross"></span><span class="hx-desktop">Drag to explore</span><span class="hx-mobile">Swipe</span><svg class="hx-mobile" viewBox="0 0 20 40" aria-hidden="true"><path d="M10 1v35M2 28l8 8 8-8"/></svg></button><button class="hx-index" aria-label="Następny projekt"><span id="hx-current">01</span><i></i><span>/</span><span>04</span></button></div>
+      <a class="hx-project-hit hx-hit-1" href="#realizacje" aria-label="Zobacz realizacje — strategia z perspektywą" data-project="0"></a><a class="hx-project-hit hx-hit-2" href="#realizacje" aria-label="Zobacz realizacje — marki, które rosną" data-project="1"></a><a class="hx-project-hit hx-hit-3" href="#realizacje" aria-label="Zobacz realizacje — cyfrowe doświadczenia" data-project="2"></a><a class="hx-project-hit hx-hit-4" href="#realizacje" aria-label="Zobacz realizacje — pomysły w działaniu" data-project="3"></a>
+      <footer class="hx-ticker" aria-label="Zakres usług"><i></i><span>Strategia</span><b>•</b><span class="hx-desktop">Identyfikacja</span><span class="hx-mobile">Branding</span><b>•</b><span>Web design</span><b>•</b><span>Social media</span><b>•</b><span>Eventy</span><i class="hx-rule"></i><span class="hx-tagline">Więcej niż strony.</span><i></i></footer>
     </div>
-
-    <div class="hc-availability"><i aria-hidden="true"></i><span>Dostępni<br>na nowe projekty</span></div>
-
-    <div class="hc-hero-inner">
-      <div class="hc-copy">
-        <div class="hc-kicker">Niezależne studio digital <span>/</span> Polska</div>
-        <h1 class="hc-title" id="hc-hero-title" aria-label="Tworzymy marki, których nie da się przeoczyć.">
-          <span class="hc-title-layout hc-title-layout--desktop" aria-hidden="true">
-            <span class="hc-title-line">Tworzymy marki,</span>
-            <span class="hc-title-line">których</span>
-            <span class="hc-title-line hc-title-outline">nie da się</span>
-            <span class="hc-title-line hc-title-blue">przeoczyć.</span>
-          </span>
-          <span class="hc-title-layout hc-title-layout--mobile" aria-hidden="true">
-            <span class="hc-title-line">Tworzymy</span>
-            <span class="hc-title-line">marki,</span>
-            <span class="hc-title-line">których</span>
-            <span class="hc-title-line hc-title-outline">nie da się</span>
-            <span class="hc-title-line hc-title-blue">przeoczyć.</span>
-          </span>
-        </h1>
-        <p class="hc-summary">Strategia, branding, strony internetowe i kampanie — projektowane jako jeden spójny system.</p>
-        <div class="hc-actions">
-          <a class="hc-primary" href="#realizacje">Poznaj nasze realizacje <span aria-hidden="true">↗</span></a>
-          <a class="hc-secondary" href="tel:+48692746031"><i aria-hidden="true">↗</i> Porozmawiajmy</a>
-        </div>
-      </div>
-
-      <div class="hc-art" aria-hidden="true">
-        <img class="hc-ribbon" src="assets/hero-ribbon.webp" alt="" width="1536" height="1024">
-        <div class="hc-project hc-project--one">
-          <img src="assets/branding.jpg" alt="">
-          <div class="hc-project-copy"><small>01 / BRANDING</small><strong>Strategia z perspektywą.</strong><span>Zobacz projekt →</span></div>
-        </div>
-        <div class="hc-project hc-project--two">
-          <img src="assets/digital.jpg" alt="">
-          <div class="hc-project-copy"><small>02 / DIGITAL</small><strong>Marki, które rosną.</strong><span>Branding / WWW</span></div>
-        </div>
-        <div class="hc-project hc-project--three">
-          <img src="assets/events.jpg" alt="">
-          <div class="hc-project-copy"><small>03 / EXPERIENCE</small><strong>Cyfrowe doświadczenia.</strong><span>Realne wyniki →</span></div>
-        </div>
-      </div>
-
-      <div class="hc-drag"><span class="hc-cross" aria-hidden="true"></span><span class="hc-drag-desktop">Drag to explore</span><span class="hc-drag-mobile">Swipe ↓</span></div>
-      <div class="hc-index" aria-hidden="true"><span>01</span><i></i><span>04</span></div>
-    </div>
-
-    <div class="hc-ticker" aria-label="Zakres usług">Strategia <span>•</span> Identyfikacja <span>•</span> Web design <span>•</span> Social media <span>•</span> Eventy</div>
+    <div class="hx-menu" id="hx-menu" role="dialog" aria-label="Menu główne" aria-modal="true" hidden inert><div class="hx-menu-body"><p>HOSTCONTROL / DIGITAL AGENCY</p><nav aria-label="Nawigacja mobilna"><a href="#o-nas"><small>01</small>O nas</a><a href="#oferta"><small>02</small>Usługi</a><a href="#realizacje"><small>03</small>Projekty</a><a href="tel:+48692746031"><small>04</small>Kontakt</a></nav><a class="hx-menu-contact" href="tel:+48692746031">Porozmawiajmy <span>↗</span></a></div></div>
   </section>
   <section class="hero" hidden aria-hidden="true">
     <div class="media" aria-hidden="true">
@@ -2470,6 +2420,6 @@
       if (!reduceMotion) restartTimer();
     })();
   </script>
-  <script src="assets/hero-v33.js"></script>
+  <script src="assets/hero-v35.js"></script>
 </body>
 </html>
