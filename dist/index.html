@@ -1700,7 +1700,7 @@
       .service-cta::after { animation: none; }
     }
 
-    /* HostControl editorial hero v33 */
+    /* Legacy HostControl hero styles disabled. The maintained version lives in assets/hero-v33.css.
     .hc-hero {
       --hc-ink: #06172d;
       --hc-blue: #086cff;
@@ -1836,6 +1836,7 @@
     }
     @keyframes hcRibbonFloatMobile { 0%,100% { transform: rotate(-17deg) scale(1.17) translate3d(0,0,0); } 50% { transform: rotate(-14deg) scale(1.2) translate3d(-1%,1%,0); } }
     @media (prefers-reduced-motion: reduce) { .hc-ribbon, .hc-availability i { animation: none; } .hc-art { transform: none !important; } }
+    */
 
   </style>
   <link rel="stylesheet" href="assets/hero-v33.css">
@@ -1875,11 +1876,20 @@
     <div class="hc-hero-inner">
       <div class="hc-copy">
         <div class="hc-kicker">Niezależne studio digital <span>/</span> Polska</div>
-        <h1 class="hc-title" id="hc-hero-title">
-          <span class="hc-title-line">Tworzymy marki,</span>
-          <span class="hc-title-line">których</span>
-          <span class="hc-title-line hc-title-outline">nie da się</span>
-          <span class="hc-title-line hc-title-blue">przeoczyć.</span>
+        <h1 class="hc-title" id="hc-hero-title" aria-label="Tworzymy marki, których nie da się przeoczyć.">
+          <span class="hc-title-layout hc-title-layout--desktop" aria-hidden="true">
+            <span class="hc-title-line">Tworzymy marki,</span>
+            <span class="hc-title-line">których</span>
+            <span class="hc-title-line hc-title-outline">nie da się</span>
+            <span class="hc-title-line hc-title-blue">przeoczyć.</span>
+          </span>
+          <span class="hc-title-layout hc-title-layout--mobile" aria-hidden="true">
+            <span class="hc-title-line">Tworzymy</span>
+            <span class="hc-title-line">marki,</span>
+            <span class="hc-title-line">których</span>
+            <span class="hc-title-line hc-title-outline">nie da się</span>
+            <span class="hc-title-line hc-title-blue">przeoczyć.</span>
+          </span>
         </h1>
         <p class="hc-summary">Strategia, branding, strony internetowe i kampanie — projektowane jako jeden spójny system.</p>
         <div class="hc-actions">
@@ -1904,7 +1914,7 @@
         </div>
       </div>
 
-      <div class="hc-drag"><span class="hc-cross" aria-hidden="true"></span> Drag to explore</div>
+      <div class="hc-drag"><span class="hc-cross" aria-hidden="true"></span><span class="hc-drag-desktop">Drag to explore</span><span class="hc-drag-mobile">Swipe ↓</span></div>
       <div class="hc-index" aria-hidden="true"><span>01</span><i></i><span>04</span></div>
     </div>
 
