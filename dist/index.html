@@ -1700,7 +1700,7 @@
       .service-cta::after { animation: none; }
     }
 
-    /* Legacy HostControl hero styles disabled. The maintained version lives in assets/hero-v35.css.
+    /* Legacy HostControl hero styles disabled. The maintained version lives in assets/hero-v36.css.
     .hc-hero {
       --hc-ink: #06172d;
       --hc-blue: #086cff;
@@ -1839,20 +1839,20 @@
     */
 
   </style>
-  <link rel="stylesheet" href="assets/hero-v35.css">
+  <link rel="stylesheet" href="assets/hero-v36.css">
 </head>
 <body>
   <main>
   <section class="hc-hero hx-hero" id="poczatek" aria-labelledby="hx-title">
       <header class="hx-header">
-        <a class="hx-brand" href="#poczatek" aria-label="HostControl — strona główna"><span class="hx-mark" aria-hidden="true"><i></i></span><span class="hx-wordmark"><strong>HOST<span>CONTROL</span></strong><small>DIGITAL AGENCY</small></span></a>
+        <a class="hx-brand" href="#poczatek" aria-label="HostControl — strona główna"><img class="hx-logo" src="assets/hostcontrol-logo-clean.png" width="1400" height="220" alt="HostControl — Digital Agency" fetchpriority="high"></a>
         <nav class="hx-nav" aria-label="Nawigacja główna"><a href="#o-nas">O nas</a><a href="#oferta">Usługi</a><a href="#realizacje">Projekty</a><a href="tel:+48692746031">Kontakt</a></nav>
         <a class="hx-start" href="tel:+48692746031">Zacznijmy projekt <svg viewBox="0 0 32 24" aria-hidden="true"><path d="M1 12h28M20 3l9 9-9 9"/></svg></a>
         <button class="hx-menu-toggle" aria-label="Otwórz menu" aria-controls="hx-menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </header>
     <div class="hx-stage">
       <div class="hx-art" aria-hidden="true">
-        <picture><source media="(max-width: 800px)" srcset="assets/ribbon-mobile.webp"><img id="hx-ribbon-image" src="assets/ribbon-desktop.webp" width="1672" height="941" alt="" fetchpriority="high" decoding="async"></picture>
+        <picture><source media="(max-width: 800px)" srcset="assets/ribbon-clean-mobile.webp"><img id="hx-ribbon-image" src="assets/ribbon-clean-desktop.webp" width="1672" height="941" alt="" fetchpriority="high" decoding="async"></picture>
         <canvas id="hx-ribbon-canvas"></canvas>
       </div>
 
@@ -1864,8 +1864,12 @@
       </h1>
       <p class="hx-summary">Strategia, branding, strony internetowe<br>i kampanie — <span class="hx-desktop-inline">projektowane </span>jako jeden spójny system.</p>
       <div class="hx-actions"><a class="hx-primary" href="#realizacje"><span class="hx-desktop">Poznaj nasze realizacje</span><span class="hx-mobile">Zobacz realizacje</span><svg viewBox="0 0 32 24" aria-hidden="true"><path d="M1 12h28M20 3l9 9-9 9"/></svg></a><a class="hx-secondary" href="tel:+48692746031"><i><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 25 25 7M7 7h18v18"/></svg></i>Porozmawiajmy</a></div>
-      <div class="hx-interaction" role="group" aria-label="Animowana wstęga projektów"><button class="hx-drag" aria-label="Porusz wstęgą; przeciągnij w lewo lub w prawo"><span class="hx-cross"></span><span class="hx-desktop">Drag to explore</span><span class="hx-mobile">Swipe</span><svg class="hx-mobile" viewBox="0 0 20 40" aria-hidden="true"><path d="M10 1v35M2 28l8 8 8-8"/></svg></button><button class="hx-index" aria-label="Następny projekt"><span id="hx-current">01</span><i></i><span>/</span><span>04</span></button></div>
-      <a class="hx-project-hit hx-hit-1" href="#realizacje" aria-label="Zobacz realizacje — strategia z perspektywą" data-project="0"></a><a class="hx-project-hit hx-hit-2" href="#realizacje" aria-label="Zobacz realizacje — marki, które rosną" data-project="1"></a><a class="hx-project-hit hx-hit-3" href="#realizacje" aria-label="Zobacz realizacje — cyfrowe doświadczenia" data-project="2"></a><a class="hx-project-hit hx-hit-4" href="#realizacje" aria-label="Zobacz realizacje — pomysły w działaniu" data-project="3"></a>
+      <div class="hx-interaction" role="group" aria-label="Animowana wstęga projektów"><button class="hx-drag" aria-label="Przesuń taśmę w lewo lub w prawo"><span class="hx-swipe-arrows" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 12H4m6-6-6 6 6 6"/></svg><svg viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></span><span class="hx-desktop">Drag to explore</span><span class="hx-mobile">Swipe</span></button></div>
+      <div class="hx-panels" aria-label="Nasze specjalizacje">
+        <a class="hx-panel hx-panel-1" href="uslugi/branding/" data-project="0"><div class="hx-panel-copy"><span class="hx-panel-number">01 / BRANDING</span><strong>Marki<br>z charakterem.</strong><span class="hx-panel-link">Zobacz więcej <span aria-hidden="true">↗</span></span></div><img src="assets/project-branding.webp" alt="Niebieska identyfikacja wizualna i materiały marki" width="1200" height="800" decoding="async"></a>
+        <a class="hx-panel hx-panel-2" href="uslugi/strony-internetowe/" data-project="1"><div class="hx-panel-copy"><span class="hx-panel-number">02 / WEB DESIGN</span><strong>Strony,<br>które działają.</strong><span class="hx-panel-link">Zobacz więcej <span aria-hidden="true">↗</span></span></div><img src="assets/project-webdesign.webp" alt="Nowoczesna strona internetowa na ekranie laptopa" width="1200" height="800" decoding="async"></a>
+        <a class="hx-panel hx-panel-3" href="uslugi/eventy/" data-project="2"><div class="hx-panel-copy"><span class="hx-panel-number">03 / EVENTY</span><strong>Emocje,<br>które zostają.</strong><span class="hx-panel-link">Zobacz więcej <span aria-hidden="true">↗</span></span></div><img src="assets/project-events.webp" alt="Scena eventowa z niebieskim oświetleniem" width="1200" height="800" decoding="async"></a>
+      </div>
       <footer class="hx-ticker" aria-label="Zakres usług"><i></i><span>Strategia</span><b>•</b><span class="hx-desktop">Identyfikacja</span><span class="hx-mobile">Branding</span><b>•</b><span>Web design</span><b>•</b><span>Social media</span><b>•</b><span>Eventy</span><i class="hx-rule"></i><span class="hx-tagline">Więcej niż strony.</span><i></i></footer>
     </div>
     <div class="hx-menu" id="hx-menu" role="dialog" aria-label="Menu główne" aria-modal="true" hidden inert><div class="hx-menu-body"><p>HOSTCONTROL / DIGITAL AGENCY</p><nav aria-label="Nawigacja mobilna"><a href="#o-nas"><small>01</small>O nas</a><a href="#oferta"><small>02</small>Usługi</a><a href="#realizacje"><small>03</small>Projekty</a><a href="tel:+48692746031"><small>04</small>Kontakt</a></nav><a class="hx-menu-contact" href="tel:+48692746031">Porozmawiajmy <span>↗</span></a></div></div>
@@ -2420,6 +2424,6 @@
       if (!reduceMotion) restartTimer();
     })();
   </script>
-  <script src="assets/hero-v35.js"></script>
+  <script src="assets/hero-v36.js"></script>
 </body>
 </html>
