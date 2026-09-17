@@ -20,3 +20,7 @@ Navigation uses the supplied HostControl Build Deploy Grow PNG. The supplied sta
 ## Synchronized ribbon and light navigation logo
 
 Caption corners now use the inverse of the same spatial displacement field and animation clock as the ribbon shader. The supplied logo was adapted to navy/blue for the light navigation, removing the dark backing. Numeric sampling verified inverse displacement to below 0.02px at 1920px width; JavaScript syntax and local assets checked.
+
+## Hero responsive refinement
+
+Desktop headline width reduced to end before the ribbon; mobile title, description, CTA, swipe and ticker spacing refined. The supplied navigation logo now sits on a persistent translucent glass surface matching the scrolled header treatment.
