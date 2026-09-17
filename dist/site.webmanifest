@@ -3,12 +3,12 @@
   "short_name": "HostControl",
   "icons": [
     {
-      "src": "assets/favicon-192.png",
+      "src": "assets/favicon-192-hc37.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "assets/favicon-512.png",
+      "src": "assets/favicon-512-hc37.png",
       "sizes": "512x512",
       "type": "image/png"
     }
