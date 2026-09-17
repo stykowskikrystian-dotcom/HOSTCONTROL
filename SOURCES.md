@@ -16,3 +16,7 @@ The ribbon backgrounds were edited from the approved hero artwork to remove bake
 ## September 17 branding and ribbon restoration
 
 Navigation uses the supplied HostControl Build Deploy Grow PNG. The supplied standalone HC monogram was composed on a dark circular background for favicon derivatives. Restored ribbon artwork embeds the three thematic photos in the original glass surface; captions remain HTML mapped to those planes so they retain text clarity. Panel controls removed.
+
+## Synchronized ribbon and light navigation logo
+
+Caption corners now use the inverse of the same spatial displacement field and animation clock as the ribbon shader. The supplied logo was adapted to navy/blue for the light navigation, removing the dark backing. Numeric sampling verified inverse displacement to below 0.02px at 1920px width; JavaScript syntax and local assets checked.
