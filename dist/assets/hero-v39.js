@@ -37,6 +37,61 @@
     updateReveals();
   }
 
+  const agencyStage = document.querySelector('.agency-stage');
+  const agencyStageCopy = document.querySelector('.agency-stage-copy');
+  const agencyOptions = [...document.querySelectorAll('.agency-option')];
+  const agencyImages = [...document.querySelectorAll('.agency-media img')];
+  const agencyActiveLabel = document.querySelector('.agency-active-label');
+  const agencyActiveTitle = document.querySelector('.agency-stage-copy h3');
+  const agencyActiveDescription = document.querySelector('.agency-active-description');
+  const agencyStageIndex = document.querySelector('.agency-stage-index');
+  let agencyActive = 0;
+  let agencyTimer = null;
+
+  const scheduleAgencyRotation = () => {
+    clearTimeout(agencyTimer);
+    if (reduceMotion || !agencySection?.classList.contains('is-visible')) return;
+    agencyTimer = setTimeout(() => setAgencyScene(agencyActive + 1), 6200);
+  };
+
+  const setAgencyScene = (next, userInitiated = false) => {
+    if (!agencyOptions.length) return;
+    agencyActive = (next + agencyOptions.length) % agencyOptions.length;
+    const selected = agencyOptions[agencyActive];
+    agencyOptions.forEach((option, index) => {
+      const activeOption = index === agencyActive;
+      option.classList.toggle('active', activeOption);
+      option.setAttribute('aria-pressed', activeOption ? 'true' : 'false');
+    });
+    agencyImages.forEach((image, index) => image.classList.toggle('active', index === agencyActive));
+    agencyStageCopy?.classList.remove('is-changing');
+    if (agencyStageCopy) void agencyStageCopy.offsetWidth;
+    agencyStageCopy?.classList.add('is-changing');
+    agencyActiveLabel.textContent = selected.dataset.label;
+    agencyActiveTitle.textContent = selected.dataset.title;
+    agencyActiveDescription.textContent = selected.dataset.description;
+    agencyStageIndex.textContent = `${String(agencyActive + 1).padStart(2, '0')} / 04`;
+    if (userInitiated) selected.focus({ preventScroll: true });
+    scheduleAgencyRotation();
+  };
+
+  agencyOptions.forEach((option, index) => option.addEventListener('click', () => setAgencyScene(index, true)));
+  agencyStage?.addEventListener('pointermove', event => {
+    if (reduceMotion) return;
+    const rect = agencyStage.getBoundingClientRect();
+    agencyStage.style.setProperty('--stage-x', `${((event.clientX - rect.left) / rect.width) * 100}%`);
+    agencyStage.style.setProperty('--stage-y', `${((event.clientY - rect.top) / rect.height) * 100}%`);
+  }, { passive: true });
+
+  if (agencySection) {
+    const agencyObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+      agencySection.classList.toggle('is-visible', entry.isIntersecting);
+      if (entry.isIntersecting) scheduleAgencyRotation(); else clearTimeout(agencyTimer);
+    }), { threshold: .18 });
+    agencyObserver.observe(agencySection);
+    if (reduceMotion) agencySection.classList.add('is-visible');
+  }
+
   const serviceCards = [...document.querySelectorAll('.service-card')];
   const mobileServices = matchMedia('(max-width: 900px)');
   const cardObserver = new IntersectionObserver(entries => entries.forEach(entry => {
