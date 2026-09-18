@@ -2092,7 +2092,7 @@
     }
 
   </style>
-  <link rel="stylesheet" href="assets/hero-v39.css?v=46">
+  <link rel="stylesheet" href="assets/hero-v39.css?v=48">
 </head>
 <body>
   <main>
@@ -2296,7 +2296,7 @@
     </div>
   </section>
 
-  <section class="trust-strip" id="realizacje" aria-label="Zaufali nam">
+  <section class="trust-strip" aria-label="Zaufali nam">
     <div class="trust-heading"><strong>Zaufali nam</strong></div>
     <div class="trust-window">
       <div class="trust-track">
@@ -2397,6 +2397,52 @@
           </div>
         </div>
       </article>
+    </div>
+  </section>
+
+  <section class="portfolio-section" id="realizacje" aria-labelledby="portfolio-title">
+    <div class="portfolio-shell">
+      <header class="portfolio-head">
+        <div>
+          <div class="portfolio-kicker"><span>03</span> Portfolio</div>
+          <h2 class="portfolio-title" id="portfolio-title"><span>Wybrane</span><span class="portfolio-title-blue">realizacje</span></h2>
+        </div>
+        <p class="portfolio-intro">Projektujemy kompletne doświadczenia. Od pierwszej decyzji strategicznej po markę, stronę i obraz, który zostaje w pamięci.</p>
+      </header>
+
+      <div class="portfolio-grid">
+        <a class="portfolio-card" href="https://krzywelakehouses.pl/" target="_blank" rel="noreferrer" aria-label="Zobacz realizację Krzywe Lake Houses">
+          <div class="portfolio-media">
+            <img class="portfolio-image" src="assets/project-webdesign.webp" alt="Projekt strony internetowej na ekranie laptopa" loading="lazy">
+            <span class="portfolio-client-mark"><img src="assets/client-krzywe-white.png" alt=""></span>
+            <span class="portfolio-number">01 / 03</span>
+            <span class="portfolio-overlay-label">Mazury · Polska</span>
+          </div>
+          <div class="portfolio-copy"><div><h3>Krzywe Lake Houses</h3><p>Strategia · UX/UI · strona · rezerwacje</p></div><span class="portfolio-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 19 19 5M8 5h11v11"/></svg></span></div>
+        </a>
+
+        <a class="portfolio-card" href="https://dlawas.fun/" target="_blank" rel="noreferrer" aria-label="Zobacz realizację DlaWas.fun">
+          <div class="portfolio-media">
+            <img class="portfolio-image" src="assets/project-events.webp" alt="Scena koncertowa z niebieskim oświetleniem" loading="lazy">
+            <span class="portfolio-client-mark"><img src="assets/client-dlawas.png" alt=""></span>
+            <span class="portfolio-number">02 / 03</span>
+            <span class="portfolio-overlay-label">Event experience</span>
+          </div>
+          <div class="portfolio-copy"><div><h3>DlaWas.fun</h3><p>Marka · digital · foto · eventy</p></div><span class="portfolio-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 19 19 5M8 5h11v11"/></svg></span></div>
+        </a>
+
+        <a class="portfolio-card" href="https://www.kurka-wodna.com.pl/" target="_blank" rel="noreferrer" aria-label="Zobacz realizację Kurka Wodna">
+          <div class="portfolio-media">
+            <img class="portfolio-image" src="assets/project-branding.webp" alt="Elementy identyfikacji wizualnej w odcieniach niebieskiego" loading="lazy">
+            <span class="portfolio-client-mark"><img src="assets/client-kurka.png" alt=""></span>
+            <span class="portfolio-number">03 / 03</span>
+            <span class="portfolio-overlay-label">Brand system</span>
+          </div>
+          <div class="portfolio-copy"><div><h3>Kurka Wodna</h3><p>Kierunek marki · identyfikacja · digital</p></div><span class="portfolio-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 19 19 5M8 5h11v11"/></svg></span></div>
+        </a>
+      </div>
+
+      <div class="portfolio-footer" aria-hidden="true"><span>Tworzymy odważnie</span><span class="portfolio-footer-line"></span><span>Dowozimy konkretnie</span></div>
     </div>
   </section>
   </main>
@@ -2709,6 +2755,29 @@
         if (event.key === 'ArrowLeft') show(active - 1, true, 'backward');
       });
       if (!reduceMotion) restartTimer();
+    })();
+  </script>
+  <script>
+    (() => {
+      const section = document.querySelector('.portfolio-section');
+      if (!section) return;
+      const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const reveal = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          section.classList.add('is-visible');
+          reveal.disconnect();
+        });
+      }, { threshold: .12 });
+      reveal.observe(section);
+
+      if (!reduceMotion && matchMedia('(pointer: fine)').matches) {
+        section.addEventListener('pointermove', event => {
+          const rect = section.getBoundingClientRect();
+          section.style.setProperty('--portfolio-x', `${event.clientX - rect.left}px`);
+          section.style.setProperty('--portfolio-y', `${event.clientY - rect.top}px`);
+        }, { passive: true });
+      }
     })();
   </script>
   <script src="assets/hero-v39.js"></script>
