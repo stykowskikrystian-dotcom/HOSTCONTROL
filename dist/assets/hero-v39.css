@@ -506,3 +506,152 @@ body.hx-menu-open{overflow:hidden}
   }
   .hx-logo{width:103%;left:-1.5%;mix-blend-mode:normal}
 }
+
+/* v45 — services section aligned with the light navy/blue HostControl system. */
+.services-section{
+  color:#020e29;
+  background:
+    radial-gradient(circle at 8% 12%,rgba(0,101,255,.12),transparent 29%),
+    radial-gradient(circle at 91% 77%,rgba(0,101,255,.075),transparent 31%),
+    linear-gradient(145deg,#ffffff 0%,#f7fbff 52%,#edf5ff 100%);
+  border-top:1px solid rgba(2,14,41,.075);
+  box-shadow:inset 0 1px rgba(255,255,255,.92),inset 0 80px 140px rgba(0,101,255,.025)
+}
+.services-section::before{
+  opacity:.4;
+  background-image:
+    linear-gradient(rgba(2,14,41,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(2,14,41,.05) 1px,transparent 1px);
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 12%,#000 88%,transparent);
+  mask-image:linear-gradient(180deg,transparent,#000 12%,#000 88%,transparent)
+}
+.services-section::after{
+  color:rgba(0,101,255,.025);
+  -webkit-text-stroke:1px rgba(0,101,255,.09);
+  font-family:HCDisplay,Arial,sans-serif;
+  letter-spacing:-.075em
+}
+.services-header{position:relative;z-index:2}
+.services-kicker{color:rgba(2,14,41,.6)}
+.services-kicker span{color:#0065ff}
+.services-kicker::after{background:rgba(2,14,41,.22)}
+.services-header h2{
+  color:#020e29;
+  font-family:HCDisplay,Arial,sans-serif;
+  letter-spacing:-.065em
+}
+.services-header h2 .services-title-line--solid .services-reveal-word{color:#020e29}
+.services-header h2 .services-title-line--outline .services-reveal-word{
+  color:transparent;
+  -webkit-text-stroke:1.5px #0065ff;
+  text-shadow:0 0 30px rgba(0,101,255,calc(var(--services-word-reveal,0) * .09))
+}
+.services-lead{color:rgba(2,14,41,.68)}
+.services-lead .accent{color:#0065ff}
+.services-stack{position:relative;z-index:2}
+.service-card{
+  border-color:rgba(2,14,41,.14);
+  background:#07162f;
+  box-shadow:0 30px 72px rgba(7,35,76,.17),inset 0 1px rgba(255,255,255,.14)
+}
+.service-card:hover,.service-card:focus-within{
+  border-color:rgba(0,101,255,.42);
+  box-shadow:0 38px 90px rgba(7,35,76,.23),0 0 40px rgba(0,101,255,.08),inset 0 1px rgba(255,255,255,.2)
+}
+.service-media video{filter:brightness(.76) saturate(.78) contrast(1.04)}
+.service-card:hover .service-media video,
+.service-card:focus-within .service-media video,
+.service-card.is-open .service-media video{filter:brightness(.9) saturate(.9) contrast(1.03);transform:scale(1.05)}
+.service-media::after{
+  background:
+    linear-gradient(180deg,rgba(2,14,41,.04),rgba(2,14,41,.1) 38%,rgba(2,14,41,.72) 100%),
+    linear-gradient(112deg,rgba(0,101,255,.22),transparent 46%)
+}
+.service-number{
+  min-height:30px;
+  padding:0 12px;
+  border:1px solid rgba(255,255,255,.32);
+  border-radius:999px;
+  color:rgba(255,255,255,.92);
+  background:rgba(7,22,47,.34);
+  box-shadow:0 8px 24px rgba(2,14,41,.2),inset 0 1px rgba(255,255,255,.16);
+  -webkit-backdrop-filter:blur(12px) saturate(1.2);
+  backdrop-filter:blur(12px) saturate(1.2)
+}
+.service-number::before{background:#2d83ff;box-shadow:0 0 15px rgba(45,131,255,.92)}
+.service-detail{
+  border-top:1px solid rgba(255,255,255,.74);
+  background:linear-gradient(150deg,rgba(255,255,255,.965),rgba(239,247,255,.95));
+  box-shadow:0 -24px 60px rgba(2,14,41,.18),inset 0 1px rgba(255,255,255,.9);
+  -webkit-backdrop-filter:blur(22px) saturate(1.18);
+  backdrop-filter:blur(22px) saturate(1.18)
+}
+.service-detail::before{
+  background:linear-gradient(90deg,#0065ff,rgba(0,101,255,.52) 60%,rgba(0,101,255,.08));
+  box-shadow:0 0 18px rgba(0,101,255,.22)
+}
+.service-name{color:#020e29;font-family:HCDisplay,Arial,sans-serif;letter-spacing:-.055em}
+.service-type{color:rgba(2,14,41,.52)}
+.service-toggle{
+  border-color:rgba(0,101,255,.35);
+  color:#0258db;
+  background:rgba(255,255,255,.92);
+  box-shadow:0 0 0 7px rgba(247,251,255,.96),0 10px 26px rgba(7,35,76,.13)
+}
+.service-toggle::before{background:#0065ff;box-shadow:0 0 12px rgba(0,101,255,.65)}
+.service-toggle:hover,.service-toggle:focus-visible,.service-card.is-open .service-toggle{
+  color:#fff;
+  background:#0065ff;
+  border-color:#0065ff;
+  box-shadow:0 0 0 7px rgba(247,251,255,.96),0 12px 28px rgba(0,101,255,.22)
+}
+.service-toggle:hover::before,.service-toggle:focus-visible::before,.service-card.is-open .service-toggle::before{background:#fff}
+.service-detail-body{border-top-color:rgba(2,14,41,.1)}
+.service-description{color:rgba(2,14,41,.72)}
+.service-scope span{
+  border-color:rgba(0,101,255,.14);
+  color:rgba(2,14,41,.62);
+  background:rgba(0,101,255,.045)
+}
+.service-cta{
+  border-color:rgba(0,101,255,.3);
+  color:#0058df;
+  background:rgba(0,101,255,.06)
+}
+.service-cta:hover,.service-cta:focus-visible{
+  color:#fff;
+  background:#0065ff;
+  border-color:#0065ff;
+  box-shadow:0 12px 26px rgba(0,101,255,.2)
+}
+@media(max-width:900px){
+  .services-section{padding-top:94px;padding-bottom:100px}
+  .services-header{margin-bottom:46px}
+  .service-card:hover,.service-card:focus-within{
+    border-color:rgba(0,101,255,.3);
+    box-shadow:0 24px 58px rgba(7,35,76,.18),inset 0 1px rgba(255,255,255,.16)
+  }
+  .service-toggle,.service-card.is-open .service-toggle{box-shadow:0 0 0 5px rgba(247,251,255,.96),0 10px 24px rgba(7,35,76,.14)}
+}
+@media(max-width:700px){
+  .services-section{padding:88px 12px 92px}
+  .services-header{margin-bottom:38px}
+  .services-kicker,.services-header h2,.services-lead{margin-left:4px;margin-right:4px}
+  .services-header h2{font-size:clamp(2.7rem,12.4vw,4.65rem);line-height:.9}
+  .services-lead{margin-top:24px;font-size:.98rem;line-height:1.62}
+  .services-stack{grid-template-columns:1fr;gap:13px}
+  .service-card,.service-card:nth-child(even){height:clamp(320px,91vw,378px);border-radius:22px;transform:translateY(34px) scale(.98)}
+  .service-card.is-seen{transform:translateY(0) scale(1)}
+  .service-card.is-open{height:clamp(390px,112vw,454px)}
+  .service-number{top:18px;left:18px;font-size:.64rem}
+  .service-detail{padding-left:18px;padding-right:18px;border-radius:24px 24px 0 0}
+  .service-name{font-size:clamp(1.8rem,8vw,2.45rem)}
+  .service-type{font-size:.67rem;letter-spacing:.12em}
+  .service-description{font-size:.95rem}
+}
+@media(max-width:390px){
+  .services-section{padding-left:10px;padding-right:10px}
+  .services-header h2{font-size:clamp(2.55rem,12.5vw,3.4rem)}
+  .service-card,.service-card:nth-child(even){height:clamp(306px,91vw,348px)}
+  .service-card.is-open{height:clamp(400px,120vw,460px)}
+}
