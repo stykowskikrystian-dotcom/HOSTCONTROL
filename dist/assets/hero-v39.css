@@ -471,3 +471,38 @@ body.hx-menu-open{overflow:hidden}
   .hx-stage:after{top:13.7%;height:48%;border-radius:0 27cqw 27cqw 0}
   .hx-summary{top:49.7%;width:84%}
 }
+
+/* v44 — real transparent logo on the same glass surface as the contact icons. */
+.hx-brand,
+.hx-header.is-scrolled .hx-brand{
+  border:1px solid rgba(2,14,41,.1)!important;
+  background:rgba(255,255,255,.68)!important;
+  box-shadow:0 .4cqw 1.15cqw rgba(7,35,76,.08),inset 0 1px 0 rgba(255,255,255,.95)!important;
+  -webkit-backdrop-filter:blur(12px) saturate(1.25);
+  backdrop-filter:blur(12px) saturate(1.25)
+}
+.hx-brand:after{
+  background:linear-gradient(118deg,rgba(255,255,255,.17),rgba(255,255,255,.025) 48%,rgba(0,101,255,.035))
+}
+.hx-brand:hover,
+.hx-header.is-scrolled .hx-brand:hover{
+  background:rgba(255,255,255,.78)!important;
+  border-color:rgba(0,101,255,.18)!important
+}
+.hx-logo{
+  width:103%;
+  left:-1.5%;
+  mix-blend-mode:normal;
+  filter:none
+}
+@media(max-width:800px){
+  .hx-brand,
+  .hx-header.is-scrolled .hx-brand{
+    border-color:rgba(2,14,41,.1)!important;
+    background:rgba(255,255,255,.68)!important;
+    box-shadow:0 1cqw 2.8cqw rgba(7,35,76,.1),inset 0 1px 0 #fff!important;
+    -webkit-backdrop-filter:blur(12px) saturate(1.25);
+    backdrop-filter:blur(12px) saturate(1.25)
+  }
+  .hx-logo{width:103%;left:-1.5%;mix-blend-mode:normal}
+}
