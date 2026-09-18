@@ -6,6 +6,8 @@ Filmy wykorzystane w sekcji hero pochodzą z Pexels i zostały przycięte oraz z
 - Digital: https://www.pexels.com/video/man-working-using-his-computer-5240935/
 - Dron: https://www.pexels.com/video/drone-shot-of-a-beautiful-lake-in-the-forest-4169462/
 - Eventy: https://www.pexels.com/video/crowd-on-concert-13641377/
+- Fotografia — sesja studyjna (Pexels ID 7206150): https://www.pexels.com/search/videos/photography%20studio/
+- Eventy — klub i parkiet taneczny (Pexels ID 7271837): https://www.pexels.com/search/videos/nightclub/
 
 Licencja: https://www.pexels.com/license/
 
