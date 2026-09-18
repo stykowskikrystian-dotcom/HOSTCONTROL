@@ -115,13 +115,60 @@
     button?.addEventListener('click', () => {
       const open = !card.classList.contains('is-open');
       if (mobileServices.matches) serviceCards.forEach(other => {
-        if (other !== card) other.classList.remove('is-open');
+        if (other === card) return;
+        other.classList.remove('is-open');
+        const otherButton = other.querySelector('.service-toggle');
+        otherButton?.setAttribute('aria-expanded', 'false');
+        if (otherButton) otherButton.textContent = 'Zobacz więcej';
       });
       card.classList.toggle('is-open', open);
       button.setAttribute('aria-expanded', String(open));
       button.textContent = open ? 'Zamknij' : 'Zobacz więcej';
     });
   });
+})();
+
+(() => {
+  const section = document.querySelector('.why-section');
+  if (!section) return;
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const items = [...section.querySelectorAll('.why-item')];
+  const number = section.querySelector('.why-stage-number');
+  const label = section.querySelector('.why-stage-label');
+  const stage = section.querySelector('.why-stage');
+  const labels = ['Jeden zespół','Pełna odpowiedzialność','Właściwe rozwiązanie','Stały partner'];
+  let active = 0;
+  let timer;
+
+  const setActive = (next, user = false) => {
+    active = (next + items.length) % items.length;
+    items.forEach((item, index) => {
+      const selected = index === active;
+      item.classList.toggle('is-active', selected);
+      item.querySelector('button').setAttribute('aria-expanded', String(selected));
+    });
+    number.textContent = String(active + 1).padStart(2,'0');
+    label.textContent = labels[active];
+    stage.classList.remove('is-changing'); void stage.offsetWidth; stage.classList.add('is-changing');
+    if (user) restart();
+  };
+  const restart = () => {
+    clearInterval(timer);
+    if (!reduceMotion) timer = setInterval(() => setActive(active + 1), 5200);
+  };
+  items.forEach((item, index) => item.querySelector('button').addEventListener('click', () => setActive(index, true)));
+  stage.addEventListener('pointermove', event => {
+    if (reduceMotion) return;
+    const rect = stage.getBoundingClientRect();
+    stage.style.setProperty('--why-x', `${event.clientX - rect.left}px`);
+    stage.style.setProperty('--why-y', `${event.clientY - rect.top}px`);
+  }, { passive:true });
+  const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+    section.classList.toggle('is-visible', entry.isIntersecting);
+    if (entry.isIntersecting) restart(); else clearInterval(timer);
+  }), { threshold:.16 });
+  observer.observe(section);
+  setActive(0);
 })();
 
 (() => {
