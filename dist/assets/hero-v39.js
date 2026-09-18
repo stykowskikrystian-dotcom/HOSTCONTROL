@@ -125,6 +125,66 @@
 })();
 
 (() => {
+  const section = document.querySelector('.process-section');
+  if (!section) return;
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const tabs = [...section.querySelectorAll('.process-tab')];
+  const panel = section.querySelector('.process-panel');
+  const copy = section.querySelector('.process-copy');
+  const index = section.querySelector('.process-index');
+  const label = section.querySelector('.process-label');
+  const title = section.querySelector('.process-copy h3');
+  const summary = section.querySelector('.process-summary');
+  const steps = [...section.querySelectorAll('.process-steps li')];
+  const progress = section.querySelector('.process-progress span');
+  const content = {
+    web: { label:'Strony internetowe', title:'Od strategii do strony gotowej sprzedawać.', summary:'Poznajemy odbiorców, porządkujemy treści, projektujemy doświadczenie i wdrażamy szybki serwis przygotowany do dalszego rozwoju.', steps:[['Warsztat','Cel i użytkownicy'],['UX i treść','Struktura serwisu'],['Design','Interfejs i ruch'],['Wdrożenie','Testy i publikacja']] },
+    marketing: { label:'Marketing', title:'Komunikacja, która trafia do właściwych ludzi.', summary:'Łączymy analizę, pomysł i dystrybucję. Budujemy plan działań, przygotowujemy materiały i optymalizujemy kampanię na podstawie realnych wyników.', steps:[['Diagnoza','Rynek i cele'],['Koncepcja','Kanały i przekaz'],['Kampania','Kreacja i emisja'],['Optymalizacja','Wyniki i rozwój']] },
+    branding: { label:'Branding', title:'Nadajemy marce kierunek i własny język.', summary:'Wydobywamy charakter firmy, definiujemy jej pozycję i tworzymy elastyczny system wizualny spójny w każdym punkcie kontaktu.', steps:[['Odkrycie','DNA marki'],['Strategia','Pozycja i ton'],['Identyfikacja','Logo i system'],['Brandbook','Zasady wdrożenia']] },
+    drone: { label:'Fotografia i dron', title:'Planujemy obraz, który pracuje dla marki.', summary:'Od scenariusza i lokalizacji po ujęcia z ziemi i powietrza. Realizujemy materiał, montujemy go i przygotowujemy formaty do wszystkich kanałów.', steps:[['Preprodukcja','Koncepcja i plan'],['Realizacja','Foto i loty'],['Postprodukcja','Selekcja i montaż'],['Formaty','WWW i social media']] },
+    events: { label:'Eventy firmowe', title:'Prowadzimy wydarzenie od pomysłu do finału.', summary:'Projektujemy doświadczenie uczestników, organizujemy przestrzeń, oprawę oraz wykonawców i koordynujemy realizację na miejscu.', steps:[['Koncepcja','Cel i scenariusz'],['Produkcja','Miejsce i partnerzy'],['Oprawa','Technika i branding'],['Realizacja','Koordynacja eventu']] }
+  };
+  let active = 0;
+  let step = 0;
+  let timer;
+
+  const paintStep = next => {
+    step = next % steps.length;
+    steps.forEach((item, i) => item.classList.toggle('is-current', i === step));
+    progress.style.width = `${(step + 1) * 25}%`;
+  };
+  const render = (next, user = false) => {
+    active = (next + tabs.length) % tabs.length;
+    const tab = tabs[active];
+    const data = content[tab.dataset.process];
+    tabs.forEach((item, i) => { item.classList.toggle('is-active', i === active); item.setAttribute('aria-selected', String(i === active)); item.tabIndex = i === active ? 0 : -1; });
+    copy.classList.remove('is-changing'); void copy.offsetWidth; copy.classList.add('is-changing');
+    index.textContent = `${String(active + 1).padStart(2,'0')} / 05`;
+    label.textContent = data.label; title.textContent = data.title; summary.textContent = data.summary;
+    steps.forEach((item, i) => { item.querySelector('strong').textContent = data.steps[i][0]; item.querySelector('small').textContent = data.steps[i][1]; });
+    paintStep(0);
+    if (user) tab.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block:'nearest', inline:'center' });
+  };
+  const start = () => {
+    clearInterval(timer);
+    if (reduceMotion) return;
+    timer = setInterval(() => { if (step < 3) paintStep(step + 1); else render(active + 1); }, 1900);
+  };
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => { render(i, true); start(); });
+    tab.addEventListener('keydown', event => {
+      if (!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key)) return;
+      event.preventDefault(); const direction = ['ArrowRight','ArrowDown'].includes(event.key) ? 1 : -1; render(active + direction, true); tabs[active].focus(); start();
+    });
+  });
+  const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) start(); else clearInterval(timer); }), { threshold:.22 });
+  observer.observe(section);
+  panel.addEventListener('pointerenter', () => clearInterval(timer));
+  panel.addEventListener('pointerleave', start);
+  render(0);
+})();
+
+(() => {
   const hero = document.querySelector('.hx-hero');
   const stage = hero.querySelector('.hx-stage');
   const header = hero.querySelector('.hx-header');
