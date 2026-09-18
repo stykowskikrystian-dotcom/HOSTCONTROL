@@ -128,6 +128,17 @@
   const hero = document.querySelector('.hx-hero');
   const stage = hero.querySelector('.hx-stage');
   const header = hero.querySelector('.hx-header');
+  hero.querySelectorAll('.hx-secondary').forEach(button => {
+    button.addEventListener('pointermove', event => {
+      const rect = button.getBoundingClientRect();
+      button.style.setProperty('--button-x', `${event.clientX - rect.left}px`);
+      button.style.setProperty('--button-y', `${event.clientY - rect.top}px`);
+    }, { passive: true });
+    button.addEventListener('pointerleave', () => {
+      button.style.setProperty('--button-x', '50%');
+      button.style.setProperty('--button-y', '50%');
+    });
+  });
   const toggle = hero.querySelector('.hx-menu-toggle');
   const menu = hero.querySelector('.hx-menu');
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
