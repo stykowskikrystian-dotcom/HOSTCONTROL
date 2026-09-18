@@ -1125,3 +1125,37 @@ body.hx-menu-open{overflow:hidden}
 }
 @media(max-width:380px){.founder-status{max-width:88%;font-size:.52rem}.founder-copy h2{font-size:2.85rem}.founder-contact{padding:17px}.founder-actions strong{font-size:.62rem}}
 @media(prefers-reduced-motion:reduce){.founder-portrait-wrap{transform:none!important}.founder-portrait,.founder-copy{opacity:1!important;transform:none!important;clip-path:none!important;transition:none}.founder-scan,.founder-status i{animation:none}}
+
+/* v57 — stronger founder composition and reliable portrait reveal. */
+.founder-section{background:
+  radial-gradient(circle at var(--founder-x) var(--founder-y),rgba(8,117,255,.105),transparent 22%),
+  linear-gradient(rgba(4,35,78,.038) 1px,transparent 1px),linear-gradient(90deg,rgba(4,35,78,.038) 1px,transparent 1px),#f8faff;background-size:auto,72px 72px,72px 72px}
+.founder-head{position:relative;z-index:3;padding-bottom:24px;border-bottom:1px solid rgba(5,48,104,.11)}
+.founder-portrait-wrap::before{content:"";position:absolute;z-index:-1;inset:34px 0 12px 34px;border:1px solid rgba(8,117,255,.17);border-radius:28px;background:linear-gradient(145deg,rgba(8,117,255,.11),rgba(255,255,255,.45));transform:translateZ(-10px)}
+.founder-portrait{background:#d9e8f8}.founder-portrait img{opacity:1;visibility:visible}
+.founder-status{font-size:.63rem;line-height:1.35;letter-spacing:.095em}.founder-status span{display:block}
+.founder-copy h2{max-width:790px}
+.founder-contact{padding:30px;background:
+  radial-gradient(circle at 96% 8%,rgba(85,169,255,.32),transparent 28%),
+  linear-gradient(135deg,#020d24 0%,#062b60 50%,#0875ff 125%)}
+.founder-contact::after{content:"HC";position:absolute;right:-.04em;bottom:-.24em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.09);font:900 9rem/1 HCDisplay,Arial,sans-serif;letter-spacing:-.08em;pointer-events:none}
+.founder-contact h3{max-width:360px}.founder-actions a{overflow:hidden;background:rgba(255,255,255,.09);box-shadow:inset 0 1px rgba(255,255,255,.09)}
+.founder-actions a::before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 18%,rgba(255,255,255,.12) 48%,transparent 78%);transform:translateX(-115%);transition:transform .7s cubic-bezier(.16,1,.3,1)}.founder-actions a:hover::before,.founder-actions a:focus-visible::before{transform:translateX(115%)}
+
+@media(max-width:760px){
+  .founder-section{padding:58px 14px 72px;background:
+    radial-gradient(circle at 92% 19%,rgba(8,117,255,.12),transparent 24%),
+    linear-gradient(rgba(4,35,78,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(4,35,78,.04) 1px,transparent 1px),#f8faff;background-size:auto,64px 64px,64px 64px}
+  .founder-section::before{content:"HC";left:auto;right:-.03em;top:46px;font-size:47vw;opacity:.72}
+  .founder-head{gap:11px;margin-bottom:26px;padding:0 2px 22px}.founder-head>p{max-width:310px;font-size:.88rem;line-height:1.55}.founder-kicker{position:relative;z-index:2;gap:11px;color:#42506a}.founder-kicker::after{flex:1;width:auto;min-width:28px}
+  .founder-grid{gap:34px}.founder-portrait-wrap{width:100%;min-height:0;aspect-ratio:4/4.35;margin:0;transform:none!important}.founder-portrait-wrap::before{inset:18px 0 -13px 18px;border-radius:22px}
+  .founder-portrait{position:absolute;inset:0 13px 18px 0;display:block;border-radius:22px;clip-path:none!important;opacity:1!important;transform:none!important}.founder-section:not(.is-visible) .founder-portrait{clip-path:none;opacity:1;transform:none}.founder-portrait img{position:absolute;inset:0;width:100%;height:100%;opacity:1;visibility:visible;object-fit:cover;object-position:center 38%}
+  .founder-signature{left:18px;right:28px;bottom:48px}.founder-signature span{font-size:1.7rem}.founder-signature small{max-width:220px;line-height:1.45}
+  .founder-status{right:0;bottom:-8px;min-height:58px;max-width:68%;padding:0 15px;border-radius:14px;background:rgba(255,255,255,.94);font-size:.55rem;box-shadow:0 18px 42px rgba(5,43,94,.18)}
+  .founder-copy{opacity:1!important;transform:none!important}.founder-section:not(.is-visible) .founder-copy{opacity:1;transform:none}
+  .founder-label{margin-bottom:13px}.founder-copy h2{font-size:clamp(2.65rem,11.8vw,4.25rem);line-height:.89}.founder-text{gap:18px;margin-top:22px}.founder-text p{font-size:1rem;line-height:1.62}
+  .founder-tags{gap:7px;margin-top:21px}.founder-tags span{min-height:37px;padding:0 12px;font-size:.62rem}
+  .founder-contact{gap:23px;margin-top:27px;padding:24px 19px 20px;border-radius:20px}.founder-contact::after{right:-.06em;bottom:-.13em;font-size:8rem}.founder-contact h3{max-width:290px;margin:8px 0 12px;font-size:2.25rem}.founder-contact p{max-width:320px;font-size:.9rem;line-height:1.55}
+  .founder-actions{gap:9px}.founder-actions a{min-height:69px;padding:12px 48px 12px 15px;border-radius:15px}.founder-actions small{font-size:.61rem}.founder-actions strong{font-size:.8rem}.founder-actions i{right:16px;width:29px;height:29px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.2);border-radius:50%;background:rgba(255,255,255,.08)}
+}
+@media(max-width:380px){.founder-copy h2{font-size:2.55rem}.founder-portrait-wrap{aspect-ratio:4/4.55}.founder-status{max-width:73%}.founder-contact h3{font-size:2rem}}

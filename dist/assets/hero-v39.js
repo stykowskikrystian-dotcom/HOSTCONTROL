@@ -133,7 +133,7 @@
   if (!section) return;
   const portrait = section.querySelector('.founder-portrait-wrap');
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const observer = new IntersectionObserver(entries => entries.forEach(entry => section.classList.toggle('is-visible', entry.isIntersecting)), { threshold:.14 });
+  const observer = new IntersectionObserver(entries => entries.forEach(entry => section.classList.toggle('is-visible', entry.isIntersecting)), { threshold:.035, rootMargin:'0px 0px -6% 0px' });
   observer.observe(section);
   if (reduceMotion || !portrait) return;
   section.addEventListener('pointermove', event => {
