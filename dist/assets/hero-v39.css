@@ -341,3 +341,38 @@ body.hx-menu-open{overflow:hidden}
   .hx-summary{top:48.3%}
   .hx-actions{top:55.3%}
 }
+
+/* v42 — contact dock, rounded mobile copy surface and relocated mobile CTAs. */
+.hx-socials{position:absolute;left:3.9cqw;top:4.28cqw;display:flex;align-items:center;gap:.34cqw;z-index:2}
+.hx-social-link{--social-accent:#0065ff;position:relative;width:1.62cqw;height:1.62cqw;min-width:25px;min-height:25px;display:grid;place-items:center;border:1px solid color-mix(in srgb,var(--social-accent) 26%,rgba(2,14,41,.08));border-radius:50%;background:rgba(255,255,255,.68);color:var(--social-accent);box-shadow:0 .35cqw .9cqw rgba(7,35,76,.08),inset 0 1px 0 rgba(255,255,255,.95);-webkit-backdrop-filter:blur(12px) saturate(1.25);backdrop-filter:blur(12px) saturate(1.25);transition:transform .35s cubic-bezier(.2,.85,.2,1),background .3s,color .3s,border-color .3s,box-shadow .3s}
+.hx-social-link svg{width:48%;height:48%;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.hx-social-link.hx-social-fill svg{fill:currentColor;stroke:none}
+.hx-social-link .hx-social-dot{fill:currentColor;stroke:none}
+.hx-social-instagram{--social-accent:#e74283}.hx-social-facebook{--social-accent:#1877f2}.hx-social-linkedin{--social-accent:#0a66c2}.hx-social-phone{--social-accent:#0065ff}.hx-social-email{--social-accent:#001634}
+.hx-social-link:after{content:attr(data-label);position:absolute;top:calc(100% + .45cqw);left:50%;transform:translate(-50%,-4px);padding:.34cqw .48cqw;border:1px solid rgba(2,14,41,.1);border-radius:99px;background:rgba(255,255,255,.92);box-shadow:0 .3cqw .9cqw rgba(7,35,76,.1);color:var(--ink);font:700 .48cqw/1 Arial,sans-serif;letter-spacing:.08em;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .22s,transform .22s}
+.hx-social-link:hover,.hx-social-link:focus-visible{transform:translateY(-3px) scale(1.08);background:var(--social-accent);color:#fff;border-color:rgba(255,255,255,.75);box-shadow:0 .55cqw 1.25cqw color-mix(in srgb,var(--social-accent) 28%,transparent),inset 0 1px 0 rgba(255,255,255,.45)}
+.hx-social-link:hover:after,.hx-social-link:focus-visible:after{opacity:1;transform:translate(-50%,0)}
+.hx-social-link:active{transform:translateY(-1px) scale(.94)}
+@media(prefers-reduced-motion:no-preference){
+  .hx-social-link{animation:hx-social-enter .65s both cubic-bezier(.2,.85,.2,1)}
+  .hx-social-link:nth-child(1){animation-delay:.48s}.hx-social-link:nth-child(2){animation-delay:.54s}.hx-social-link:nth-child(3){animation-delay:.6s}.hx-social-link:nth-child(4){animation-delay:.66s}.hx-social-link:nth-child(5){animation-delay:.72s}
+}
+@keyframes hx-social-enter{from{opacity:0;transform:translateY(-.7cqw) scale(.76)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:800px){
+  .hx-socials{left:5.4cqw;top:12.2cqw;gap:1.08cqw}
+  .hx-social-link{width:6.15cqw;height:6.15cqw;min-width:27px;min-height:27px;box-shadow:0 1cqw 2.8cqw rgba(7,35,76,.1),inset 0 1px 0 #fff}
+  .hx-social-link:after{display:none}
+  .hx-stage:after{left:-8%;top:13.2%;width:91%;height:50.2%;border:1px solid rgba(255,255,255,.72);border-left:0;border-radius:0 28cqw 28cqw 0;background:linear-gradient(100deg,rgba(248,251,255,.985) 0%,rgba(248,251,255,.955) 59%,rgba(248,251,255,.76) 83%,rgba(248,251,255,.13) 100%);box-shadow:1.8cqw 2.6cqw 7cqw rgba(10,58,122,.06),inset -1px 0 rgba(255,255,255,.86);filter:none}
+  .hx-actions{top:72.1%;left:auto;right:5.4%;align-items:flex-end;gap:1.35cqw;animation-name:hx-reveal-from-right!important}
+  .hx-actions .hx-secondary{min-width:43.5cqw;min-height:8.9cqw;padding:.52cqw 2.2cqw .52cqw .52cqw;gap:1.75cqw;font-size:1.86cqw;letter-spacing:.115em;background:rgba(255,255,255,.86);box-shadow:0 1.25cqw 4cqw rgba(0,48,122,.14),inset 0 1px 0 #fff}
+  .hx-actions .hx-secondary i{width:7.75cqw;height:7.75cqw}
+  .hx-actions .hx-secondary svg{width:3.8cqw}
+  .hx-drag{top:72.1%}
+}
+@keyframes hx-reveal-from-right{from{opacity:0;transform:translateX(3.5cqw)}to{opacity:1;transform:translateX(0)}}
+@media(max-width:390px){
+  .hx-socials{top:12.45cqw}
+  .hx-stage:after{top:13.35%;height:50.4%;border-radius:0 30cqw 30cqw 0}
+  .hx-actions{top:72.35%;right:5%}
+  .hx-drag{top:72.35%}
+}
