@@ -129,6 +129,33 @@
 })();
 
 (() => {
+  const section = document.querySelector('.founder-section');
+  if (!section) return;
+  const portrait = section.querySelector('.founder-portrait-wrap');
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const observer = new IntersectionObserver(entries => entries.forEach(entry => section.classList.toggle('is-visible', entry.isIntersecting)), { threshold:.14 });
+  observer.observe(section);
+  if (reduceMotion || !portrait) return;
+  section.addEventListener('pointermove', event => {
+    const rect = section.getBoundingClientRect();
+    section.style.setProperty('--founder-x', `${event.clientX - rect.left}px`);
+    section.style.setProperty('--founder-y', `${event.clientY - rect.top}px`);
+  }, { passive:true });
+  portrait.addEventListener('pointermove', event => {
+    if (event.pointerType === 'touch') return;
+    const rect = portrait.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - .5;
+    const y = (event.clientY - rect.top) / rect.height - .5;
+    portrait.style.setProperty('--tilt-x', `${y * -3.5}deg`);
+    portrait.style.setProperty('--tilt-y', `${x * 4.5}deg`);
+  }, { passive:true });
+  portrait.addEventListener('pointerleave', () => {
+    portrait.style.setProperty('--tilt-x', '0deg');
+    portrait.style.setProperty('--tilt-y', '0deg');
+  });
+})();
+
+(() => {
   const section = document.querySelector('.stack-section');
   if (!section) return;
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -151,17 +178,17 @@
     design: {
       label:'Design i branding', title:'Spójny system wizualny od szkicu do wdrożenia',
       description:'Budujemy kierunek wizualny, interfejsy, identyfikacje i materiały kampanii. Narzędzia pomagają utrzymać spójność, tempo pracy i kontrolę nad każdym formatem.',
-      tools:[['figma','FI','Figma','UX/UI i prototypowanie'],['adobephotoshop','PS','Photoshop','Kreacja i retusz'],['adobeillustrator','AI','Illustrator','Logo i grafika wektorowa'],['adobeaftereffects','AE','After Effects','Motion design'],['canva','CA','Canva','Szybkie formaty marki'],['blender','BL','Blender','Grafika i wizualizacje 3D']]
+      tools:[['figma','FI','Figma','UX/UI i prototypowanie'],['affinityphoto','AP','Affinity Photo','Kreacja i retusz'],['affinitydesigner','AD','Affinity Designer','Logo i grafika wektorowa'],['wacom','WA','Wacom','Szkice i ilustracja'],['canva','CA','Canva','Szybkie formaty marki'],['blender','BL','Blender','Grafika i wizualizacje 3D']]
     },
     photo: {
       label:'Fotografia i film', title:'Pełna kontrola obrazu od planu po gotowy format',
       description:'Planujemy kadry, realizujemy materiał i prowadzimy postprodukcję. Przygotowujemy zdjęcia oraz filmy gotowe na stronę, social media, kampanię i duży ekran.',
-      tools:[['adobelightroom','LR','Lightroom','Selekcja i kolor'],['adobephotoshop','PS','Photoshop','Zaawansowany retusz'],['adobepremierepro','PR','Premiere Pro','Montaż filmowy'],['davinciresolve','DR','DaVinci Resolve','Kolor i postprodukcja'],['captureone','C1','Capture One','Profesjonalny workflow foto'],['blackmagicdesign','BM','Blackmagic Design','Produkcja filmowa']]
+      tools:[['vsco','VS','VSCO','Selekcja i styl obrazu'],['affinityphoto','AP','Affinity Photo','Zaawansowany retusz'],['wondersharefilmora','WF','Filmora','Montaż filmowy'],['davinciresolve','DR','DaVinci Resolve','Kolor i postprodukcja'],['googlephotos','GP','Google Photos','Archiwizacja materiału'],['blackmagicdesign','BM','Blackmagic Design','Produkcja filmowa']]
     },
     drone: {
       label:'Dron i produkcja', title:'Ujęcia z powietrza połączone z produkcją na ziemi',
       description:'Dobieramy sprzęt do lokalizacji i efektu. Łączymy loty, stabilizowane ujęcia, dźwięk i montaż w jeden materiał, który prowadzi widza i opowiada historię.',
-      tools:[['dji','DJ','DJI','Drony i stabilizacja'],['gopro','GP','GoPro','Ujęcia dynamiczne'],['blackmagicdesign','BM','Blackmagic Design','Kamery i produkcja'],['adobepremierepro','PR','Premiere Pro','Montaż materiału'],['davinciresolve','DR','DaVinci Resolve','Color grading'],['adobeaudition','AU','Adobe Audition','Dźwięk i miks']]
+      tools:[['dji','DJ','DJI','Drony i stabilizacja'],['insta360','I3','Insta360','Ujęcia dynamiczne'],['blackmagicdesign','BM','Blackmagic Design','Kamery i produkcja'],['wondersharefilmora','WF','Filmora','Montaż materiału'],['davinciresolve','DR','DaVinci Resolve','Color grading'],['audacity','AU','Audacity','Dźwięk i miks']]
     },
     marketing: {
       label:'Marketing i analityka', title:'Kampanie oparte na treści, dystrybucji i danych',
@@ -170,7 +197,7 @@
     }
   };
 
-  const toolMarkup = ([slug,abbr,name,use]) => `<article class="stack-tool"><span class="stack-icon"><b>${abbr}</b><img src="https://cdn.simpleicons.org/${slug}" alt=""></span><div><strong>${name}</strong><small>${use}</small></div></article>`;
+  const toolMarkup = ([slug,abbr,name,use]) => `<article class="stack-tool"><span class="stack-icon"><b>${abbr}</b><img src="assets/stack/${slug}.svg" alt=""></span><div><strong>${name}</strong><small>${use}</small></div></article>`;
   const render = (next, user = false) => {
     active = (next + tabs.length) % tabs.length;
     const tab = tabs[active];
