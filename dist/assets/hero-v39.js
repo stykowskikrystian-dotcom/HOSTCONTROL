@@ -135,6 +135,13 @@
   const values = [...section.querySelectorAll('.trust-stat strong[data-count]')];
   let played = false;
 
+  section.addEventListener('pointermove', event => {
+    if (reduceMotion) return;
+    const rect = section.getBoundingClientRect();
+    section.style.setProperty('--trust-x', `${event.clientX - rect.left}px`);
+    section.style.setProperty('--trust-y', `${event.clientY - rect.top}px`);
+  }, { passive:true });
+
   const animateValues = () => {
     if (played) return;
     played = true;
