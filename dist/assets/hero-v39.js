@@ -173,31 +173,31 @@
     web: {
       label:'Web i AI', title:'Szybkie wdrożenia i technologia gotowa do rozwoju',
       description:'Projektujemy, kodujemy, testujemy i publikujemy strony oraz aplikacje. AI wspiera analizę i pracę nad kodem, ale końcowe decyzje zawsze pozostają po stronie zespołu.',
-      tools:[['openai','AI','OpenAI Codex','AI i wsparcie kodowania'],['github','GH','GitHub','Wersjonowanie i współpraca'],['vercel','VE','Vercel','Hosting i wdrożenia'],['react','RE','React','Interaktywne interfejsy'],['wordpress','WP','WordPress','Zarządzanie treścią'],['cloudflare','CF','Cloudflare','Szybkość i bezpieczeństwo']]
+      tools:[['openai','AI','OpenAI Codex','AI i wsparcie kodowania','https://openai.com/codex/'],['github','GH','GitHub','Wersjonowanie i współpraca','https://github.com/'],['vercel','VE','Vercel','Hosting i wdrożenia','https://vercel.com/'],['react','RE','React','Interaktywne interfejsy','https://react.dev/'],['wordpress','WP','WordPress','Zarządzanie treścią','https://wordpress.org/'],['cloudflare','CF','Cloudflare','Szybkość i bezpieczeństwo','https://www.cloudflare.com/']]
     },
     design: {
       label:'Design i branding', title:'Spójny system wizualny od szkicu do wdrożenia',
       description:'Budujemy kierunek wizualny, interfejsy, identyfikacje i materiały kampanii. Narzędzia pomagają utrzymać spójność, tempo pracy i kontrolę nad każdym formatem.',
-      tools:[['figma','FI','Figma','UX/UI i prototypowanie'],['affinityphoto','AP','Affinity Photo','Kreacja i retusz'],['affinitydesigner','AD','Affinity Designer','Logo i grafika wektorowa'],['wacom','WA','Wacom','Szkice i ilustracja'],['canva','CA','Canva','Szybkie formaty marki'],['blender','BL','Blender','Grafika i wizualizacje 3D']]
+      tools:[['figma','FI','Figma','UX/UI i prototypowanie','https://www.figma.com/'],['affinityphoto','AP','Affinity Photo','Kreacja i retusz','https://www.affinity.studio/'],['affinitydesigner','AD','Affinity Designer','Logo i grafika wektorowa','https://www.affinity.studio/'],['wacom','WA','Wacom','Szkice i ilustracja','https://www.wacom.com/'],['canva','CA','Canva','Szybkie formaty marki','https://www.canva.com/'],['blender','BL','Blender','Grafika i wizualizacje 3D','https://www.blender.org/']]
     },
     photo: {
       label:'Fotografia i film', title:'Pełna kontrola obrazu od planu po gotowy format',
       description:'Planujemy kadry, realizujemy materiał i prowadzimy postprodukcję. Przygotowujemy zdjęcia oraz filmy gotowe na stronę, social media, kampanię i duży ekran.',
-      tools:[['vsco','VS','VSCO','Selekcja i styl obrazu'],['affinityphoto','AP','Affinity Photo','Zaawansowany retusz'],['wondersharefilmora','WF','Filmora','Montaż filmowy'],['davinciresolve','DR','DaVinci Resolve','Kolor i postprodukcja'],['googlephotos','GP','Google Photos','Archiwizacja materiału'],['blackmagicdesign','BM','Blackmagic Design','Produkcja filmowa']]
+      tools:[['vsco','VS','VSCO','Selekcja i styl obrazu','https://www.vsco.co/'],['affinityphoto','AP','Affinity Photo','Zaawansowany retusz','https://www.affinity.studio/'],['wondersharefilmora','WF','Filmora','Montaż filmowy','https://filmora.wondershare.com/'],['davinciresolve','DR','DaVinci Resolve','Kolor i postprodukcja','https://www.blackmagicdesign.com/products/davinciresolve'],['googlephotos','GP','Google Photos','Archiwizacja materiału','https://www.google.com/photos/about/'],['blackmagicdesign','BM','Blackmagic Design','Produkcja filmowa','https://www.blackmagicdesign.com/']]
     },
     drone: {
       label:'Dron i produkcja', title:'Ujęcia z powietrza połączone z produkcją na ziemi',
       description:'Dobieramy sprzęt do lokalizacji i efektu. Łączymy loty, stabilizowane ujęcia, dźwięk i montaż w jeden materiał, który prowadzi widza i opowiada historię.',
-      tools:[['dji','DJ','DJI','Drony i stabilizacja'],['insta360','I3','Insta360','Ujęcia dynamiczne'],['blackmagicdesign','BM','Blackmagic Design','Kamery i produkcja'],['wondersharefilmora','WF','Filmora','Montaż materiału'],['davinciresolve','DR','DaVinci Resolve','Color grading'],['audacity','AU','Audacity','Dźwięk i miks']]
+      tools:[['dji','DJ','DJI','Drony i stabilizacja','https://www.dji.com/'],['insta360','I3','Insta360','Ujęcia dynamiczne','https://www.insta360.com/'],['blackmagicdesign','BM','Blackmagic Design','Kamery i produkcja','https://www.blackmagicdesign.com/'],['wondersharefilmora','WF','Filmora','Montaż materiału','https://filmora.wondershare.com/'],['davinciresolve','DR','DaVinci Resolve','Color grading','https://www.blackmagicdesign.com/products/davinciresolve'],['audacity','AU','Audacity','Dźwięk i miks','https://www.audacityteam.org/']]
     },
     marketing: {
       label:'Marketing i analityka', title:'Kampanie oparte na treści, dystrybucji i danych',
       description:'Projektujemy komunikację, uruchamiamy kampanie i analizujemy wyniki. Dzięki temu kolejne działania wynikają z danych, a nie wyłącznie z intuicji.',
-      tools:[['meta','ME','Meta','Social media i kampanie'],['googleads','GA','Google Ads','Kampanie płatne'],['googleanalytics','AN','Google Analytics','Analityka zachowań'],['mailchimp','MC','Mailchimp','E-mail marketing'],['notion','NO','Notion','Planowanie i organizacja'],['zapier','ZA','Zapier','Automatyzacja procesów']]
+      tools:[['meta','ME','Meta','Social media i kampanie','https://about.meta.com/'],['googleads','GA','Google Ads','Kampanie płatne','https://business.google.com/google-ads/'],['googleanalytics','AN','Google Analytics','Analityka zachowań','https://analytics.google.com/'],['mailchimp','MC','Mailchimp','E-mail marketing','https://mailchimp.com/'],['notion','NO','Notion','Planowanie i organizacja','https://www.notion.com/'],['zapier','ZA','Zapier','Automatyzacja procesów','https://zapier.com/']]
     }
   };
 
-  const toolMarkup = ([slug,abbr,name,use]) => `<article class="stack-tool"><span class="stack-icon"><b>${abbr}</b><img src="assets/stack/${slug}.svg" alt=""></span><div><strong>${name}</strong><small>${use}</small></div></article>`;
+  const toolMarkup = ([slug,abbr,name,use,url]) => `<a class="stack-tool" href="${url}" target="_blank" rel="noreferrer" aria-label="${name}, otwórz oficjalną stronę"><span class="stack-icon"><b>${abbr}</b><img src="assets/stack/${slug}.svg" alt=""></span><div><strong>${name}</strong><small>${use}</small></div></a>`;
   const render = (next, user = false) => {
     active = (next + tabs.length) % tabs.length;
     const tab = tabs[active];
