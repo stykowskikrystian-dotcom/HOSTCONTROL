@@ -129,6 +129,40 @@
 })();
 
 (() => {
+  const section = document.querySelector('.trust-strip');
+  if (!section) return;
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const values = [...section.querySelectorAll('.trust-stat strong[data-count]')];
+  let played = false;
+
+  const animateValues = () => {
+    if (played) return;
+    played = true;
+    values.forEach((node, index) => {
+      const target = Number(node.dataset.count);
+      const suffix = node.dataset.suffix || '';
+      if (reduceMotion) { node.textContent = `${target}${suffix}`; return; }
+      const duration = 1000 + index * 140;
+      const start = performance.now();
+      const tick = now => {
+        const progress = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        node.textContent = `${Math.round(target * eased)}${suffix}`;
+        if (progress < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+  };
+  const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    section.classList.add('is-visible');
+    animateValues();
+    observer.disconnect();
+  }), { threshold:.18 });
+  observer.observe(section);
+})();
+
+(() => {
   const section = document.querySelector('.why-section');
   if (!section) return;
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
