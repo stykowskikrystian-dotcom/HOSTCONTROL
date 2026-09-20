@@ -410,6 +410,7 @@
     document.body.classList.toggle('hx-menu-open', open);
     if (open) {
       setDesktopServices(false);
+      setMobileServices(true);
       menu.hidden = false;
       menu.inert = false;
       stage.inert = true;

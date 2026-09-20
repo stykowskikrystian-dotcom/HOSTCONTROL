@@ -1237,3 +1237,38 @@ body.hx-menu-open{overflow:hidden}
 }
 @media(max-width:360px){.hx-header,.hx-header.is-scrolled{top:6px;padding-inline:14px}.hx-socials{left:14px}.hx-menu-body{padding-left:12px;padding-right:12px}.hx-menu-contact-card{padding-inline:14px}.hx-menu-contact-card>p{font-size:.86rem}}
 @media(prefers-reduced-motion:reduce){.hx-menu-contact-head span i{animation:none}}
+
+/* v61 — one-screen mobile menu: visible services, compact contact and vector arrows. */
+.hx-arrow-icon{width:15px;height:15px;display:block;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}
+.hx-mega-grid i .hx-arrow-icon{width:14px;height:14px}.hx-mega-all .hx-arrow-icon{width:16px;height:16px}
+.hx-menu.is-open .hx-mobile-services-trigger{opacity:1;transform:none}
+@media(max-width:800px){
+  .hx-menu{height:100dvh;min-height:100dvh;overflow:hidden;overscroll-behavior:none}
+  .hx-menu-body{height:100dvh;min-height:0;overflow:hidden;display:grid;grid-template-rows:auto auto auto;align-content:start;gap:8px;padding:104px 14px max(10px,env(safe-area-inset-bottom));}
+  .hx-menu-meta{min-height:30px;padding:0 3px 9px}.hx-menu-meta p{font-size:.62rem}.hx-menu-meta small{font-size:.54rem}
+  .hx-menu-primary{min-height:0;display:block!important;margin:0!important}
+  .hx-mobile-services-trigger{min-height:52px;grid-template-columns:27px minmax(0,1fr) 28px;gap:7px;padding:0 10px!important;border-radius:14px!important}
+  .hx-mobile-services-trigger small{font-size:.62rem}.hx-mobile-services-trigger strong{font-size:clamp(1.72rem,7.5vw,2.25rem)}.hx-mobile-services-trigger span{width:27px;height:27px}
+  .hx-menu-main-link{min-height:45px;grid-template-columns:27px minmax(0,1fr) 28px;gap:7px;padding:0 9px!important}.hx-menu-main-link small{font-size:.6rem}.hx-menu-main-link strong{font-size:clamp(1.52rem,6.8vw,2.05rem)}.hx-menu-main-link>i{width:27px;height:27px}.hx-menu-main-link>i .hx-arrow-icon{width:13px;height:13px}
+  .hx-mobile-services-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 6px;margin:0;max-height:0;transition:max-height .42s var(--ease),margin .42s var(--ease)}
+  .hx-mobile-services-list.is-open{max-height:110px;margin:6px 0 3px}
+  .hx-mobile-services-list a,.hx-mobile-services-list.is-open a{min-height:0;grid-template-columns:20px minmax(0,1fr) 20px;gap:5px;margin:0!important;padding:0 7px!important;border-radius:11px!important}
+  .hx-mobile-services-list.is-open a{min-height:49px;margin:0 0 5px!important}
+  .hx-mobile-services-list a>small{font-size:.58rem}.hx-mobile-services-list a div strong{font-size:.72rem;line-height:1.05}.hx-mobile-services-list a div span{display:none}.hx-mobile-services-list a>i .hx-arrow-icon{width:11px;height:11px}
+  .hx-menu-bottom{min-height:0;margin:0;padding:0;align-self:start}
+  .hx-menu-contact-card{padding:12px 13px 10px;border-radius:17px;box-shadow:0 16px 42px rgba(3,34,78,.18),inset 0 1px rgba(255,255,255,.12)}
+  .hx-menu-contact-card::before{bottom:-.32em;font-size:6.6rem}
+  .hx-menu-contact-head{min-height:20px;padding:0 0 7px}.hx-menu-contact-head span{font-size:.58rem}.hx-menu-contact-head small{display:block;font-size:.55rem}
+  .hx-menu-contact-intro{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-top:9px}.hx-menu-contact-card h3{margin:0;font-size:clamp(1.28rem,5.8vw,1.75rem);line-height:.96;letter-spacing:-.045em;white-space:nowrap}.hx-menu-contact-card h3 span{display:block}.hx-menu-contact-card .hx-menu-contact-intro p{max-width:125px;margin:0;color:rgba(255,255,255,.55);font-size:.62rem;line-height:1.35;text-align:right}
+  .hx-menu-contact-actions{grid-template-columns:1fr 1fr;gap:6px;margin-top:9px}.hx-menu-contact-actions>a{min-height:48px;grid-template-columns:23px minmax(0,1fr) 18px;gap:6px;padding:6px 8px!important;border-radius:11px!important}.hx-menu-contact-actions svg{width:20px;height:20px}.hx-menu-contact-actions small{font-size:.52rem}.hx-menu-contact-actions strong{margin-top:3px;font-size:.65rem}.hx-menu-contact-actions>a>i .hx-arrow-icon{width:11px;height:11px}
+  .hx-menu-contact-foot{min-height:30px;margin-top:8px;padding-top:8px;gap:10px}.hx-menu .hx-menu-socials{display:flex!important;grid-template-columns:none!important;gap:5px!important;margin:0!important}.hx-menu-socials a{width:28px;height:28px}.hx-menu-socials svg{width:13px;height:13px}.hx-menu-legal{max-width:none;gap:4px 10px}.hx-menu-legal a{font-size:.56rem!important;white-space:nowrap}
+  .hx-menu-orbit{top:27%;width:160px;height:160px;opacity:.45}
+}
+@media(max-width:380px){
+  .hx-menu-body{padding-top:96px;padding-inline:10px;gap:6px}.hx-menu-meta small{display:none}.hx-menu-main-link{min-height:42px}.hx-mobile-services-trigger{min-height:49px}.hx-mobile-services-list.is-open{max-height:102px;margin-top:4px}.hx-mobile-services-list.is-open a{min-height:46px;margin-bottom:4px!important}
+  .hx-menu-contact-card{padding:10px 11px 9px}.hx-menu-contact-head small{display:none}.hx-menu-contact-intro{margin-top:7px}.hx-menu-contact-card h3{font-size:1.2rem}.hx-menu-contact-card .hx-menu-contact-intro p{font-size:.58rem}.hx-menu-contact-actions{margin-top:7px}.hx-menu-contact-actions>a{min-height:44px}.hx-menu-contact-foot{margin-top:6px;padding-top:6px}
+}
+@media(max-height:700px) and (max-width:800px){
+  .hx-header,.hx-header.is-scrolled{top:5px;height:52px}.hx-brand{height:30px}.hx-socials{top:49px}.hx-social-link{width:25px;height:25px;min-width:25px;min-height:25px}.hx-menu-toggle{width:38px;height:38px;min-width:38px;min-height:38px}
+  .hx-menu-body{padding-top:87px;gap:4px}.hx-menu-meta{min-height:24px;padding-bottom:5px}.hx-menu-primary{margin:0!important}.hx-mobile-services-trigger{min-height:44px}.hx-menu-main-link{min-height:38px}.hx-menu-main-link strong{font-size:1.42rem}.hx-mobile-services-list.is-open{max-height:92px;margin:3px 0 1px}.hx-mobile-services-list.is-open a{min-height:42px;margin-bottom:3px!important}.hx-menu-contact-card{padding:8px 10px 7px}.hx-menu-contact-intro{margin-top:5px}.hx-menu-contact-card h3{font-size:1.12rem}.hx-menu-contact-actions{margin-top:5px}.hx-menu-contact-actions>a{min-height:40px}.hx-menu-contact-foot{margin-top:5px;padding-top:5px}.hx-menu-socials a{width:25px;height:25px}.hx-menu-contact-head{padding-bottom:5px}
+}
