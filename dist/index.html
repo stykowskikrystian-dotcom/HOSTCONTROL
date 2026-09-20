@@ -2092,7 +2092,7 @@
     }
 
   </style>
-  <link rel="stylesheet" href="assets/hero-v39.css?v=58">
+  <link rel="stylesheet" href="assets/hero-v39.css?v=59">
 </head>
 <body>
   <main>
@@ -2106,7 +2106,23 @@
           <a class="hx-social-link hx-social-phone" href="tel:+48692746031" aria-label="Zadzwoń: +48 692 746 031" data-label="Telefon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.1 3.5 9 7.8 6.8 9.5c1.45 3.15 3.55 5.25 6.7 6.7l1.7-2.2 4.3 1.9-.55 3.05c-.16.88-.95 1.55-1.85 1.55C9.6 20.5 3.5 14.4 3.5 6.9c0-.9.67-1.69 1.55-1.85L7.1 3.5Z"/></svg></a>
           <a class="hx-social-link hx-social-email" href="mailto:host_control@icloud.com" aria-label="Napisz e-mail: host_control@icloud.com" data-label="E-mail"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="m4 7 8 6 8-6"/></svg></a>
         </nav>
-        <nav class="hx-nav" aria-label="Nawigacja główna"><a href="#o-nas">O nas</a><a href="#oferta">Usługi</a><a href="#realizacje">Projekty</a><a href="tel:+48692746031">Kontakt</a></nav>
+        <nav class="hx-nav" aria-label="Nawigacja główna">
+          <a href="#o-nas">O nas</a>
+          <div class="hx-nav-services">
+            <button class="hx-nav-services-trigger" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="hx-desktop-services">Usługi <i aria-hidden="true"></i></button>
+            <div class="hx-mega-menu" id="hx-desktop-services">
+              <div class="hx-mega-head"><span>02 / Usługi</span><p>Wybierz obszar, który chcesz rozwinąć</p></div>
+              <div class="hx-mega-grid">
+                <a href="/uslugi/strony-internetowe/"><small>01 / DIGITAL</small><strong>Strony internetowe</strong><span>Serwisy, sklepy i landing pages</span><i>↗</i></a>
+                <a href="/uslugi/branding/"><small>02 / MARKA</small><strong>Branding</strong><span>Strategia, identyfikacja i system marki</span><i>↗</i></a>
+                <a href="/uslugi/fotografia/"><small>03 / OBRAZ</small><strong>Fotografia</strong><span>Wizerunek, produkt i ujęcia z drona</span><i>↗</i></a>
+                <a href="/uslugi/eventy/"><small>04 / EVENT</small><strong>Eventy</strong><span>Koncepcja, produkcja i koordynacja</span><i>↗</i></a>
+              </div>
+              <a class="hx-mega-all" href="#oferta">Zobacz cały zakres usług <span>→</span></a>
+            </div>
+          </div>
+          <a href="#realizacje">Projekty</a><a href="tel:+48692746031">Kontakt</a>
+        </nav>
         <a class="hx-start" href="tel:+48692746031">Zacznijmy projekt <svg viewBox="0 0 32 24" aria-hidden="true"><path d="M1 12h28M20 3l9 9-9 9"/></svg></a>
         <button class="hx-menu-toggle" aria-label="Otwórz menu" aria-controls="hx-menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </header>
@@ -2131,7 +2147,30 @@
       </div>
       <footer class="hx-ticker" aria-label="Zakres usług"><i></i><span>Strategia</span><b>•</b><span class="hx-desktop">Identyfikacja</span><span class="hx-mobile">Branding</span><b>•</b><span>Web design</span><b>•</b><span>Social media</span><b>•</b><span>Eventy</span><i class="hx-rule"></i><span class="hx-tagline">Więcej niż strony.</span><i></i></footer>
     </div>
-    <div class="hx-menu" id="hx-menu" role="dialog" aria-label="Menu główne" aria-modal="true" hidden inert><div class="hx-menu-body"><p>HOSTCONTROL / DIGITAL AGENCY</p><nav aria-label="Nawigacja mobilna"><a href="#o-nas"><small>01</small>O nas</a><a href="#oferta"><small>02</small>Usługi</a><a href="#realizacje"><small>03</small>Projekty</a><a href="tel:+48692746031"><small>04</small>Kontakt</a></nav><a class="hx-menu-contact" href="tel:+48692746031">Porozmawiajmy <span>↗</span></a></div></div>
+    <div class="hx-menu" id="hx-menu" role="dialog" aria-label="Menu główne" aria-modal="true" hidden inert>
+      <div class="hx-menu-grid" aria-hidden="true"></div><div class="hx-menu-orbit" aria-hidden="true"><span></span><i></i></div>
+      <div class="hx-menu-body">
+        <div class="hx-menu-meta"><p><span>MENU</span> HostControl / Digital Agency</p><small>Strategia · kreacja · technologia · produkcja</small></div>
+        <nav class="hx-menu-primary" aria-label="Nawigacja mobilna">
+          <a class="hx-menu-main-link" href="#o-nas"><small>01</small><strong>O nas</strong><i>↗</i></a>
+          <div class="hx-mobile-services">
+            <button class="hx-mobile-services-trigger" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="hx-mobile-services-list"><small>02</small><strong>Usługi</strong><span aria-hidden="true"></span></button>
+            <div class="hx-mobile-services-list" id="hx-mobile-services-list">
+              <a href="/uslugi/strony-internetowe/"><small>01</small><div><strong>Strony internetowe</strong><span>Serwisy · sklepy · landing pages</span></div><i>↗</i></a>
+              <a href="/uslugi/branding/"><small>02</small><div><strong>Branding</strong><span>Strategia · identyfikacja · brandbook</span></div><i>↗</i></a>
+              <a href="/uslugi/fotografia/"><small>03</small><div><strong>Fotografia</strong><span>Wizerunek · produkt · dron</span></div><i>↗</i></a>
+              <a href="/uslugi/eventy/"><small>04</small><div><strong>Eventy</strong><span>Koncepcja · produkcja · koordynacja</span></div><i>↗</i></a>
+            </div>
+          </div>
+          <a class="hx-menu-main-link" href="#realizacje"><small>03</small><strong>Projekty</strong><i>↗</i></a>
+          <a class="hx-menu-main-link" href="#o-mnie"><small>04</small><strong>Poznajmy się</strong><i>↗</i></a>
+        </nav>
+        <div class="hx-menu-bottom">
+          <a class="hx-menu-contact" href="tel:+48692746031"><small>Porozmawiajmy</small><strong>+48 692 746 031</strong><span>↗</span></a>
+          <div class="hx-menu-socials"><a href="https://www.instagram.com/much4ty/" target="_blank" rel="noreferrer">Instagram</a><a href="https://www.facebook.com/much4ty/" target="_blank" rel="noreferrer">Facebook</a><a href="mailto:host_control@icloud.com">E-mail</a></div>
+        </div>
+      </div>
+    </div>
   </section>
   <section class="hero" hidden aria-hidden="true">
     <div class="media" aria-hidden="true">
@@ -2951,6 +2990,6 @@
       }
     })();
   </script>
-  <script src="assets/hero-v39.js?v=58"></script>
+  <script src="assets/hero-v39.js?v=59"></script>
 </body>
 </html>

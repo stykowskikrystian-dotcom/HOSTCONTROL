@@ -382,28 +382,52 @@
   });
   const toggle = hero.querySelector('.hx-menu-toggle');
   const menu = hero.querySelector('.hx-menu');
+  const mobileServices = hero.querySelector('.hx-mobile-services');
+  const mobileServicesTrigger = hero.querySelector('.hx-mobile-services-trigger');
+  const mobileServicesList = hero.querySelector('.hx-mobile-services-list');
+  const desktopServices = hero.querySelector('.hx-nav-services');
+  const desktopServicesTrigger = hero.querySelector('.hx-nav-services-trigger');
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
   const mobile = matchMedia('(max-width:800px)');
   const img = hero.querySelector('#hx-ribbon-image');
   const canvas = hero.querySelector('canvas');
-  let opened = false, lastFocus, restoreScroll = 0;
+  let opened = false, lastFocus, restoreScroll = 0, closeTimer;
+  function setMobileServices(open) {
+    mobileServices.classList.toggle('is-open', open);
+    mobileServicesList.classList.toggle('is-open', open);
+    mobileServicesTrigger.setAttribute('aria-expanded', String(open));
+  }
+  function setDesktopServices(open) {
+    desktopServices.classList.toggle('is-open', open);
+    desktopServicesTrigger.setAttribute('aria-expanded', String(open));
+  }
   function setMenu(open) {
     if (open === opened) return;
     opened = open;
+    clearTimeout(closeTimer);
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Zamknij menu' : 'Otwórz menu');
-    menu.hidden = !open;
-    menu.inert = !open;
-    stage.inert = open;
     document.body.classList.toggle('hx-menu-open', open);
     if (open) {
+      setDesktopServices(false);
+      menu.hidden = false;
+      menu.inert = false;
+      stage.inert = true;
+      requestAnimationFrame(() => menu.classList.add('is-open'));
       lastFocus = document.activeElement;
       restoreScroll = scrollY;
       document.body.style.position = 'fixed';
       document.body.style.top = `-${restoreScroll}px`;
       document.body.style.width = '100%';
-      menu.querySelector('a').focus({preventScroll:true});
+      setTimeout(() => {
+        if (opened) menu.querySelector('.hx-menu-main-link')?.focus({preventScroll:true});
+      }, motion.matches ? 0 : 240);
     } else {
+      menu.classList.remove('is-open');
+      menu.inert = true;
+      stage.inert = false;
+      setMobileServices(false);
+      closeTimer = setTimeout(() => { if (!opened) menu.hidden = true; }, motion.matches ? 0 : 360);
       document.body.style.position = '';
       document.body.style.top = '';
       document.body.style.width = '';
@@ -415,17 +439,42 @@
     }
   }
   toggle.addEventListener('click', () => setMenu(!opened));
+  mobileServicesTrigger.addEventListener('click', () => {
+    setMobileServices(mobileServicesTrigger.getAttribute('aria-expanded') !== 'true');
+  });
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  desktopServicesTrigger.addEventListener('click', () => {
+    setDesktopServices(desktopServicesTrigger.getAttribute('aria-expanded') !== 'true');
+  });
+  desktopServices.addEventListener('pointerenter', () => setDesktopServices(true));
+  desktopServices.addEventListener('pointerleave', () => setDesktopServices(false));
+  desktopServices.addEventListener('focusin', () => setDesktopServices(true));
+  desktopServices.addEventListener('focusout', event => {
+    if (!desktopServices.contains(event.relatedTarget)) setDesktopServices(false);
+  });
+  document.addEventListener('pointerdown', event => {
+    if (!desktopServices.contains(event.target)) setDesktopServices(false);
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && desktopServices.classList.contains('is-open')) {
+      event.preventDefault();
+      setDesktopServices(false);
+      desktopServicesTrigger.focus({preventScroll:true});
+    }
+  });
   document.addEventListener('keydown', e => {
     if (!opened) return;
     if (e.key === 'Escape') {e.preventDefault();setMenu(false);}
     if (e.key === 'Tab') {
-      const nodes = [toggle, ...menu.querySelectorAll('a')];
+      const nodes = [toggle, ...menu.querySelectorAll('a[href],button:not([disabled])')];
       const current = nodes.indexOf(document.activeElement);
       e.preventDefault();nodes[(current + (e.shiftKey ? -1 : 1) + nodes.length) % nodes.length].focus();
     }
   });
-  mobile.addEventListener('change', () => {if (!mobile.matches) setMenu(false);});
+  mobile.addEventListener('change', () => {
+    if (!mobile.matches) setMenu(false);
+    else setDesktopServices(false);
+  });
   const onScroll = () => header.classList.toggle('is-scrolled', scrollY > 20);
   addEventListener('scroll', onScroll, {passive:true});onScroll();
   // Project captions stay as vector text, mapped into the ribbon's photographed planes.
