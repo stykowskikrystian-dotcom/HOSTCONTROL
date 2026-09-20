@@ -420,7 +420,7 @@
       document.body.style.top = `-${restoreScroll}px`;
       document.body.style.width = '100%';
       setTimeout(() => {
-        if (opened) menu.querySelector('.hx-menu-main-link')?.focus({preventScroll:true});
+        if (opened) mobileServicesTrigger?.focus({preventScroll:true});
       }, motion.matches ? 0 : 240);
     } else {
       menu.classList.remove('is-open');
