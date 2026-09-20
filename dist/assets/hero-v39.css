@@ -1346,3 +1346,31 @@ body.hx-menu-open{overflow:hidden}
   .hx-menu-contact-card h3{font-size:1.1rem!important}
   .hx-menu-contact-actions>a{min-height:40px!important}.hx-menu-contact-actions strong{font-size:.59rem!important}
 }
+
+/* v65 — contact uses the full menu width; no artificial right-side shrink. */
+@media(max-width:800px){
+  .hx-menu-body{padding-bottom:max(18px,env(safe-area-inset-bottom))!important}
+  .hx-menu-bottom{width:100%!important;max-width:none!important;align-self:stretch!important}
+  .hx-menu-contact-card{width:100%!important;max-width:none!important;padding:13px 15px 11px!important;border-radius:19px!important}
+  .hx-menu-contact-head{min-height:21px!important;padding-bottom:7px!important}
+  .hx-menu-contact-head span{font-size:.61rem!important}.hx-menu-contact-head small{font-size:.57rem!important}
+  .hx-menu-contact-intro{margin-top:8px!important;grid-template-columns:minmax(0,1fr) minmax(122px,145px)!important;gap:12px!important}
+  .hx-menu-contact-card h3{font-size:1.38rem!important}
+  .hx-menu-contact-card .hx-menu-contact-intro p{max-width:145px!important;font-size:.63rem!important;line-height:1.3!important}
+  .hx-menu-contact-actions{margin-top:8px!important;gap:8px!important}
+  .hx-menu-contact-actions>a{min-height:49px!important;padding:6px 11px!important}
+  .hx-menu-contact-actions svg{width:21px!important;height:21px!important}
+  .hx-menu-contact-actions small{font-size:.54rem!important}.hx-menu-contact-actions strong{font-size:.7rem!important}
+  .hx-menu-contact-foot{min-height:33px!important;margin-top:7px!important;padding-top:7px!important}
+  .hx-menu .hx-menu-socials a{width:30px!important;height:30px!important}
+  .hx-menu-socials svg{width:14px!important;height:14px!important}
+  .hx-menu-legal a{font-size:.58rem!important}
+}
+@media(max-width:380px){
+  .hx-menu-body{padding-bottom:max(14px,env(safe-area-inset-bottom))!important}
+  .hx-menu-contact-card{padding:10px 12px 9px!important}
+  .hx-menu-contact-intro{grid-template-columns:minmax(0,1fr) 116px!important;gap:8px!important}
+  .hx-menu-contact-card h3{font-size:1.18rem!important}
+  .hx-menu-contact-actions>a{min-height:44px!important;padding-inline:8px!important}
+  .hx-menu-contact-actions strong{font-size:.62rem!important}
+}
