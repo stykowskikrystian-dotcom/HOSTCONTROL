@@ -1308,3 +1308,41 @@ body.hx-menu-open{overflow:hidden}
   .hx-menu-main-link{position:relative;z-index:2}
   .hx-menu-bottom{position:relative;z-index:1}
 }
+
+/* v64 — compact vertical rhythm for iPhone Safari, including the bottom toolbar. */
+@media(max-width:800px){
+  .hx-menu-body{padding-top:91px!important;padding-bottom:max(82px,env(safe-area-inset-bottom))!important;gap:4px!important}
+  .hx-menu-meta{min-height:27px!important;padding:0 4px 6px!important}
+  .hx-menu-meta p{font-size:.62rem!important}.hx-menu-meta small{font-size:.52rem!important}
+  .hx-mobile-services-trigger{min-height:49px!important;border-radius:14px!important}
+  .hx-mobile-services-trigger strong{font-size:1.78rem!important}
+  .hx-mobile-services-list.is-open{max-height:104px!important;margin:4px 0 1px!important}
+  .hx-mobile-services-list a,.hx-mobile-services-list.is-open a{min-height:47px!important;margin-bottom:4px!important;padding-block:5px!important}
+  .hx-mobile-services-list a div strong{font-size:.76rem!important}
+  .hx-menu-main-link{min-height:41px!important;margin-top:0!important}
+  .hx-menu-main-link strong{font-size:1.55rem!important}
+  .hx-menu-main-link>i{width:27px!important;height:27px!important}
+  .hx-menu-contact-card{padding:9px 11px 8px!important;border-radius:17px!important}
+  .hx-menu-contact-head{min-height:18px!important;padding-bottom:5px!important}
+  .hx-menu-contact-head span{font-size:.57rem!important}.hx-menu-contact-head small{font-size:.53rem!important}
+  .hx-menu-contact-intro{margin-top:5px!important;grid-template-columns:minmax(0,1fr) 132px!important}
+  .hx-menu-contact-card h3{font-size:1.22rem!important}
+  .hx-menu-contact-card .hx-menu-contact-intro p{font-size:.57rem!important;line-height:1.25!important}
+  .hx-menu-contact-actions{margin-top:6px!important;gap:6px!important}
+  .hx-menu-contact-actions>a{min-height:43px!important;grid-template-columns:21px minmax(0,1fr)!important;gap:7px!important;padding:5px 8px!important}
+  .hx-menu-contact-actions svg{width:19px!important;height:19px!important}
+  .hx-menu-contact-actions small{font-size:.5rem!important}.hx-menu-contact-actions strong{font-size:.66rem!important;white-space:nowrap}
+  .hx-menu-contact-actions>a>i{display:none!important}
+  .hx-menu-contact-foot{min-height:29px!important;margin-top:5px!important;padding-top:5px!important}
+  .hx-menu .hx-menu-socials a{width:27px!important;height:27px!important}
+  .hx-menu-socials svg{width:13px!important;height:13px!important}
+  .hx-menu-legal a{font-size:.54rem!important}
+}
+@media(max-width:380px){
+  .hx-menu-body{padding-top:86px!important;padding-bottom:max(76px,env(safe-area-inset-bottom))!important}
+  .hx-mobile-services-trigger{min-height:46px!important}.hx-mobile-services-trigger strong{font-size:1.64rem!important}
+  .hx-mobile-services-list.is-open{max-height:98px!important}.hx-mobile-services-list a,.hx-mobile-services-list.is-open a{min-height:44px!important}
+  .hx-menu-main-link{min-height:38px!important}.hx-menu-main-link strong{font-size:1.4rem!important}
+  .hx-menu-contact-card h3{font-size:1.1rem!important}
+  .hx-menu-contact-actions>a{min-height:40px!important}.hx-menu-contact-actions strong{font-size:.59rem!important}
+}
