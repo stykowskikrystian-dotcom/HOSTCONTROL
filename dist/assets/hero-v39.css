@@ -1299,3 +1299,12 @@ body.hx-menu-open{overflow:hidden}
 @media(max-height:620px) and (max-width:800px){
   .hx-menu-body{padding-top:86px;gap:3px}.hx-menu-meta{min-height:23px;padding-bottom:4px}.hx-mobile-services-trigger{min-height:44px}.hx-mobile-services-trigger strong{font-size:1.55rem}.hx-mobile-services-list.is-open{max-height:94px;margin:3px 0 1px}.hx-mobile-services-list a,.hx-mobile-services-list.is-open a{min-height:43px!important;margin-bottom:3px!important;padding-block:4px!important}.hx-mobile-services-list a div strong{font-size:.7rem}.hx-menu-main-link{min-height:38px;margin-top:0}.hx-menu-main-link strong{font-size:1.38rem}.hx-menu-contact-card{padding:8px 10px 7px}.hx-menu-contact-head{min-height:17px;padding-bottom:4px}.hx-menu-contact-intro{margin-top:4px}.hx-menu-contact-card h3{font-size:1.08rem}.hx-menu-contact-card .hx-menu-contact-intro p{font-size:.56rem}.hx-menu-contact-actions{margin-top:4px}.hx-menu-contact-actions>a{min-height:39px;padding-block:4px!important}.hx-menu-contact-foot{min-height:25px;margin-top:4px;padding-top:4px}.hx-menu .hx-menu-socials a{width:25px;height:25px}.hx-menu-legal a{font-size:.54rem!important}
 }
+
+/* v63 — prevent the final nav item from sliding under the contact panel. */
+@media(max-width:800px){
+  .hx-menu-body{display:flex!important;flex-direction:column!important;justify-content:flex-start!important}
+  .hx-menu-meta,.hx-menu-primary,.hx-menu-bottom{flex:0 0 auto!important;min-height:auto!important}
+  .hx-menu-primary{overflow:visible!important}
+  .hx-menu-main-link{position:relative;z-index:2}
+  .hx-menu-bottom{position:relative;z-index:1}
+}
