@@ -478,6 +478,7 @@
   });
   const onScroll = () => header.classList.toggle('is-scrolled', scrollY > 20);
   addEventListener('scroll', onScroll, {passive:true});onScroll();
+  if (!canvas || !img) return;
   // Project captions stay as vector text, mapped into the ribbon's photographed planes.
   const captionNodes=[...hero.querySelectorAll('.hx-panel')];
   function smoothStep(a,b,value){const t=Math.max(0,Math.min(1,(value-a)/(b-a)));return t*t*(3-2*t);}
@@ -620,4 +621,58 @@
   motion.addEventListener('change',()=>{if(motion.matches){stop();fitCaptions();}else start();});
   canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();stop();fitCaptions();hero.querySelector('.hx-art').classList.remove('is-live');});
   addEventListener('pagehide',stop);
+})();
+
+(() => {
+  const hero = document.querySelector('.hc-showreel');
+  if (!hero) return;
+  const videos = [...hero.querySelectorAll('.hc-showreel-video')];
+  const buttons = [...hero.querySelectorAll('[data-hero-go]')];
+  const current = hero.querySelector('.hc-showreel-current');
+  const title = hero.querySelector('.hc-showreel-scene-title');
+  const copy = hero.querySelector('.hc-showreel-scene-copy');
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const scenes = [
+    ['Strategia i branding', 'Nadajemy marce kierunek, język i system, który można konsekwentnie rozwijać.'],
+    ['Strony i AI', 'Projektujemy szybkie serwisy i cyfrowe doświadczenia, które prowadzą odbiorcę do działania.'],
+    ['Foto i dron', 'Budujemy obraz marki — od portretu i produktu po ujęcia, które pokazują pełną skalę projektu.'],
+    ['Eventy', 'Łączymy koncepcję, przestrzeń, światło i produkcję w wydarzenia, które zostają w pamięci.']
+  ];
+  let active = 0;
+  let timer;
+  const restart = () => {
+    clearInterval(timer);
+    if (!reduceMotion) timer = setInterval(() => setScene(active + 1), 6500);
+  };
+  const setScene = next => {
+    active = (next + videos.length) % videos.length;
+    hero.dataset.activeScene = String(active);
+    videos.forEach((video, index) => {
+      const selected = index === active;
+      video.classList.toggle('is-active', selected);
+      if (selected && !reduceMotion) video.play().catch(() => {}); else video.pause();
+    });
+    buttons.forEach((button, index) => {
+      button.classList.toggle('is-active', index === active);
+      button.setAttribute('aria-pressed', index === active ? 'true' : 'false');
+      const bar = button.querySelector('i');
+      if (bar && index === active) { bar.style.animation = 'none'; void bar.offsetWidth; bar.style.animation = ''; }
+    });
+    if (current) current.textContent = String(active + 1).padStart(2, '0');
+    if (title) title.textContent = scenes[active][0];
+    if (copy) copy.textContent = scenes[active][1];
+  };
+  buttons.forEach((button, index) => button.addEventListener('click', () => { setScene(index); restart(); }));
+  hero.addEventListener('pointermove', event => {
+    if (reduceMotion) return;
+    const rect = hero.getBoundingClientRect();
+    hero.style.setProperty('--hero-x', `${event.clientX - rect.left}px`);
+    hero.style.setProperty('--hero-y', `${event.clientY - rect.top}px`);
+  }, {passive:true});
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) { clearInterval(timer); videos.forEach(video => video.pause()); }
+    else { setScene(active); restart(); }
+  });
+  setScene(0);
+  restart();
 })();
