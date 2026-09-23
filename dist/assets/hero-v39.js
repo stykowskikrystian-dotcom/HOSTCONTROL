@@ -634,7 +634,7 @@
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const scenes = [
     ['Strategia i branding', 'Nadajemy marce kierunek, język i system, który można konsekwentnie rozwijać.'],
-    ['Strony i AI', 'Projektujemy szybkie serwisy i cyfrowe doświadczenia, które prowadzą odbiorcę do działania.'],
+    ['Web', 'Projektujemy szybkie serwisy i cyfrowe doświadczenia, które prowadzą odbiorcę do działania.'],
     ['Foto i dron', 'Budujemy obraz marki — od portretu i produktu po ujęcia, które pokazują pełną skalę projektu.'],
     ['Eventy', 'Łączymy koncepcję, przestrzeń, światło i produkcję w wydarzenia, które zostają w pamięci.']
   ];
